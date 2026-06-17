@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKY-POS 외부망 포털 · 매출관리 화면설계 (다점포)</title>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+:root{
+  --ink:#191c21; --ink-2:#474c55; --ink-3:#838995; --ink-4:#aab0ba;
+  --line:#e4e6ea; --line-2:#d3d6dc;
+  --bg:#f3f4f6; --surface:#ffffff; --surface-2:#f7f8fa; --surface-3:#edeff2;
+  --sidebar:#21252b; --sidebar-2:#2b3037; --sidebar-line:#363c44;
+  --warn:#9a3b30; --warn-bg:#f6ecea;
+  --radius:6px; --radius-sm:4px;
+  font-size:13px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Pretendard','Pretendard Variable',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  color:var(--ink);background:var(--bg);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum";
+}
+.tnum{font-variant-numeric:tabular-nums}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
+
+/* ===== Top bar ===== */
+.topbar{height:54px;background:var(--surface);border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:16px;padding:0 20px;position:sticky;top:0;z-index:30}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}
+.brand .mark{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:5px;display:grid;place-items:center;font-size:11px;font-weight:800}
+.brand .sys{font-size:14px}
+.brand .sub{font-size:11px;color:var(--ink-3);font-weight:600;border-left:1px solid var(--line-2);padding-left:10px;margin-left:2px}
+.scope{margin-left:8px;display:flex;align-items:center;gap:8px;padding:5px 11px;border:1px solid var(--line-2);border-radius:var(--radius-sm);background:var(--surface-2);font-size:12px;color:var(--ink-2);cursor:pointer}
+.scope:hover{border-color:var(--ink-3)}
+.scope b{color:var(--ink);font-weight:700}
+.scope .tag{font-size:10px;color:var(--ink-3);border:1px solid var(--line-2);border-radius:3px;padding:1px 5px;background:#fff}
+.scope .cnt{font-size:10.5px;font-weight:800;background:var(--ink);color:#fff;border-radius:9px;padding:1px 7px}
+.scope .car{color:var(--ink-4)}
+.topbar .right{margin-left:auto;display:flex;align-items:center;gap:14px;font-size:12px;color:var(--ink-2)}
+.topbar .right .who{display:flex;align-items:center;gap:7px}
+.topbar .right .av{width:24px;height:24px;border-radius:50%;background:var(--surface-3);border:1px solid var(--line-2);display:grid;place-items:center;font-size:10px;font-weight:700;color:var(--ink-2)}
+.topbar .right .role{font-size:10px;color:#fff;background:var(--ink-2);border-radius:3px;padding:1px 6px;font-weight:700}
+.topbar .right a{color:var(--ink-3);text-decoration:none}
+.topbar .right a:hover{color:var(--ink)}
+
+/* store dropdown */
+.storemenu{position:absolute;top:48px;left:228px;background:#fff;border:1px solid var(--line-2);border-radius:var(--radius);box-shadow:0 12px 34px rgba(0,0,0,.16);width:312px;padding:6px;display:none;z-index:40}
+.storemenu.show{display:block}
+.storemenu .si{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--radius-sm);font-size:12.5px;color:var(--ink-2);cursor:pointer}
+.storemenu .si:hover{background:var(--surface-2)}
+.storemenu .si.on{background:var(--surface-3);color:var(--ink);font-weight:600}
+.storemenu .si .code{font-size:10.5px;color:var(--ink-3);margin-left:auto}
+.storemenu .si .fz{font-size:10px;border:1px solid var(--line-2);border-radius:3px;padding:0 5px;color:var(--ink-3)}
+.storemenu .div{height:1px;background:var(--line);margin:5px 0}
+
+/* ===== Layout ===== */
+.shell{display:flex;min-height:calc(100vh - 54px)}
+.side{width:236px;flex:0 0 236px;background:var(--sidebar);color:#cdd2da;padding:14px 0;position:sticky;top:54px;height:calc(100vh - 54px);overflow-y:auto}
+.side .grp{padding:6px 18px;font-size:10.5px;letter-spacing:.08em;color:#7d848f;font-weight:700;margin-top:6px}
+.nav a{display:flex;align-items:center;gap:10px;padding:9px 18px;color:#cdd2da;text-decoration:none;font-size:12.5px;border-left:3px solid transparent}
+.nav a .n{width:18px;text-align:center;color:#7d848f;font-size:11px;font-weight:700}
+.nav a:hover{background:var(--sidebar-2);color:#fff}
+.nav a.active{background:var(--sidebar-2);color:#fff;border-left-color:#fff;font-weight:600}
+.nav a.active .n{color:#fff}
+.side .foot{margin-top:18px;padding:14px 18px 4px;border-top:1px solid var(--sidebar-line);font-size:10.5px;color:#6c727c;line-height:1.6}
+.main{flex:1;min-width:0;padding:22px 30px 60px;max-width:1800px}
+
+/* ===== Page header ===== */
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.crumb b{color:var(--ink-2);font-weight:600}
+.phead{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding-bottom:14px;border-bottom:1.5px solid var(--ink);margin-bottom:18px}
+.phead h1{font-size:19px;font-weight:800;letter-spacing:-.02em}
+.phead p{font-size:12px;color:var(--ink-3);margin-top:5px;max-width:720px}
+.phead .acts{display:flex;gap:8px;flex:0 0 auto}
+
+/* scope banner inside screen */
+.scopebar{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:8px 12px;margin-bottom:14px}
+.scopebar .k{font-size:11px;font-weight:700;color:var(--ink-3)}
+.scopebar b{color:var(--ink);font-weight:700}
+.scopebar .chip{font-size:11px;border:1px solid var(--line-2);border-radius:12px;padding:2px 9px;background:#fff;color:var(--ink-2)}
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 13px;font-size:12.5px;font-weight:600;border:1px solid var(--line-2);border-radius:var(--radius-sm);background:var(--surface);color:var(--ink-2)}
+.btn:hover{border-color:var(--ink-3);color:var(--ink)}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.dark:hover{background:#000}
+.btn.sm{height:28px;padding:0 10px;font-size:12px}
+.btn .ic{font-size:13px;line-height:1}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--ink-3)}
+.btn.ghost:hover{color:var(--ink);background:var(--surface-3)}
+.btn.warn{border-color:var(--warn);color:var(--warn)}
+.btn.warn:hover{background:var(--warn-bg)}
+
+/* ===== Cards ===== */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:16px}
+.card>.ch{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.card>.ch h3{font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:8px}
+.card>.ch .desc{font-size:11.5px;color:var(--ink-3);font-weight:400}
+.card>.cb{padding:16px}
+
+/* ===== Filter / form ===== */
+.filter{background:var(--surface-2)}
+.frow{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.fld{display:flex;align-items:center;gap:9px}
+.fld>label{font-size:12px;color:var(--ink-2);font-weight:600;white-space:nowrap;min-width:max-content}
+.inp,.sel{height:32px;border:1px solid var(--line-2);border-radius:var(--radius-sm);background:#fff;padding:0 10px;font-size:12.5px;color:var(--ink);font-family:inherit}
+.inp:focus,.sel:focus{outline:none;border-color:var(--ink)}
+.inp.tnum{text-align:right}
+.sel{padding-right:26px;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);background-position:calc(100% - 14px) 14px,calc(100% - 9px) 14px;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.date{width:128px}
+.w90{width:90px}.w120{width:120px}.w160{width:160px}.w200{width:200px}.w220{width:220px}.w260{width:260px}
+.dash{color:var(--ink-4)}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:var(--radius-sm);overflow:hidden;background:#fff}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;width:0;height:0}
+.seg span{display:block;padding:6px 14px;font-size:12px;font-weight:600;color:var(--ink-2);border-right:1px solid var(--line)}
+.seg label:last-child span{border-right:none}
+.seg input:checked + span{background:var(--ink);color:#fff}
+.fbar{display:flex;justify-content:flex-end;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line-2)}
+/* top-label compact filter bar (single-row, vertical-space efficient on wide canvas) */
+.qbar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:13px 18px}
+.qf{display:flex;flex-direction:column;gap:6px}
+.qf>label{font-size:11px;font-weight:700;color:var(--ink-3);letter-spacing:.01em}
+.qf .row{display:flex;align-items:center;gap:7px}
+.qf-act{margin-left:auto;display:flex;align-items:flex-end;gap:8px}
+@media(max-width:980px){.qf-act{margin-left:0}}
+
+/* ===== Toolbar ===== */
+.tbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.tbar .summ{display:flex;align-items:center;gap:20px;font-size:12.5px;color:var(--ink-2);flex-wrap:wrap}
+.tbar .summ b{color:var(--ink);font-weight:800}
+.tbar .summ .lab{color:var(--ink-3);font-weight:600;margin-right:5px;font-size:11.5px}
+.tbar .right{display:flex;gap:8px;align-items:center}
+
+/* ===== Table (header alignment fixed) ===== */
+.scroll{overflow:auto;border:1px solid var(--line);border-radius:var(--radius);max-height:560px}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px}
+.tbl th,.tbl td{padding:9px 12px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line)}
+.tbl thead th{
+  background:var(--surface-3);color:var(--ink-2);font-weight:700;font-size:11.5px;
+  position:sticky;top:0;z-index:2;
+  box-shadow:inset 0 -1px 0 var(--line-2);border-bottom:none;
+}
+.tbl tbody tr:hover{background:var(--surface-2)}
+.tbl td.num,.tbl th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tbl td.ctr,.tbl th.ctr{text-align:center}
+.tbl tfoot td{background:var(--surface-3);font-weight:800;border-top:1.5px solid var(--ink);border-bottom:none;position:sticky;bottom:0}
+.tbl .lnk{color:var(--ink);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.tbl input[type=checkbox]{accent-color:var(--ink)}
+.tbl .store{font-weight:600;color:var(--ink)}
+.tbl .mini{display:inline-flex;gap:4px}
+.tbl .mini .btn{height:24px;padding:0 8px;font-size:11px}
+
+/* ===== Badges (grayscale) ===== */
+.bdg{display:inline-flex;align-items:center;gap:4px;height:21px;padding:0 8px;border-radius:11px;font-size:11px;font-weight:700;line-height:1}
+.bdg.solid{background:var(--ink);color:#fff}
+.bdg.line{background:#fff;border:1px solid var(--line-2);color:var(--ink-2)}
+.bdg.fill{background:var(--surface-3);color:var(--ink-2);border:1px solid var(--line)}
+.bdg.err{background:var(--warn-bg);color:var(--warn);border:1px solid #e3c6c1}
+
+/* ===== Sub tabs / steps ===== */
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line-2)}
+.tabs button{background:none;border:none;padding:11px 16px;font-size:12.5px;font-weight:600;color:var(--ink-3);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button:hover{color:var(--ink-2)}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:700}
+.steps{display:flex;align-items:center;gap:0;margin-bottom:4px}
+.steps .st{display:flex;align-items:center;gap:9px;padding-right:18px}
+.steps .st .no{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--ink-3)}
+.steps .st.on .no{background:var(--ink);border-color:var(--ink);color:#fff}
+.steps .st .tx{font-size:12px;font-weight:600;color:var(--ink-2)}
+.steps .st.on .tx{color:var(--ink)}
+.steps .arr{color:var(--ink-4);margin:0 6px}
+
+/* dropzone / validation */
+.drop{border:1.5px dashed var(--line-2);border-radius:var(--radius);background:var(--surface-2);padding:26px;text-align:center}
+.drop .ico{font-size:24px;color:var(--ink-4)}
+.drop p{font-size:12.5px;color:var(--ink-2);margin-top:8px}
+.drop .hint{font-size:11px;color:var(--ink-3);margin-top:4px}
+.valbox{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:14px}
+.valbox .vh{display:flex;align-items:center;gap:18px;padding:11px 14px;background:var(--surface-2);border-bottom:1px solid var(--line);font-size:12.5px}
+.valbox .vh .k{color:var(--ink-3);font-weight:600;margin-right:6px;font-size:11.5px}
+.valbox .vh .v{font-weight:800}
+.valbox .vh .v.bad{color:var(--warn)}
+
+/* form grid */
+.fg{display:grid;grid-template-columns:max-content 1fr;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.fg .lab{background:var(--surface-3);padding:11px 14px;font-size:12px;font-weight:700;color:var(--ink-2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px}
+.fg .val{padding:9px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fg .lab.req::after{content:"*";color:var(--warn);font-weight:800}
+.fg>div:nth-last-child(-n+2){border-bottom:none}
+.unit{font-size:12px;color:var(--ink-3);font-weight:600}
+.help{font-size:11px;color:var(--ink-3)}
+
+/* recon / kpi */
+.recon{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.recon .rc{background:var(--surface);padding:15px 16px}
+.recon .rc .k{font-size:11.5px;color:var(--ink-3);font-weight:600}
+.recon .rc .v{font-size:20px;font-weight:800;margin-top:7px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.recon .rc .u{font-size:11px;color:var(--ink-3);font-weight:600;margin-left:3px}
+.recon .rc.diff .v{color:var(--warn)}
+.recon .rc .sub{font-size:11px;color:var(--ink-3);margin-top:3px}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:16px}
+.kpi .k{background:var(--surface);padding:14px 16px}
+.kpi .k .lab{font-size:11.5px;color:var(--ink-3);font-weight:600}
+.kpi .k .val{font-size:19px;font-weight:800;margin-top:6px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.kpi .k .val .u{font-size:11px;color:var(--ink-3);font-weight:600;margin-left:3px}
+
+.filechip{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border:1px solid var(--line-2);border-radius:var(--radius-sm);background:#fff;font-size:12px;color:var(--ink-2)}
+.filechip .x{color:var(--ink-3);cursor:pointer}
+.help-row{font-size:11.5px;color:var(--ink-3);margin-top:10px}
+
+.screen{display:none}
+.screen.active{display:block;animation:fade .18s ease}
+@keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* modal */
+.mask{position:fixed;inset:0;background:rgba(20,22,26,.42);display:none;place-items:center;z-index:50;padding:20px}
+.mask.show{display:grid}
+.modal{background:#fff;border-radius:8px;width:440px;max-width:100%;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+.modal .mh{padding:16px 20px;border-bottom:1px solid var(--line);font-size:14px;font-weight:800}
+.modal .mb{padding:18px 20px;font-size:12.5px;color:var(--ink-2);line-height:1.6}
+.modal .mb b{color:var(--ink)}
+.modal .mf{padding:14px 20px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px;background:var(--surface-2)}
+
+/* right slide-over drawer (registration forms) */
+.drawer-mask{position:fixed;inset:0;background:rgba(20,22,26,.38);opacity:0;visibility:hidden;transition:opacity .22s;z-index:45}
+.drawer-mask.show{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:500px;max-width:94vw;background:#fff;border-left:1px solid var(--line-2);box-shadow:-14px 0 44px rgba(0,0,0,.16);transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);z-index:46;display:flex;flex-direction:column}
+.drawer.show{transform:none}
+.drawer .dh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);flex:0 0 auto}
+.drawer .dh h3{font-size:15px;font-weight:800}
+.drawer .dh .sub{font-size:11.5px;color:var(--ink-3);font-weight:400;margin-top:3px}
+.drawer .dh .xc{width:30px;height:30px;border:1px solid var(--line-2);border-radius:var(--radius-sm);background:#fff;color:var(--ink-3);font-size:14px;display:grid;place-items:center;cursor:pointer;flex:0 0 auto}
+.drawer .dh .xc:hover{color:var(--ink);border-color:var(--ink-3)}
+.drawer .db{flex:1;overflow-y:auto;padding:20px}
+.drawer .df{flex:0 0 auto;padding:14px 20px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px;background:var(--surface-2)}
+.drawer .sechd{font-size:12px;font-weight:700;color:var(--ink-2);margin:20px 0 11px;padding-top:18px;border-top:1px dashed var(--line-2)}
+.drawer .recon{grid-template-columns:1fr}
+/* drawer entry form: top-label, single column, full-width (input-optimized) */
+.dform{display:flex;flex-direction:column;gap:18px}
+.ff{display:flex;flex-direction:column;gap:7px}
+.ff>label{font-size:12px;font-weight:700;color:var(--ink-2)}
+.ff>label .rq{color:var(--warn);margin-left:2px}
+.ff .inp,.ff .sel{width:100%;height:38px;font-size:13px}
+.ff .seg{align-self:flex-start}
+.ff .seg span{padding:8px 18px}
+.ff .hint{font-size:11px;color:var(--ink-3)}
+.ff-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ff-amt{display:flex;align-items:stretch}
+.dform .ff-amt input{flex:1;width:auto;border-top-right-radius:0;border-bottom-right-radius:0;text-align:right;height:42px;font-size:15px;font-weight:700}
+.ff-amt .suf{display:flex;align-items:center;padding:0 14px;border:1px solid var(--line-2);border-left:none;border-radius:0 var(--radius-sm) var(--radius-sm) 0;background:var(--surface-3);font-size:12px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.ff-file{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+
+@media (max-width:980px){.side{display:none}.recon,.kpi{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="mark">SP</span>
+    <span class="sys">SKY-POS</span>
+    <span class="sub">외부망 포털 · 매출관리</span>
+  </div>
+  <div class="scope" id="scopeBtn">
+    <span class="tag">매장 범위</span>
+    <b id="scopeLabel">전체 매장</b>
+    <span class="cnt">10개</span>
+    <span class="car">▾</span>
+  </div>
+  <div class="storemenu" id="storeMenu">
+    <div class="si on" data-store="ALL"><span>전체 매장 (10개)</span><span class="code">집계</span></div>
+    <div class="div"></div>
+    <div class="si" data-store="스카이게이트 F&amp;B"><span>스카이게이트 F&amp;B</span><span class="fz">면세점 외</span><span class="code">T2 · ST-014</span></div>
+    <div class="si" data-store="스카이게이트 카페"><span>스카이게이트 카페</span><span class="fz">면세점 외</span><span class="code">T1 · ST-022</span></div>
+    <div class="si" data-store="듀티프리 부티크"><span>듀티프리 부티크</span><span class="fz">면세점</span><span class="code">T2 · ST-101</span></div>
+    <div class="si" data-store="게이트 델리"><span>게이트 델리</span><span class="fz">면세점 외</span><span class="code">T1 · ST-008</span></div>
+    <div class="si" data-store="라운지 그릴"><span>라운지 그릴</span><span class="fz">면세점 외</span><span class="code">T2 · ST-035</span></div>
+    <div class="si" data-store="트래블 컨비니"><span>트래블 컨비니</span><span class="fz">면세점 외</span><span class="code">T1 · ST-047</span></div>
+    <div class="si" data-store="에어사이드 베이커리"><span>에어사이드 베이커리</span><span class="fz">면세점 외</span><span class="code">T2 · ST-052</span></div>
+    <div class="si" data-store="듀티프리 코스메틱"><span>듀티프리 코스메틱</span><span class="fz">면세점</span><span class="code">T1 · ST-110</span></div>
+    <div class="si" data-store="게이트 누들바"><span>게이트 누들바</span><span class="fz">면세점 외</span><span class="code">T2 · ST-061</span></div>
+    <div class="si" data-store="스카이 베버리지"><span>스카이 베버리지</span><span class="fz">면세점 외</span><span class="code">T1 · ST-073</span></div>
+  </div>
+  <div class="right">
+    <a href="#">매뉴얼</a>
+    <div class="who"><span class="av">김</span><span>김외부</span><span class="role">다점포 관리자</span></div>
+    <a href="#">로그아웃</a>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="side">
+    <div class="grp">매출관리</div>
+    <nav class="nav">
+      <a data-screen="receipt" class="active"><span class="n">1</span> 영수증 관리</a>
+      <a data-screen="manual"><span class="n">2</span> 수동매출 관리</a>
+      <a data-screen="etc"><span class="n">3</span> 기타 매출 관리</a>
+      <a data-screen="daily"><span class="n">4</span> 일마감 관리</a>
+      <a data-screen="monthly"><span class="n">5</span> 월마감 관리</a>
+      <a data-screen="tax"><span class="n">6</span> 연 과세표준 증명내역</a>
+    </nav>
+    <div class="foot">
+      화면설계서 (Storyboard)<br>
+      그레이스케일 · 다점포 관리자 기준<br>
+      ※ 데이터는 설계용 예시값
+    </div>
+  </aside>
+
+  <main class="main">
+
+  <!-- ===== 1. 영수증 관리 ===== -->
+  <section class="screen active" id="screen-receipt">
+    <div class="crumb">매출관리 <b>›</b> 영수증 관리</div>
+    <div class="phead">
+      <div><h1>영수증 관리</h1>
+        <p>관리 매장의 POS 전송 영수증을 조회합니다. 매장·매장구분(전체·오프라인·온라인)별 검색과 엑셀 다운로드를 지원합니다.</p></div>
+    </div>
+    <div class="scopebar"><span class="k">조회 범위</span><b>전체 매장</b><span class="chip">4개 매장</span><span class="help">상단 매장 범위와 연동 · 아래 매장 필터로 개별 조회 가능</span></div>
+
+    <div class="card filter">
+      <div class="cb">
+        <div class="qbar">
+          <div class="qf"><label>매장</label><select class="sel w200"><option>전체 매장 (10)</option><option>스카이게이트 F&amp;B</option><option>스카이게이트 카페</option><option>듀티프리 부티크</option><option>게이트 델리</option><option>라운지 그릴</option><option>트래블 컨비니</option><option>에어사이드 베이커리</option><option>듀티프리 코스메틱</option><option>게이트 누들바</option><option>스카이 베버리지</option></select></div>
+          <div class="qf"><label>조회기간</label><div class="row"><input class="inp date" value="2026-06-01"><span class="dash">~</span><input class="inp date" value="2026-06-17"></div></div>
+          <div class="qf"><label>매장 구분</label>
+            <div class="seg">
+              <label><input type="radio" name="ch" checked><span>전체</span></label>
+              <label><input type="radio" name="ch"><span>오프라인</span></label>
+              <label><input type="radio" name="ch"><span>온라인</span></label>
+            </div>
+          </div>
+          <div class="qf"><label>결제수단</label><select class="sel w140"><option>전체</option><option>카드</option><option>현금</option><option>간편결제</option></select></div>
+          <div class="qf"><label>영수증번호</label><input class="inp w200" placeholder="번호 입력"></div>
+          <div class="qf-act"><button class="btn ghost">초기화</button><button class="btn dark"><span class="ic">⌕</span> 조회</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbar">
+      <div class="summ">
+        <span><span class="lab">조회 건수</span><b class="tnum">3,842</b> 건</span>
+        <span><span class="lab">합계 공급가</span><b class="tnum">142,610,500</b> 원</span>
+        <span><span class="lab">합계 부가세</span><b class="tnum">14,261,050</b> 원</span>
+        <span><span class="lab">합계 금액</span><b class="tnum">156,871,550</b> 원</span>
+      </div>
+      <div class="right"><select class="sel sm"><option>50건씩</option><option>100건씩</option></select><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button></div>
+    </div>
+
+    <div class="scroll">
+      <table class="tbl">
+        <thead><tr>
+          <th class="num">No</th><th>매장명</th><th>영수증번호</th><th>거래일시</th><th class="ctr">구분(온/오프)</th>
+          <th>결제수단</th><th class="num">공급가</th><th class="num">부가세</th><th class="num">합계금액</th><th class="ctr">상태</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="store">스카이게이트 F&amp;B</td><td><span class="lnk">R-20260617-000812</span></td><td>2026-06-17 14:22</td><td class="ctr"><span class="bdg line">오프라인</span></td><td>신용카드</td><td class="num">38,182</td><td class="num">3,818</td><td class="num">42,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+          <tr><td class="num">2</td><td class="store">듀티프리 부티크</td><td><span class="lnk">R-20260617-004410</span></td><td>2026-06-17 14:18</td><td class="ctr"><span class="bdg solid">온라인</span></td><td>간편결제</td><td class="num">109,091</td><td class="num">10,909</td><td class="num">120,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+          <tr><td class="num">3</td><td class="store">스카이게이트 카페</td><td><span class="lnk">R-20260617-002201</span></td><td>2026-06-17 14:09</td><td class="ctr"><span class="bdg line">오프라인</span></td><td>현금</td><td class="num">7,273</td><td class="num">727</td><td class="num">8,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+          <tr><td class="num">4</td><td class="store">게이트 델리</td><td><span class="lnk">R-20260617-000809</span></td><td>2026-06-17 13:40</td><td class="ctr"><span class="bdg line">오프라인</span></td><td>신용카드</td><td class="num">29,091</td><td class="num">2,909</td><td class="num">32,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+          <tr><td class="num">5</td><td class="store">스카이게이트 F&amp;B</td><td><span class="lnk">R-20260617-000808</span></td><td>2026-06-17 13:18</td><td class="ctr"><span class="bdg line">오프라인</span></td><td>신용카드</td><td class="num">54,545</td><td class="num">5,455</td><td class="num">60,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+          <tr><td class="num">6</td><td class="store">듀티프리 부티크</td><td><span class="lnk">R-20260617-004409</span></td><td>2026-06-17 12:55</td><td class="ctr"><span class="bdg solid">온라인</span></td><td>간편결제</td><td class="num">200,000</td><td class="num">20,000</td><td class="num">220,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+          <tr><td class="num">7</td><td class="store">라운지 그릴</td><td><span class="lnk">R-20260617-000807</span></td><td>2026-06-17 12:30</td><td class="ctr"><span class="bdg line">오프라인</span></td><td>신용카드</td><td class="num">45,455</td><td class="num">4,545</td><td class="num">50,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+          <tr><td class="num">8</td><td class="store">트래블 컨비니</td><td><span class="lnk">R-20260617-003310</span></td><td>2026-06-17 12:10</td><td class="ctr"><span class="bdg line">오프라인</span></td><td>현금</td><td class="num">9,091</td><td class="num">909</td><td class="num">10,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+          <tr><td class="num">9</td><td class="store">에어사이드 베이커리</td><td><span class="lnk">R-20260617-000806</span></td><td>2026-06-17 11:52</td><td class="ctr"><span class="bdg line">오프라인</span></td><td>간편결제</td><td class="num">16,364</td><td class="num">1,636</td><td class="num">18,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+          <tr><td class="num">10</td><td class="store">듀티프리 코스메틱</td><td><span class="lnk">R-20260617-004408</span></td><td>2026-06-17 11:30</td><td class="ctr"><span class="bdg solid">온라인</span></td><td>간편결제</td><td class="num">145,455</td><td class="num">14,545</td><td class="num">160,000</td><td class="ctr"><span class="bdg fill">전송완료</span></td></tr>
+        </tbody>
+        <tfoot><tr><td class="ctr" colspan="6">합 계 (현재 페이지)</td><td class="num">654,547</td><td class="num">65,453</td><td class="num">720,000</td><td></td></tr></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 2. 수동매출 관리 ===== -->
+  <section class="screen" id="screen-manual">
+    <div class="crumb">매출관리 <b>›</b> 수동매출 관리</div>
+    <div class="phead">
+      <div><h1>수동매출 관리</h1>
+        <p>Agent 연계 단절·POS기 고장 등 자동 연계가 불가한 상황에서, 엑셀 양식으로 매출정보를 수동 업로드·검증·확정합니다.</p></div>
+    </div>
+    <div class="scopebar"><span class="k">대상 매장</span>
+      <select class="sel w220" style="height:28px"><option>스카이게이트 F&amp;B (ST-014)</option><option>스카이게이트 카페 (ST-022)</option><option>듀티프리 부티크 (ST-101)</option><option>게이트 델리 (ST-008)</option></select>
+      <span class="help">수동 업로드는 매장 단위로 수행 · 다점포는 매장 선택 후 진행</span>
+    </div>
+
+    <div class="steps">
+      <div class="st on"><span class="no">1</span><span class="tx">양식 다운로드</span></div><span class="arr">→</span>
+      <div class="st on"><span class="no">2</span><span class="tx">작성·업로드</span></div><span class="arr">→</span>
+      <div class="st on"><span class="no">3</span><span class="tx">검증</span></div><span class="arr">→</span>
+      <div class="st"><span class="no">4</span><span class="tx">확정 (→ 임시데이터 정리)</span></div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="tabs" id="mtabs">
+        <button class="on">영수증 정보</button>
+        <button>영수증 품목 정보</button>
+        <button>일마감 정보</button>
+      </div>
+      <div class="cb">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
+          <button class="btn"><span class="ic">⤓</span> 양식 다운로드 (영수증 업로드 리스트.xlsx)</button>
+          <span class="bdg line">양식 버전 v2.3 · 2026-04-01</span>
+          <span class="help">※ 제도·항목 변경 시 양식 버전 관리</span>
+        </div>
+        <div class="drop">
+          <div class="ico">⤒</div>
+          <p>작성한 양식 파일을 끌어다 놓거나 <b style="text-decoration:underline">파일 선택</b></p>
+          <div class="hint">.xlsx / 최대 10MB · 다운로드한 동일 양식만 업로드 가능</div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+          <span class="filechip">📄 영수증업로드_ST014_0617.xlsx · 312행 <span class="x">✕</span></span>
+          <button class="btn dark sm"><span class="ic">✓</span> 업로드 및 검증 실행</button>
+        </div>
+
+        <div class="valbox">
+          <div class="vh">
+            <span><span class="k">총</span><span class="v tnum">312</span> 행</span>
+            <span><span class="k">정상</span><span class="v tnum">305</span> 행</span>
+            <span><span class="k">오류</span><span class="v bad tnum">7</span> 행</span>
+            <span style="margin-left:auto"><button class="btn warn sm">오류 행 엑셀</button></span>
+          </div>
+          <div class="scroll" style="border:none;border-radius:0;max-height:none">
+            <table class="tbl">
+              <thead><tr><th class="num">행</th><th>대상 컬럼</th><th>오류 유형</th><th>검증 메시지</th></tr></thead>
+              <tbody>
+                <tr><td class="num">14</td><td>거래일시</td><td><span class="bdg err">형식 오류</span></td><td>날짜 형식 불일치 (YYYY-MM-DD HH:MM 필요)</td></tr>
+                <tr><td class="num">27</td><td>결제수단</td><td><span class="bdg err">필수 누락</span></td><td>필수 입력 항목 미입력</td></tr>
+                <tr><td class="num">53</td><td>합계금액</td><td><span class="bdg err">논리 모순</span></td><td>공급가+부가세 ≠ 합계금액 (오차 2,000원)</td></tr>
+                <tr><td class="num">88</td><td>매장구분</td><td><span class="bdg err">코드 오류</span></td><td>허용값(오프라인/온라인) 외 값</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="help-row">검증 통과분만 저장됩니다. 오류 행은 수정 후 재업로드하거나 오류 행 엑셀을 내려받아 일괄 보정합니다.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><h3>업로드 매출 (확정 대기)</h3><span class="desc">확정 시 정식 매출 반영 · 업로드 임시데이터 정리</span></div>
+      <table class="tbl">
+        <thead><tr><th class="ctr" style="width:36px"><input type="checkbox"></th><th>업로드ID</th><th>매장명</th><th>유형</th><th>대상기간</th><th class="num">정상행</th><th class="num">금액합계</th><th class="ctr">상태</th><th>업로드일시</th><th class="ctr">작업</th></tr></thead>
+        <tbody>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061701</td><td class="store">스카이게이트 F&amp;B</td><td>영수증 정보</td><td>06-15 ~ 06-16</td><td class="num">305</td><td class="num">8,420,000</td><td class="ctr"><span class="bdg line">검증완료</span></td><td>06-17 15:02</td><td class="ctr"><span class="mini"><button class="btn sm dark">확정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061602</td><td class="store">게이트 델리</td><td>일마감 정보</td><td>06-14</td><td class="num">1</td><td class="num">2,310,000</td><td class="ctr"><span class="bdg solid">확정완료</span></td><td>06-15 09:40</td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">확정</button><button class="btn sm" disabled style="opacity:.5">삭제</button></span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061703</td><td class="store">스카이게이트 카페</td><td>영수증 품목 정보</td><td>06-15 ~ 06-16</td><td class="num">312</td><td class="num">1,240,000</td><td class="ctr"><span class="bdg line">검증완료</span></td><td>06-17 15:20</td><td class="ctr"><span class="mini"><button class="btn sm dark">확정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061704</td><td class="store">라운지 그릴</td><td>일마감 정보</td><td>06-16</td><td class="num">1</td><td class="num">2,150,000</td><td class="ctr"><span class="bdg line">검증완료</span></td><td>06-17 14:50</td><td class="ctr"><span class="mini"><button class="btn sm dark">확정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061605</td><td class="store">듀티프리 부티크</td><td>영수증 정보</td><td>06-13 ~ 06-14</td><td class="num">488</td><td class="num">14,200,000</td><td class="ctr"><span class="bdg line">검증완료</span></td><td>06-16 18:02</td><td class="ctr"><span class="mini"><button class="btn sm dark">확정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061506</td><td class="store">트래블 컨비니</td><td>일마감 정보</td><td>06-15</td><td class="num">1</td><td class="num">980,000</td><td class="ctr"><span class="bdg solid">확정완료</span></td><td>06-15 10:11</td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">확정</button><button class="btn sm" disabled style="opacity:.5">삭제</button></span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061507</td><td class="store">에어사이드 베이커리</td><td>영수증 정보</td><td>06-12 ~ 06-13</td><td class="num">274</td><td class="num">5,360,000</td><td class="ctr"><span class="bdg line">검증완료</span></td><td>06-15 09:33</td><td class="ctr"><span class="mini"><button class="btn sm dark">확정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061408</td><td class="store">게이트 누들바</td><td>영수증 품목 정보</td><td>06-12</td><td class="num">156</td><td class="num">3,120,000</td><td class="ctr"><span class="bdg solid">확정완료</span></td><td>06-14 17:40</td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">확정</button><button class="btn sm" disabled style="opacity:.5">삭제</button></span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061409</td><td class="store">듀티프리 코스메틱</td><td>영수증 정보</td><td>06-11 ~ 06-12</td><td class="num">533</td><td class="num">22,800,000</td><td class="ctr"><span class="bdg line">검증완료</span></td><td>06-14 16:05</td><td class="ctr"><span class="mini"><button class="btn sm dark">확정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td>UP-26061310</td><td class="store">스카이 베버리지</td><td>일마감 정보</td><td>06-13</td><td class="num">1</td><td class="num">740,000</td><td class="ctr"><span class="bdg solid">확정완료</span></td><td>06-13 09:50</td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">확정</button><button class="btn sm" disabled style="opacity:.5">삭제</button></span></td></tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 16px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--line)">
+        <button class="btn warn">선택 삭제</button>
+        <button class="btn dark" onclick="openConfirm('manual')"><span class="ic">✓</span> 선택 매출 확정</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. 기타 매출 관리 ===== -->
+  <section class="screen" id="screen-etc">
+    <div class="crumb">매출관리 <b>›</b> 기타 매출 관리</div>
+    <div class="phead">
+      <div><h1>기타 매출 관리</h1>
+        <p>POS에 등록되지 않은 현금·식권·스마트오더 등 기타 매출 건을 매장별로 직접 등록·관리합니다.</p></div>
+    </div>
+
+    <div class="tbar">
+      <div class="summ"><span><span class="lab">기타매출 합계 (당월·전매장)</span><b class="tnum">9,640,000</b> 원</span><span><span class="lab">건수</span><b class="tnum">128</b> 건</span></div>
+      <div class="right"><select class="sel sm"><option>전체 매장</option><option>매장별</option></select><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn dark" onclick="openDrawer('etc')"><span class="ic">＋</span> 기타 매출 등록</button></div>
+    </div>
+    <div class="scroll">
+      <table class="tbl">
+        <thead><tr><th class="num">No</th><th>매장명</th><th>매출일자</th><th class="ctr">구분</th><th class="num">금액</th><th class="num">건수</th><th>비고</th><th>등록자</th><th class="ctr">작업</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="store">스카이게이트 F&amp;B</td><td>2026-06-17</td><td class="ctr"><span class="bdg line">식권</span></td><td class="num">320,000</td><td class="num">8</td><td>구내식권 정산</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">2</td><td class="store">스카이게이트 카페</td><td>2026-06-17</td><td class="ctr"><span class="bdg line">스마트오더</span></td><td class="num">154,000</td><td class="num">5</td><td>앱 선주문 누락분</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">3</td><td class="store">게이트 델리</td><td>2026-06-16</td><td class="ctr"><span class="bdg line">현금</span></td><td class="num">88,000</td><td class="num">3</td><td>POS 미반영 현금</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">4</td><td class="store">라운지 그릴</td><td>2026-06-16</td><td class="ctr"><span class="bdg line">현금</span></td><td class="num">110,000</td><td class="num">4</td><td>POS 미반영 현금</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">5</td><td class="store">트래블 컨비니</td><td>2026-06-16</td><td class="ctr"><span class="bdg line">상품권</span></td><td class="num">60,000</td><td class="num">2</td><td>상품권 수기정산</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">6</td><td class="store">에어사이드 베이커리</td><td>2026-06-15</td><td class="ctr"><span class="bdg line">식권</span></td><td class="num">240,000</td><td class="num">6</td><td>구내식권 정산</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">7</td><td class="store">듀티프리 코스메틱</td><td>2026-06-15</td><td class="ctr"><span class="bdg line">스마트오더</span></td><td class="num">198,000</td><td class="num">7</td><td>앱 선주문 누락분</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">8</td><td class="store">게이트 누들바</td><td>2026-06-14</td><td class="ctr"><span class="bdg line">현금</span></td><td class="num">76,000</td><td class="num">3</td><td>POS 미반영 현금</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">9</td><td class="store">스카이 베버리지</td><td>2026-06-14</td><td class="ctr"><span class="bdg line">기타</span></td><td class="num">45,000</td><td class="num">1</td><td>기타 정산</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">10</td><td class="store">스카이게이트 F&amp;B</td><td>2026-06-13</td><td class="ctr"><span class="bdg line">식권</span></td><td class="num">280,000</td><td class="num">7</td><td>구내식권 정산</td><td>김외부</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 4. 일마감 관리 ===== -->
+  <section class="screen" id="screen-daily">
+    <div class="crumb">매출관리 <b>›</b> 일마감 관리</div>
+    <div class="phead">
+      <div><h1>일마감 관리</h1>
+        <p>업체로부터 전송된 일마감 내역을 매장별로 조회하고, 결제수단별 금액·세부 결제정보를 확인·수정·저장·삭제합니다.</p></div>
+    </div>
+
+    <div class="card filter">
+      <div class="cb">
+        <div class="qbar">
+          <div class="qf"><label>매장</label><select class="sel w200"><option>전체 매장 (10)</option><option>스카이게이트 F&amp;B</option><option>스카이게이트 카페</option><option>듀티프리 부티크</option><option>게이트 델리</option><option>라운지 그릴</option><option>트래블 컨비니</option><option>에어사이드 베이커리</option><option>듀티프리 코스메틱</option><option>게이트 누들바</option><option>스카이 베버리지</option></select></div>
+          <div class="qf"><label>마감일자</label><div class="row"><input class="inp date" value="2026-06-15"><span class="dash">~</span><input class="inp date" value="2026-06-17"></div></div>
+          <div class="qf"><label>마감상태</label><select class="sel w140"><option>전체</option><option>마감완료</option><option>미마감</option><option>수정</option></select></div>
+          <div class="qf-act"><button class="btn ghost">초기화</button><button class="btn dark"><span class="ic">⌕</span> 조회</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbar">
+      <div class="summ"><span><span class="lab">조회 건수</span><b class="tnum">10</b> 건</span><span><span class="lab">총매출 합계</span><b class="tnum">39,170,000</b> 원</span></div>
+      <div class="right"><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button></div>
+    </div>
+    <div class="scroll">
+      <table class="tbl">
+        <thead><tr>
+          <th class="num">No</th><th>매장명</th><th>마감일자</th><th class="ctr">상태</th><th class="num">총매출액</th>
+          <th class="num">현금</th><th class="num">카드</th><th class="num">기타</th><th class="num">건수</th><th class="ctr">세부</th><th class="ctr">작업</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="store">스카이게이트 F&amp;B</td><td>2026-06-17</td><td class="ctr"><span class="bdg line">미마감</span></td><td class="num">2,460,000</td><td class="num">196,000</td><td class="num">2,210,000</td><td class="num">54,000</td><td class="num">128</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">2</td><td class="store">듀티프리 부티크</td><td>2026-06-17</td><td class="ctr"><span class="bdg line">미마감</span></td><td class="num">8,420,000</td><td class="num">120,000</td><td class="num">8,000,000</td><td class="num">300,000</td><td class="num">96</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">3</td><td class="store">스카이게이트 F&amp;B</td><td>2026-06-16</td><td class="ctr"><span class="bdg solid">마감완료</span></td><td class="num">3,120,000</td><td class="num">280,000</td><td class="num">2,690,000</td><td class="num">150,000</td><td class="num">163</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">수정</button><button class="btn sm" disabled style="opacity:.5">삭제</button></span></td></tr>
+          <tr><td class="num">4</td><td class="store">게이트 델리</td><td>2026-06-15</td><td class="ctr"><span class="bdg fill">수정</span></td><td class="num">2,880,000</td><td class="num">240,000</td><td class="num">2,510,000</td><td class="num">130,000</td><td class="num">141</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">5</td><td class="store">듀티프리 부티크</td><td>2026-06-16</td><td class="ctr"><span class="bdg solid">마감완료</span></td><td class="num">9,100,000</td><td class="num">150,000</td><td class="num">8,650,000</td><td class="num">300,000</td><td class="num">92</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">수정</button><button class="btn sm" disabled style="opacity:.5">삭제</button></span></td></tr>
+          <tr><td class="num">6</td><td class="store">스카이게이트 카페</td><td>2026-06-16</td><td class="ctr"><span class="bdg solid">마감완료</span></td><td class="num">1,280,000</td><td class="num">110,000</td><td class="num">1,090,000</td><td class="num">80,000</td><td class="num">71</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">수정</button><button class="btn sm" disabled style="opacity:.5">삭제</button></span></td></tr>
+          <tr><td class="num">7</td><td class="store">라운지 그릴</td><td>2026-06-16</td><td class="ctr"><span class="bdg line">미마감</span></td><td class="num">2,150,000</td><td class="num">180,000</td><td class="num">1,920,000</td><td class="num">50,000</td><td class="num">118</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">8</td><td class="store">트래블 컨비니</td><td>2026-06-15</td><td class="ctr"><span class="bdg solid">마감완료</span></td><td class="num">980,000</td><td class="num">90,000</td><td class="num">860,000</td><td class="num">30,000</td><td class="num">64</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">수정</button><button class="btn sm" disabled style="opacity:.5">삭제</button></span></td></tr>
+          <tr><td class="num">9</td><td class="store">에어사이드 베이커리</td><td>2026-06-15</td><td class="ctr"><span class="bdg line">미마감</span></td><td class="num">1,460,000</td><td class="num">120,000</td><td class="num">1,300,000</td><td class="num">40,000</td><td class="num">88</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm">수정</button><button class="btn sm warn">삭제</button></span></td></tr>
+          <tr><td class="num">10</td><td class="store">듀티프리 코스메틱</td><td>2026-06-15</td><td class="ctr"><span class="bdg solid">마감완료</span></td><td class="num">7,320,000</td><td class="num">90,000</td><td class="num">7,130,000</td><td class="num">100,000</td><td class="num">79</td><td class="ctr"><span class="lnk">보기</span></td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">수정</button><button class="btn sm" disabled style="opacity:.5">삭제</button></span></td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="4" class="ctr">합 계</td><td class="num">39,170,000</td><td class="num">1,576,000</td><td class="num">36,360,000</td><td class="num">1,234,000</td><td class="num">1,040</td><td colspan="2"></td></tr></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 5. 월마감 관리 (다점포 컨트롤) ===== -->
+  <section class="screen" id="screen-monthly">
+    <div class="crumb">매출관리 <b>›</b> 월마감 관리</div>
+    <div class="phead">
+      <div><h1>월마감 관리</h1>
+        <p>확정된 일마감 데이터를 기반으로 매장별 월마감 현황을 조회·관리하고, 매장 단위로 일괄 확정합니다.</p></div>
+      <div class="acts"><button class="btn ghost">화면 닫기</button></div>
+    </div>
+
+    <div class="card filter">
+      <div class="cb">
+        <div class="qbar">
+          <div class="qf"><label>마감월</label><input class="inp w160" type="month" value="2026-06"></div>
+          <div class="qf"><label>매장</label><select class="sel w200"><option>전체 매장 (10)</option><option>스카이게이트 F&amp;B</option><option>스카이게이트 카페</option><option>듀티프리 부티크</option><option>게이트 델리</option><option>라운지 그릴</option><option>트래블 컨비니</option><option>에어사이드 베이커리</option><option>듀티프리 코스메틱</option><option>게이트 누들바</option><option>스카이 베버리지</option></select></div>
+          <div class="qf-act"><button class="btn ghost">초기화</button><button class="btn dark"><span class="ic">⌕</span> 조회</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kpi">
+      <div class="k"><div class="lab">관리 매장</div><div class="val tnum">10 <span class="u">개</span></div></div>
+      <div class="k"><div class="lab">월마감 완료 매장</div><div class="val tnum">3 <span class="u">개</span></div></div>
+      <div class="k"><div class="lab">미마감 잔존 매장</div><div class="val tnum" style="color:var(--warn)">4 <span class="u">개</span></div></div>
+      <div class="k"><div class="lab">당월 누계 매출 (전매장)</div><div class="val tnum">538,450,000 <span class="u">원</span></div></div>
+    </div>
+
+    <div class="tbar">
+      <div class="summ"><span><span class="lab">2026-06 월마감</span><b><span class="bdg line">진행중</span></b></span><span class="help">미마감 영업일이 남은 매장은 확정이 차단됩니다</span></div>
+      <div class="right"><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn warn sm">선택 매장 확정 취소</button><button class="btn dark" onclick="openConfirm('monthly')"><span class="ic">✓</span> 선택 매장 월마감 확정</button></div>
+    </div>
+    <div class="scroll">
+      <table class="tbl">
+        <thead><tr>
+          <th class="ctr" style="width:36px"><input type="checkbox"></th><th>매장명</th><th class="ctr">단말 구분</th>
+          <th class="num">영업일</th><th class="num">일마감 완료</th><th class="num">미마감</th><th class="num">당월 매출</th><th class="ctr">월마감 상태</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="ctr"><input type="checkbox"></td><td class="store">스카이게이트 F&amp;B</td><td class="ctr"><span class="bdg fill">면세점 외</span></td><td class="num">17</td><td class="num">16</td><td class="num" style="color:var(--warn)">1</td><td class="num">48,210,000</td><td class="ctr"><span class="bdg line">미확정</span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td class="store">스카이게이트 카페</td><td class="ctr"><span class="bdg fill">면세점 외</span></td><td class="num">17</td><td class="num">17</td><td class="num">0</td><td class="num">21,640,000</td><td class="ctr"><span class="bdg line">미확정</span></td></tr>
+          <tr><td class="ctr"><input type="checkbox" checked></td><td class="store">듀티프리 부티크</td><td class="ctr"><span class="bdg solid">면세점</span></td><td class="num">17</td><td class="num">16</td><td class="num" style="color:var(--warn)">1</td><td class="num">228,900,000</td><td class="ctr"><span class="bdg line">미확정</span></td></tr>
+          <tr><td class="ctr"><input type="checkbox" disabled></td><td class="store">게이트 델리</td><td class="ctr"><span class="bdg fill">면세점 외</span></td><td class="num">17</td><td class="num">17</td><td class="num">0</td><td class="num">13,730,000</td><td class="ctr"><span class="bdg solid">확정완료</span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td class="store">라운지 그릴</td><td class="ctr"><span class="bdg fill">면세점 외</span></td><td class="num">17</td><td class="num">17</td><td class="num">0</td><td class="num">34,180,000</td><td class="ctr"><span class="bdg line">미확정</span></td></tr>
+          <tr><td class="ctr"><input type="checkbox" disabled></td><td class="store">트래블 컨비니</td><td class="ctr"><span class="bdg fill">면세점 외</span></td><td class="num">17</td><td class="num">17</td><td class="num">0</td><td class="num">9,260,000</td><td class="ctr"><span class="bdg solid">확정완료</span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td class="store">에어사이드 베이커리</td><td class="ctr"><span class="bdg fill">면세점 외</span></td><td class="num">17</td><td class="num">15</td><td class="num" style="color:var(--warn)">2</td><td class="num">12,470,000</td><td class="ctr"><span class="bdg line">미확정</span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td class="store">듀티프리 코스메틱</td><td class="ctr"><span class="bdg solid">면세점</span></td><td class="num">17</td><td class="num">17</td><td class="num">0</td><td class="num">156,300,000</td><td class="ctr"><span class="bdg line">미확정</span></td></tr>
+          <tr><td class="ctr"><input type="checkbox" disabled></td><td class="store">게이트 누들바</td><td class="ctr"><span class="bdg fill">면세점 외</span></td><td class="num">17</td><td class="num">17</td><td class="num">0</td><td class="num">7,840,000</td><td class="ctr"><span class="bdg solid">확정완료</span></td></tr>
+          <tr><td class="ctr"><input type="checkbox"></td><td class="store">스카이 베버리지</td><td class="ctr"><span class="bdg fill">면세점 외</span></td><td class="num">17</td><td class="num">16</td><td class="num" style="color:var(--warn)">1</td><td class="num">5,920,000</td><td class="ctr"><span class="bdg line">미확정</span></td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="6" class="ctr">전매장 합계</td><td class="num">538,450,000</td><td></td></tr></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 6. 연 과세표준 증명내역 ===== -->
+  <section class="screen" id="screen-tax">
+    <div class="crumb">매출관리 <b>›</b> 연 과세표준 증명내역 관리</div>
+    <div class="phead">
+      <div><h1>연 과세표준 증명내역 관리</h1>
+        <p>입점업체가 국세청에 신고한 매출 금액을 매장·구분(면세점/면세점 외)별로 등록·조회하고, 시스템 보유 매출과 대사(對査)합니다.</p></div>
+    </div>
+
+    <div class="tbar">
+      <div class="summ"><span><span class="lab">등록 내역 (전매장)</span><b class="tnum">10</b> 건</span></div>
+      <div class="right"><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn dark" onclick="openDrawer('tax')"><span class="ic">＋</span> 신고 금액 등록</button></div>
+    </div>
+    <div class="scroll">
+      <table class="tbl">
+        <thead><tr><th class="num">No</th><th>매장명</th><th>신고연도</th><th class="ctr">업체구분</th><th class="num">국세청 신고금액</th><th class="num">시스템 매출</th><th class="num">차액</th><th class="ctr">증빙</th><th>등록일</th><th class="ctr">작업</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="store">듀티프리 부티크</td><td>2025</td><td class="ctr"><span class="bdg solid">면세점</span></td><td class="num">580,000,000</td><td class="num">582,400,000</td><td class="num" style="color:var(--warn)">+2,400,000</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-10</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+          <tr><td class="num">2</td><td class="store">스카이게이트 F&amp;B</td><td>2025</td><td class="ctr"><span class="bdg line">면세점 외</span></td><td class="num">498,200,000</td><td class="num">498,200,000</td><td class="num">0</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-08</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+          <tr><td class="num">3</td><td class="store">게이트 델리</td><td>2025</td><td class="ctr"><span class="bdg line">면세점 외</span></td><td class="num">164,760,000</td><td class="num">164,300,000</td><td class="num" style="color:var(--warn)">-460,000</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-09</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+          <tr><td class="num">4</td><td class="store">스카이게이트 카페</td><td>2025</td><td class="ctr"><span class="bdg line">면세점 외</span></td><td class="num">286,400,000</td><td class="num">286,400,000</td><td class="num">0</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-08</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+          <tr><td class="num">5</td><td class="store">라운지 그릴</td><td>2025</td><td class="ctr"><span class="bdg line">면세점 외</span></td><td class="num">402,100,000</td><td class="num">403,250,000</td><td class="num" style="color:var(--warn)">+1,150,000</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-11</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+          <tr><td class="num">6</td><td class="store">트래블 컨비니</td><td>2025</td><td class="ctr"><span class="bdg line">면세점 외</span></td><td class="num">118,900,000</td><td class="num">118,900,000</td><td class="num">0</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-07</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+          <tr><td class="num">7</td><td class="store">에어사이드 베이커리</td><td>2025</td><td class="ctr"><span class="bdg line">면세점 외</span></td><td class="num">147,600,000</td><td class="num">146,980,000</td><td class="num" style="color:var(--warn)">-620,000</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-12</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+          <tr><td class="num">8</td><td class="store">듀티프리 코스메틱</td><td>2025</td><td class="ctr"><span class="bdg solid">면세점</span></td><td class="num">1,842,000,000</td><td class="num">1,844,500,000</td><td class="num" style="color:var(--warn)">+2,500,000</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-10</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+          <tr><td class="num">9</td><td class="store">게이트 누들바</td><td>2025</td><td class="ctr"><span class="bdg line">면세점 외</span></td><td class="num">92,300,000</td><td class="num">92,300,000</td><td class="num">0</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-09</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+          <tr><td class="num">10</td><td class="store">스카이 베버리지</td><td>2025</td><td class="ctr"><span class="bdg line">면세점 외</span></td><td class="num">71,500,000</td><td class="num">71,500,000</td><td class="num">0</td><td class="ctr"><span class="lnk">PDF</span></td><td>2026-03-08</td><td class="ctr"><span class="mini"><button class="btn sm">수정</button></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<div class="drawer-mask" id="drawerMask" onclick="closeDrawer()"></div>
+
+<aside class="drawer" id="drawer-etc">
+  <div class="dh"><div><h3>기타 매출 등록</h3><div class="sub">POS 미등록 매출(현금·식권·스마트오더 등) 직접 등록</div></div><button class="xc" onclick="closeDrawer()">✕</button></div>
+  <div class="db">
+    <div class="dform">
+      <div class="ff"><label>매장<span class="rq">*</span></label>
+        <select class="sel" data-f="store"><option>스카이게이트 F&amp;B</option><option>스카이게이트 카페</option><option>듀티프리 부티크</option><option>게이트 델리</option><option>라운지 그릴</option><option>트래블 컨비니</option><option>에어사이드 베이커리</option><option>듀티프리 코스메틱</option><option>게이트 누들바</option><option>스카이 베버리지</option></select></div>
+      <div class="ff-row">
+        <div class="ff"><label>매출일자<span class="rq">*</span></label><input class="inp date" value="2026-06-17" data-f="date"></div>
+        <div class="ff"><label>매출 구분<span class="rq">*</span></label><select class="sel" data-f="gubun"><option>현금</option><option>식권</option><option>스마트오더</option><option>상품권</option><option>기타</option></select></div>
+      </div>
+      <div class="ff"><label>금액<span class="rq">*</span></label>
+        <div class="ff-amt"><input class="inp tnum amt" placeholder="0" data-f="amount"><span class="suf">원</span></div>
+        <span class="hint">숫자 입력 시 천단위 쉼표 자동 표시</span></div>
+      <div class="ff" style="max-width:200px"><label>건수</label>
+        <div class="ff-amt"><input class="inp tnum amt" placeholder="1" data-f="count"><span class="suf">건</span></div></div>
+      <div class="ff"><label>비고</label><input class="inp" placeholder="사유·메모 입력 (예: 식권 정산분)" data-f="memo"></div>
+    </div>
+  </div>
+  <div class="df"><button class="btn ghost" onclick="closeDrawer()">취소</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">＋</span> 등록</button></div>
+</aside>
+
+<aside class="drawer" id="drawer-tax">
+  <div class="dh"><div><h3>신고 금액 등록</h3><div class="sub">국세청 신고 매출 등록 · 시스템 매출과 즉시 대사</div></div><button class="xc" onclick="closeDrawer()">✕</button></div>
+  <div class="db">
+    <div class="dform">
+      <div class="ff"><label>매장<span class="rq">*</span></label>
+        <select class="sel" data-f="store"><option>듀티프리 부티크 (면세점)</option><option>듀티프리 코스메틱 (면세점)</option><option>스카이게이트 F&amp;B (면세점 외)</option><option>스카이게이트 카페 (면세점 외)</option><option>게이트 델리 (면세점 외)</option><option>라운지 그릴 (면세점 외)</option><option>트래블 컨비니 (면세점 외)</option><option>에어사이드 베이커리 (면세점 외)</option><option>게이트 누들바 (면세점 외)</option><option>스카이 베버리지 (면세점 외)</option></select></div>
+      <div class="ff-row">
+        <div class="ff"><label>신고 연도<span class="rq">*</span></label><select class="sel" data-f="year"><option>2025년</option><option>2024년</option></select></div>
+        <div class="ff"><label>업체 구분<span class="rq">*</span></label><div class="seg" data-fseg="gubun"><label><input type="radio" name="tx" checked><span>면세점</span></label><label><input type="radio" name="tx"><span>면세점 외</span></label></div></div>
+      </div>
+      <div class="ff"><label>국세청 신고 금액<span class="rq">*</span></label>
+        <div class="ff-amt"><input class="inp tnum amt" placeholder="0" data-f="amount"><span class="suf">원 (KRW)</span></div>
+        <span class="hint">천단위 쉼표 자동 · 금액 단위 명시</span></div>
+      <div class="ff"><label>신고 자료 첨부</label>
+        <div class="ff-file"><button class="btn sm"><span class="ic">📎</span> 파일 첨부</button><span class="filechip">📄 부가가치세_신고서_2025.pdf <span class="x">✕</span></span><span class="hint">(옵션) 국세청 신고 증빙</span></div></div>
+    </div>
+    <div class="sechd">매출 대사 (시스템 보유 vs 국세청 신고)</div>
+    <div class="recon">
+      <div class="rc"><div class="k">시스템 보유 매출 (확정)</div><div class="v tnum">582,400,000<span class="u">원</span></div><div class="sub">듀티프리 부티크 · 월마감 누계</div></div>
+      <div class="rc"><div class="k">국세청 신고 금액</div><div class="v tnum">580,000,000<span class="u">원</span></div><div class="sub">입력값 기준</div></div>
+      <div class="rc diff"><div class="k">차액</div><div class="v tnum">+2,400,000<span class="u">원</span></div><div class="sub">시스템 &gt; 신고 (점검 필요)</div></div>
+    </div>
+  </div>
+  <div class="df"><button class="btn ghost" onclick="closeDrawer()">취소</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">✓</span> 저장</button></div>
+</aside>
+
+<div class="mask" id="mask">
+  <div class="modal">
+    <div class="mh" id="mTitle">확정 처리</div>
+    <div class="mb" id="mBody"></div>
+    <div class="mf"><button class="btn ghost" onclick="closeConfirm()">취소</button><button class="btn dark" onclick="closeConfirm()">확정</button></div>
+  </div>
+</div>
+
+<script>
+// screen nav
+document.querySelectorAll('.nav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
+    a.classList.add('active');
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById('screen-'+a.dataset.screen).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// store scope dropdown
+const scopeBtn=document.getElementById('scopeBtn'),storeMenu=document.getElementById('storeMenu');
+scopeBtn.addEventListener('click',e=>{e.stopPropagation();storeMenu.classList.toggle('show');});
+document.addEventListener('click',()=>storeMenu.classList.remove('show'));
+storeMenu.querySelectorAll('.si').forEach(si=>{
+  si.addEventListener('click',e=>{
+    e.stopPropagation();
+    storeMenu.querySelectorAll('.si').forEach(x=>x.classList.remove('on'));
+    si.classList.add('on');
+    const s=si.dataset.store;
+    document.getElementById('scopeLabel').textContent = s==='ALL' ? '전체 매장' : s;
+    storeMenu.classList.remove('show');
+  });
+});
+
+// sub tabs
+const mtabs=document.getElementById('mtabs');
+if(mtabs){mtabs.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{mtabs.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');}));}
+
+// amount comma
+document.querySelectorAll('.amt').forEach(inp=>{
+  inp.addEventListener('input',()=>{let v=inp.value.replace(/[^\d]/g,'');inp.value=v?Number(v).toLocaleString('ko-KR'):'';});
+});
+
+// confirm modal
+function openConfirm(type){
+  const t=document.getElementById('mTitle'),b=document.getElementById('mBody');
+  if(type==='monthly'){t.textContent='월마감 일괄 확정';
+    b.innerHTML='선택한 매장의 2026년 6월 월마감을 <b>일괄 확정</b>합니다.<br>미마감 영업일이 남은 매장(<b>듀티프리 부티크</b>)은 확정에서 제외됩니다.<br>확정 시 해당 월 일마감은 <b>수정 잠금</b>됩니다.<br><br>계속 진행하시겠습니까?';}
+  else{t.textContent='매출 확정';
+    b.innerHTML='선택한 업로드 매출을 <b>확정</b>합니다.<br>확정 후 업로드 임시데이터는 정리되며 <b>정식 매출</b>로 반영됩니다.<br><br>계속 진행하시겠습니까?';}
+  document.getElementById('mask').classList.add('show');
+}
+function closeConfirm(){document.getElementById('mask').classList.remove('show');}
+document.getElementById('mask').addEventListener('click',e=>{if(e.target.id==='mask')closeConfirm();});
+
+// slide-over drawer (shared by 등록 and 수정)
+function fillDrawer(id,data){
+  const dr=document.getElementById('drawer-'+id);
+  dr.querySelectorAll('[data-f]').forEach(el=>{
+    const v=data?(data[el.dataset.f]||''):'';
+    if(el.tagName==='SELECT'){
+      let matched=false;
+      [...el.options].forEach(o=>{if(!matched&&v!==''&&o.textContent.trim().startsWith(v)){o.selected=true;matched=true;}});
+      if(!matched)el.selectedIndex=0;
+    }else{el.value=v;}
+  });
+  const seg=dr.querySelector('[data-fseg]');
+  if(seg){const want=data?data[seg.dataset.fseg]:null;
+    seg.querySelectorAll('label').forEach((lb,i)=>{lb.querySelector('input').checked = want?(lb.querySelector('span').textContent.trim()===want):(i===0);});}
+}
+function openDrawer(id,mode,data){
+  mode=mode||'create';
+  const dr=document.getElementById('drawer-'+id);
+  fillDrawer(id, mode==='edit'?data:null);
+  const titles={etc:'기타 매출',tax:'신고 금액'};
+  dr.querySelector('.dh h3').textContent = titles[id]+(mode==='edit'?' 수정':' 등록');
+  const pb=dr.querySelector('.df .btn.dark');
+  pb.innerHTML = mode==='edit' ? '<span class="ic">✓</span> 저장'
+              : (id==='tax' ? '<span class="ic">✓</span> 저장' : '<span class="ic">＋</span> 등록');
+  document.getElementById('drawerMask').classList.add('show');
+  dr.classList.add('show');
+}
+function closeDrawer(){document.getElementById('drawerMask').classList.remove('show');document.querySelectorAll('.drawer').forEach(d=>d.classList.remove('show'));}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeConfirm();}});
+
+// row 수정 → open same drawer in edit mode, prefilled
+function editEtc(b){const c=b.closest('tr').children;openDrawer('etc','edit',{store:c[1].textContent.trim(),date:c[2].textContent.trim(),gubun:c[3].textContent.trim(),amount:c[4].textContent.trim(),count:c[5].textContent.trim(),memo:c[6].textContent.trim()});}
+function editTax(b){const c=b.closest('tr').children;openDrawer('tax','edit',{store:c[1].textContent.trim(),year:c[2].textContent.trim(),gubun:c[3].textContent.trim(),amount:c[4].textContent.trim()});}
+document.querySelectorAll('#screen-etc tbody .mini .btn').forEach(b=>{if(b.textContent.trim()==='수정')b.addEventListener('click',()=>editEtc(b));});
+document.querySelectorAll('#screen-tax tbody .mini .btn').forEach(b=>{if(b.textContent.trim()==='수정')b.addEventListener('click',()=>editTax(b));});
+</script>
+</body>
+</html>

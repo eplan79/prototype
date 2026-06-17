@@ -227,7 +227,7 @@ button{font-family:inherit;cursor:pointer}
 /* right slide-over drawer (registration forms) */
 .drawer-mask{position:fixed;inset:0;background:rgba(20,22,26,.38);opacity:0;visibility:hidden;transition:opacity .22s;z-index:45}
 .drawer-mask.show{opacity:1;visibility:visible}
-.drawer{position:fixed;top:0;right:0;height:100vh;width:500px;max-width:94vw;background:#fff;border-left:1px solid var(--line-2);box-shadow:-14px 0 44px rgba(0,0,0,.16);transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);z-index:46;display:flex;flex-direction:column}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:750px;max-width:94vw;background:#fff;border-left:1px solid var(--line-2);box-shadow:-14px 0 44px rgba(0,0,0,.16);transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);z-index:46;display:flex;flex-direction:column}
 .drawer.show{transform:none}
 .drawer .dh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);flex:0 0 auto}
 .drawer .dh h3{font-size:15px;font-weight:800}
@@ -238,6 +238,14 @@ button{font-family:inherit;cursor:pointer}
 .drawer .df{flex:0 0 auto;padding:14px 20px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px;background:var(--surface-2)}
 .drawer .sechd{font-size:12px;font-weight:700;color:var(--ink-2);margin:20px 0 11px;padding-top:18px;border-top:1px dashed var(--line-2)}
 .drawer .recon{grid-template-columns:1fr}
+.dbcols{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+@media(max-width:780px){.dbcols{grid-template-columns:1fr}}
+.dside{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px}
+.dside h4{font-size:12px;font-weight:800;color:var(--ink-2);margin-bottom:11px}
+.dside .gl li{list-style:none;font-size:11.5px;color:var(--ink-2);line-height:1.5;padding:7px 0;border-bottom:1px dashed var(--line);display:flex;gap:8px}
+.dside .gl li:last-child{border-bottom:none}
+.dside .gl b{color:var(--ink);font-weight:700;flex:0 0 auto;min-width:56px}
+.dside .dnote{font-size:11px;color:var(--ink-3);margin-top:13px;padding-top:13px;border-top:1px dashed var(--line);line-height:1.55}
 /* drawer entry form: top-label, single column, full-width (input-optimized) */
 .dform{display:flex;flex-direction:column;gap:18px}
 .ff{display:flex;flex-direction:column;gap:7px}
@@ -624,6 +632,7 @@ button{font-family:inherit;cursor:pointer}
 <aside class="drawer" id="drawer-etc">
   <div class="dh"><div><h3>기타 매출 등록</h3><div class="sub">POS 미등록 매출(현금·식권·스마트오더 등) 직접 등록</div></div><button class="xc" onclick="closeDrawer()">✕</button></div>
   <div class="db">
+    <div class="dbcols">
     <div class="dform">
       <div class="ff"><label>매장<span class="rq">*</span></label>
         <select class="sel" data-f="store"><option>스카이게이트 F&amp;B</option><option>스카이게이트 카페</option><option>듀티프리 부티크</option><option>게이트 델리</option><option>라운지 그릴</option><option>트래블 컨비니</option><option>에어사이드 베이커리</option><option>듀티프리 코스메틱</option><option>게이트 누들바</option><option>스카이 베버리지</option></select></div>
@@ -638,6 +647,18 @@ button{font-family:inherit;cursor:pointer}
         <div class="ff-amt"><input class="inp tnum amt" placeholder="1" data-f="count"><span class="suf">건</span></div></div>
       <div class="ff"><label>비고</label><input class="inp" placeholder="사유·메모 입력 (예: 식권 정산분)" data-f="memo"></div>
     </div>
+    <aside class="dside">
+      <h4>기타 매출 등록 안내</h4>
+      <ul class="gl">
+        <li><b>현금</b> POS 미반영 현금 매출</li>
+        <li><b>식권</b> 구내·제휴 식권 정산분</li>
+        <li><b>스마트오더</b> 앱 선주문 중 누락분</li>
+        <li><b>상품권</b> 상품권 수기 정산</li>
+        <li><b>기타</b> 위 구분 외 매출</li>
+      </ul>
+      <p class="dnote">일마감 확정 전 건만 수정·삭제할 수 있습니다.</p>
+    </aside>
+    </div>
   </div>
   <div class="df"><button class="btn ghost" onclick="closeDrawer()">취소</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">＋</span> 등록</button></div>
 </aside>
@@ -645,6 +666,7 @@ button{font-family:inherit;cursor:pointer}
 <aside class="drawer" id="drawer-tax">
   <div class="dh"><div><h3>신고 금액 등록</h3><div class="sub">국세청 신고 매출 등록 · 시스템 매출과 즉시 대사</div></div><button class="xc" onclick="closeDrawer()">✕</button></div>
   <div class="db">
+    <div class="dbcols">
     <div class="dform">
       <div class="ff"><label>매장<span class="rq">*</span></label>
         <select class="sel" data-f="store"><option>듀티프리 부티크 (면세점)</option><option>듀티프리 코스메틱 (면세점)</option><option>스카이게이트 F&amp;B (면세점 외)</option><option>스카이게이트 카페 (면세점 외)</option><option>게이트 델리 (면세점 외)</option><option>라운지 그릴 (면세점 외)</option><option>트래블 컨비니 (면세점 외)</option><option>에어사이드 베이커리 (면세점 외)</option><option>게이트 누들바 (면세점 외)</option><option>스카이 베버리지 (면세점 외)</option></select></div>
@@ -658,11 +680,15 @@ button{font-family:inherit;cursor:pointer}
       <div class="ff"><label>신고 자료 첨부</label>
         <div class="ff-file"><button class="btn sm"><span class="ic">📎</span> 파일 첨부</button><span class="filechip">📄 부가가치세_신고서_2025.pdf <span class="x">✕</span></span><span class="hint">(옵션) 국세청 신고 증빙</span></div></div>
     </div>
-    <div class="sechd">매출 대사 (시스템 보유 vs 국세청 신고)</div>
-    <div class="recon">
-      <div class="rc"><div class="k">시스템 보유 매출 (확정)</div><div class="v tnum">582,400,000<span class="u">원</span></div><div class="sub">듀티프리 부티크 · 월마감 누계</div></div>
-      <div class="rc"><div class="k">국세청 신고 금액</div><div class="v tnum">580,000,000<span class="u">원</span></div><div class="sub">입력값 기준</div></div>
-      <div class="rc diff"><div class="k">차액</div><div class="v tnum">+2,400,000<span class="u">원</span></div><div class="sub">시스템 &gt; 신고 (점검 필요)</div></div>
+    <aside class="dside">
+      <h4>매출 대사 (시스템 vs 신고)</h4>
+      <div class="recon">
+        <div class="rc"><div class="k">시스템 보유 매출 (확정)</div><div class="v tnum">582,400,000<span class="u">원</span></div><div class="sub">듀티프리 부티크 · 월마감 누계</div></div>
+        <div class="rc"><div class="k">국세청 신고 금액</div><div class="v tnum">580,000,000<span class="u">원</span></div><div class="sub">입력값 기준</div></div>
+        <div class="rc diff"><div class="k">차액</div><div class="v tnum">+2,400,000<span class="u">원</span></div><div class="sub">시스템 &gt; 신고 (점검 필요)</div></div>
+      </div>
+      <p class="dnote">차액 발생 시 사유 메모·소명 자료를 첨부해 정합성을 관리합니다.</p>
+    </aside>
     </div>
   </div>
   <div class="df"><button class="btn ghost" onclick="closeDrawer()">취소</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">✓</span> 저장</button></div>

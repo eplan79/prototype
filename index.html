@@ -703,17 +703,21 @@ button{font-family:inherit;cursor:pointer}
 </div>
 
 <script>
-// screen nav
+// screen nav with hash routing (shareable URL + refresh/back persistence)
+const screenIds=[...document.querySelectorAll('.nav a')].map(a=>a.dataset.screen);
+function showScreen(id,scroll){
+  if(!id||!screenIds.includes(id)) id=screenIds[0];
+  document.querySelectorAll('.nav a').forEach(x=>x.classList.toggle('active',x.dataset.screen===id));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  if(scroll!==false) window.scrollTo({top:0,behavior:'smooth'});
+}
 document.querySelectorAll('.nav a').forEach(a=>{
-  a.addEventListener('click',e=>{
-    e.preventDefault();
-    document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
-    a.classList.add('active');
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-    document.getElementById('screen-'+a.dataset.screen).classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
-  });
+  a.addEventListener('click',e=>{e.preventDefault();const id=a.dataset.screen;
+    if(location.hash.replace('#','')===id) showScreen(id); else location.hash=id;});
 });
+window.addEventListener('hashchange',()=>showScreen(location.hash.replace('#','')));
+showScreen(location.hash.replace('#',''),false); // restore on load
 
 // store scope dropdown
 const scopeBtn=document.getElementById('scopeBtn'),storeMenu=document.getElementById('storeMenu');

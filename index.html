@@ -359,9 +359,6 @@ button{font-family:inherit;cursor:pointer}
 .drawer-mask.show{opacity:1;visibility:visible}
 .drawer{position:fixed;top:0;right:0;left:auto;height:100vh;overflow:hidden;width:750px;max-width:94vw;background:#fff;border-left:1px solid var(--line-2);box-shadow:-14px 0 44px rgba(0,0,0,.16);transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);z-index:46;display:flex;flex-direction:column}
 .drawer.show{transform:none}
-.dwrap{position:fixed;inset:0;z-index:60;display:none;align-items:stretch;justify-content:flex-end;background:rgba(20,22,26,.38)}
-.dwrap.show{display:flex}
-.dwrap .drawer{position:relative;top:auto;right:auto;left:auto;inset:auto;height:100%;width:min(900px,92vw);max-width:92vw;transform:none;box-shadow:-14px 0 44px rgba(0,0,0,.16);overflow:hidden}
 .drawer .tbl th,.drawer .tbl td{white-space:normal;word-break:break-word}
 .drawer .kv,.drawer .locmeta{min-width:0}
 .drawer .kv span,.drawer .locmeta b{word-break:break-word}
@@ -844,7 +841,7 @@ button{font-family:inherit;cursor:pointer}
     </div>
     <div class="kpi"><div class="k"><div class="lab">정산 대상 업체</div><div class="val tnum">48 <span class="u">개</span></div></div><div class="k"><div class="lab">자동 산정 완료</div><div class="val tnum">41 <span class="u">건</span></div></div><div class="k"><div class="lab">검증 필요(이상치)</div><div class="val tnum" style="color:var(--warn)">2 <span class="u">건</span></div></div><div class="k"><div class="lab">정산 알림 발송</div><div class="val tnum">39 <span class="u">건</span></div></div></div>
     <div class="card filter"><div class="cb"><div class="qbar"><div class="qf"><label>공항(권역)</label><select class="sel w180"><option>전체 공항</option><optgroup label="수도권"><option>김포공항</option></optgroup><optgroup label="제주권"><option>제주공항</option></optgroup><optgroup label="영남권"><option>김해공항</option><option>대구공항</option></optgroup><optgroup label="중부권"><option>청주공항</option></optgroup></select></div><div class="qf"><label>정산월</label><input class="inp w160" type="month" value="2026-06"></div><div class="qf"><label>정산 유형</label><div class="seg"><label><input type="radio" name="settp" checked><span>월정산</span></label><label><input type="radio" name="settp"><span>연정산(소급)</span></label></div></div><div class="qf"><label>임대료 구분</label><div class="seg"><label><input type="radio" name="rk" checked><span>전체</span></label><label><input type="radio" name="rk"><span>기본</span></label><label><input type="radio" name="rk"><span>매출연동</span></label><label><input type="radio" name="rk"><span>시설관리비</span></label></div></div><div class="qf"><label>상태</label><select class="sel w140"><option>전체</option><option>자동 산정</option><option>검증 필요</option><option>완료</option></select></div><div class="qf-act"><button class="btn ghost">초기화</button><button class="btn dark"><span class="ic">⌕</span> 조회</button></div></div></div></div>
-    <div class="tbar"><div class="summ"><span><span class="lab">정산 대상</span><b class="tnum">48</b> 건</span><span><span class="lab">승인 가능</span><b class="tnum">41</b> 건</span><span><span class="lab">검증 필요</span><b class="tnum" style="color:var(--warn)">2</b> 건</span></div><div class="right"><button class="btn sm" onclick="openFac()"><span class="ic">⤒</span> 시설관리비 업로드</button><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn dark"><span class="ic">✓</span> 선택 승인</button></div></div>
+    <div class="tbar"><div class="summ"><span><span class="lab">정산 대상</span><b class="tnum">48</b> 건</span><span><span class="lab">승인 가능</span><b class="tnum">41</b> 건</span><span><span class="lab">검증 필요</span><b class="tnum" style="color:var(--warn)">2</b> 건</span></div><div class="right"><button class="btn sm" onclick="openFacUpload()"><span class="ic">⤒</span> 시설관리비 업로드</button><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn dark"><span class="ic">✓</span> 선택 승인</button></div></div>
     <div class="scroll"><table class="tbl"><thead><tr><th class="ctr">상태</th><th>업체명</th><th>공항</th><th>임대료 구분</th><th>산정 기준</th><th class="num">임대료 산정액</th><th class="ctr">AI 정합성</th><th class="ctr">고지서 발송</th><th class="ctr">승인</th></tr></thead><tbody>
           <tr><td class="ctr"><span class="bdg auto">자동 산정</span></td><td class="store"><span class="lnk" onclick="openCompany('스카이게이트 F&amp;B')">스카이게이트 F&amp;B</span></td><td>제주공항</td><td>매출연동</td><td>매출 6,420만</td><td class="num">3,210,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:99%"></i></span>99%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><button class="btn sm dark">승인</button></td></tr>
           <tr><td class="ctr"><span class="bdg chk">검증 필요</span></td><td class="store"><span class="lnk" onclick="openCompany('듀티프리 부티크')">듀티프리 부티크</span></td><td>김포공항</td><td>매출연동</td><td>매출 2.29억</td><td class="num">11,445,000</td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:72%"></i></span>72%</span></td><td class="ctr"><span class="bdg line">대기</span></td><td class="ctr"><button class="btn sm warn">검토</button></td></tr>
@@ -1282,12 +1279,22 @@ button{font-family:inherit;cursor:pointer}
       <p class="dnote">차액 발생 시 사유 메모·소명 자료를 첨부해 정합성을 관리합니다.</p>
     </aside>
 
-<div class="dwrap" id="drawer-fac" style="display:none" onclick="if(event.target===this)closeDrawer()">
-<aside class="drawer">
-  <div class="dh"><div><h3>시설관리비 업로드 <span style="font-size:10px;font-weight:700;color:#fff;background:var(--ink);padding:2px 7px;border-radius:10px;vertical-align:middle">v7</span></h3><div class="sub">시설관리부 수신 엑셀 업로드 · 업로드 후 정합성 자동 점검 · 문제 항목은 담당자가 직접 입력·수정</div></div><button class="xc" onclick="closeDrawer()">✕</button></div>
+
+    </div>
+  </div>
+  <div class="df"><button class="btn ghost" onclick="closeDrawer()">취소</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">✓</span> 저장</button></div>
+</aside>
+
+<aside class="drawer mid" id="drawer-fac">
+  <div class="dh"><div><h3>시설관리비 업로드</h3><div class="sub">시설관리부 수신 엑셀 업로드 · 정합성 자동 점검 · 문제 항목은 담당자가 직접 입력·수정</div></div><button class="xc" onclick="closeDrawer()">✕</button></div>
   <div class="db">
+    <div class="kpi" style="margin-bottom:16px">
+      <div class="k"><div class="lab">대상 매장 매칭</div><div class="val tnum">118 <span class="u">/ 120</span></div></div>
+      <div class="k"><div class="lab">업로드 데이터</div><div class="val tnum">120 <span class="u">건</span></div></div>
+      <div class="k"><div class="lab">조치 필요</div><div class="val tnum" style="color:var(--warn)">3 <span class="u">건</span></div></div>
+    </div>
     <p style="font-size:12px;color:var(--ink-2);line-height:1.6;margin:0 0 12px">시설관리부는 망이 분리되어 SKY-POS에 접속하지 않습니다. 이메일로 수신한 엑셀을 업로드하면 누락·금액 이상치·매핑 불일치를 자동 점검합니다.</p>
-    <div class="drop" style="padding:20px"><div class="di">⤒</div><div class="dt">엑셀 파일을 끌어다 놓거나 클릭해 업로드</div><div class="ds">.xlsx · 시설관리부 수신본 (예: 2026-06_시설관리비.xlsx)</div></div>
+    <div class="drop" style="padding:18px"><div class="di">⤒</div><div class="dt">엑셀 파일을 끌어다 놓거나 클릭해 업로드</div><div class="ds">.xlsx · 시설관리부 수신본 (예: 2026-06_시설관리비.xlsx)</div></div>
     <div class="kv" style="margin-bottom:16px"><span class="k2">수신 파일</span><span>2026-06_시설관리비.xlsx · 시설관리부 · 06-16 수신</span><span class="k2">대상 정산월</span><span>2026-06</span></div>
     <div class="card" style="margin-bottom:16px"><div class="ch"><h3>정합성 자동 점검 결과</h3><span class="desc">계약·전월 실적 대조</span></div>
       <table class="tbl"><tbody>
@@ -1296,23 +1303,17 @@ button{font-family:inherit;cursor:pointer}
         <tr><td>금액 이상치</td><td>전월 대비 +210% 1건 (라운지 그릴)</td><td class="ctr"><span class="bdg err">이상치</span></td></tr>
         <tr><td>매장명·계약 매핑</td><td>표기 불일치 자동 보정 3건</td><td class="ctr"><span class="bdg auto">자동 보정</span></td></tr>
       </tbody></table></div>
-    <div class="tbar"><div class="summ"><span><span class="lab">업로드 데이터</span><b class="tnum">120</b> 건</span><span><span class="lab">조치 필요</span><b class="tnum" style="color:var(--warn)">3</b> 건</span></div></div>
-    <p style="font-size:11.5px;color:var(--ink-3);margin:0 0 8px">금액·항목은 인풋에서 직접 수정할 수 있습니다. <b style="color:var(--warn)">누락·이상치</b> 항목은 확인 후 입력·정정해 주세요.</p>
-    <div class="scroll"><table class="tbl" style="table-layout:fixed;width:100%"><thead><tr><th style="width:28%">매장</th><th style="width:32%">항목</th><th class="num" style="width:24%">금액 (원)</th><th class="ctr" style="width:16%">판정</th></tr></thead><tbody>
-      <tr><td class="store">스카이게이트 F&amp;B</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin" value="380,000"><div class="base" style="text-align:right;margin-top:3px">전월 372,000</div></td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
-      <tr><td class="store">듀티프리 부티크</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin" value="1,200,000"><div class="base" style="text-align:right;margin-top:3px">전월 1,180,000</div></td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
-      <tr><td class="store">라운지 그릴</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin warn" value="930,000"><div class="base" style="text-align:right;margin-top:3px;color:var(--warn)">전월 300,000 · +210%</div></td><td class="ctr"><span class="bdg err">이상치</span></td></tr>
-      <tr><td class="store">게이트 누들바</td><td><input class="cin l warn" placeholder="항목 입력"></td><td><input class="cin warn" placeholder="금액 입력"><div class="base" style="text-align:right;margin-top:3px">전월 310,000</div></td><td class="ctr"><span class="bdg err">누락</span></td></tr>
-      <tr><td class="store">스카이 베버리지</td><td><input class="cin l warn" placeholder="항목 입력"></td><td><input class="cin warn" placeholder="금액 입력"><div class="base" style="text-align:right;margin-top:3px">전월 240,000</div></td><td class="ctr"><span class="bdg err">누락</span></td></tr>
-      <tr><td class="store">트래블 컨비니</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin" value="250,000"><div class="base" style="text-align:right;margin-top:3px">전월 248,000</div></td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
-    </tbody></table></div>
+    <div class="card"><div class="ch"><h3>항목 · 금액 확인</h3><span class="desc">누락·이상치는 직접 입력·정정</span></div>
+      <div class="scroll"><table class="tbl" style="table-layout:fixed;width:100%"><thead><tr><th style="width:28%">매장</th><th style="width:32%">항목</th><th class="num" style="width:24%">금액 (원)</th><th class="ctr" style="width:16%">판정</th></tr></thead><tbody>
+        <tr><td class="store">스카이게이트 F&amp;B</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin" value="380,000"><div class="base" style="text-align:right;margin-top:3px">전월 372,000</div></td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
+        <tr><td class="store">듀티프리 부티크</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin" value="1,200,000"><div class="base" style="text-align:right;margin-top:3px">전월 1,180,000</div></td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
+        <tr><td class="store">라운지 그릴</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin warn" value="930,000"><div class="base" style="text-align:right;margin-top:3px;color:var(--warn)">전월 300,000 · +210%</div></td><td class="ctr"><span class="bdg err">이상치</span></td></tr>
+        <tr><td class="store">게이트 누들바</td><td><input class="cin l warn" placeholder="항목 입력"></td><td><input class="cin warn" placeholder="금액 입력"><div class="base" style="text-align:right;margin-top:3px">전월 310,000</div></td><td class="ctr"><span class="bdg err">누락</span></td></tr>
+        <tr><td class="store">스카이 베버리지</td><td><input class="cin l warn" placeholder="항목 입력"></td><td><input class="cin warn" placeholder="금액 입력"><div class="base" style="text-align:right;margin-top:3px">전월 240,000</div></td><td class="ctr"><span class="bdg err">누락</span></td></tr>
+        <tr><td class="store">트래블 컨비니</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin" value="250,000"><div class="base" style="text-align:right;margin-top:3px">전월 248,000</div></td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
+      </tbody></table></div></div>
   </div>
-  <div class="df"><button class="btn ghost" onclick="closeDrawer()">닫기</button><button class="btn sm" onclick="closeDrawer()"><span class="ic">⤓</span> 점검결과 엑셀</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">✓</span> 정산 워크벤치 반영</button></div>
-</aside>
-</div>
-    </div>
-  </div>
-  <div class="df"><button class="btn ghost" onclick="closeDrawer()">취소</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">✓</span> 저장</button></div>
+  <div class="df"><button class="btn ghost" onclick="closeDrawer()">닫기</button><button class="btn sm" onclick="closeDrawer()"><span class="ic">⤓</span> 점검결과 엑셀</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">✓</span> 정산 반영</button></div>
 </aside>
 
 <div class="mask" id="mask">
@@ -1518,14 +1519,8 @@ function renderSales(scope){
   document.getElementById('salesLegend').innerHTML='<span class="it">'+(scope==='전체 통합'?'당월 매출(통합)':scope+' 당월')+' <b>'+fmtEok(d.cur)+' 원</b></span><span class="it">매출연동 임대료(추정) <b>'+fmtEok(Math.round(d.cur*0.05))+' 원</b> <span class="base">매출 × 평균 5%</span></span>';
 }
 renderSales('전체 통합');
-function openFac(){
-  var w=document.getElementById('drawer-fac'); if(!w) return;
-  w.style.cssText='position:fixed;inset:0;z-index:60;display:flex;align-items:stretch;justify-content:flex-end;background:rgba(20,22,26,.38)';
-  var p=w.querySelector('.drawer');
-  if(p){p.style.cssText='position:relative;inset:auto;transform:none;height:100%;width:min(900px,92vw);max-width:92vw;background:#fff;box-shadow:-14px 0 44px rgba(0,0,0,.16);display:flex;flex-direction:column;overflow:hidden';}
-  w.classList.add('show');
-}
-function closeDrawer(){document.getElementById('drawerMask').classList.remove('show');document.querySelectorAll('.drawer').forEach(d=>d.classList.remove('show'));document.querySelectorAll('.dwrap').forEach(d=>{d.classList.remove('show');d.style.display='none';});}
+function openFacUpload(){document.getElementById('drawerMask').classList.add('show');document.getElementById('drawer-fac').classList.add('show');}
+function closeDrawer(){document.getElementById('drawerMask').classList.remove('show');document.querySelectorAll('.drawer').forEach(d=>{d.classList.remove('show');d.style.transform='';d.style.display='';d.style.zIndex='';});}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeConfirm();}});
 
 // row 수정 → open same drawer in edit mode, prefilled

@@ -169,6 +169,92 @@ button{font-family:inherit;cursor:pointer}
 .aicard .al{font-size:11px;font-weight:700;color:var(--ink-3);padding-top:2px}
 .aicard .airow p{font-size:12.5px;color:var(--ink-1);line-height:1.6;margin:0}
 .aicard .aifoot{font-size:10.5px;color:var(--ink-3);border-top:1px dashed #e3c6c1;padding-top:8px;margin-top:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:980px){.grid2{grid-template-columns:1fr}}
+.kv{display:grid;grid-template-columns:96px 1fr;gap:7px 12px;font-size:12.5px;color:var(--ink-1)}
+.kv .k2{color:var(--ink-3);font-weight:700}
+.calc{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid #191c21;border-radius:var(--radius);padding:13px 15px;margin-bottom:16px}
+.calc .ct{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.calc .ct .tag{font-size:10px;font-weight:800;background:#22262c;color:#fff;border-radius:4px;padding:2px 7px}
+.calc .ct b{font-size:12.5px;color:var(--ink-1)}
+.drop{border:2px dashed var(--line-2);border-radius:var(--radius);padding:28px 20px;text-align:center;color:var(--ink-3);background:var(--surface-2);margin-bottom:14px}
+.drop .di{font-size:26px;color:var(--ink-4)}
+.drop .dt{font-size:13px;font-weight:700;color:var(--ink-2);margin-top:6px}
+.drop .ds{font-size:11.5px;margin-top:3px}
+.delta{font-size:11px;font-weight:800}
+.delta.up{color:var(--ink-2)}
+.delta.dn{color:var(--warn)}
+.base{font-size:11px;color:var(--ink-3)}
+.twocol{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:980px){.twocol{grid-template-columns:1fr}}
+.loclist tr{cursor:pointer}
+.loclist tbody tr.sel{background:var(--surface-2)}
+.locmeta{display:grid;grid-template-columns:70px 1fr;gap:7px 12px;font-size:12.5px;margin-bottom:14px}
+.locmeta .k2{color:var(--ink-3);font-weight:700}
+.locmeta b{font-weight:700;color:var(--ink-1)}
+.floor{display:flex;gap:8px}
+.floor .rcell{flex:1;border:1px solid var(--line);border-radius:8px;padding:16px 4px;text-align:center;font-size:11px;color:var(--ink-3);background:#fff}
+.floor .rcell.on{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:800}
+.floor .rcell .z{display:block;font-size:9px;margin-top:3px;opacity:.7}
+.sbar{display:flex;height:24px;border-radius:6px;overflow:hidden;margin:4px 0 12px}
+.sbar span{display:block;height:100%}
+.lgn{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--ink-2)}
+.lgn .it{display:inline-flex;align-items:center;gap:7px}
+.lgn i{width:11px;height:11px;border-radius:2px;display:inline-block}
+.lgn b{color:var(--ink-1)}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:980px){.grid3{grid-template-columns:1fr}}
+.alist{display:flex;flex-direction:column;gap:8px}
+.arow{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:var(--radius);padding:11px 14px}
+.arow.urg{border-color:var(--warn);background:#fdf6f5}
+.arow .sev{font-size:10px;font-weight:800;padding:3px 9px;border-radius:4px;color:#fff;background:#2b3038;white-space:nowrap}
+.arow .sev.u{background:var(--warn)}
+.arow .at{flex:1;font-size:13px;color:var(--ink-1);font-weight:600}
+.arow .meta{font-size:11px;color:var(--ink-3);white-space:nowrap}
+.arow .go{font-size:12px;color:var(--ink-2);font-weight:700;white-space:nowrap}
+.opsbar{display:flex;align-items:center;gap:20px;flex-wrap:wrap;border:1px solid var(--line);border-radius:var(--radius);padding:12px 18px;margin-bottom:16px;font-size:12.5px;color:var(--ink-2);background:#fff}
+.opsbar b{color:var(--ink-1)}
+.opsbar .st{display:inline-flex;align-items:center;gap:6px}
+.opsbar .dot{width:8px;height:8px;border-radius:50%;background:#3a3f47;display:inline-block}
+.opsbar .dot.warn{background:var(--warn)}
+.opsbar .sync{margin-left:auto;color:var(--ink-3)}
+.pipe{display:flex;gap:14px}
+.pipe .b{flex:1;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+.pipe .b.warn{border-color:var(--warn);background:#fdf6f5}
+.pipe .b .l{font-size:11px;color:var(--ink-3)}
+.pipe .b .n{font-size:22px;font-weight:800;color:var(--ink-1);margin-top:4px}
+.pipe .b.warn .n{color:var(--warn)}
+.heat{display:grid;grid-template-columns:96px repeat(3,1fr);gap:6px;font-size:12px}
+.heat .hh{font-size:11px;color:var(--ink-3);text-align:center;font-weight:700}
+.heat .hl{display:flex;align-items:center;color:var(--ink-2)}
+.heat .hc{height:42px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800;line-height:1.1}
+.heat .hc .g{font-size:9px;font-weight:600;opacity:.8;margin-top:1px}
+.dash2{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:start}
+@media(max-width:1180px){.dash2{grid-template-columns:1fr}}
+.dcol{display:flex;flex-direction:column;gap:16px;min-width:0}
+.dcol>.grid2,.dcol>.card{margin-bottom:0}
+.actcol{position:sticky;top:16px}
+.actcol .card{margin-bottom:0}
+.colhd{font-size:12px;font-weight:800;letter-spacing:.02em;color:var(--ink-3);text-transform:none;padding:2px 2px 0}
+.rev{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rev .b{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px}
+.rev .b.lead{grid-column:1 / -1;background:#1c2026;border-color:#1c2026;color:#fff}
+.rev .b .l{font-size:11px;color:var(--ink-3)}
+.rev .b.lead .l{color:#aeb4bd}
+.rev .b .n{font-size:19px;font-weight:800;color:var(--ink-1);margin-top:3px}
+.rev .b.lead .n{font-size:24px;color:#fff}
+.rev .b .s{font-size:11px;color:var(--ink-3);margin-top:2px}
+.rev .b.lead .s{color:#cfd3d8}
+.revc{display:flex;gap:10px;flex-wrap:wrap}
+.revc .ri{flex:1;min-width:96px;border:1px solid var(--line);border-radius:var(--radius);padding:9px 12px;display:flex;flex-direction:column;gap:2px}
+.revc .ri.lead{background:var(--surface-2)}
+.revc .ri .l{font-size:10.5px;color:var(--ink-3)}
+.revc .ri .n{font-size:16px;font-weight:800;color:var(--ink-1)}
+.revc .ri .s{font-size:10px;color:var(--ink-2)}
+.inmethod{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.inmethod button{display:flex;flex-direction:column;align-items:center;gap:6px;width:96px;padding:14px 8px;border:1px solid var(--line-2);border-radius:var(--radius);background:#fff;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;color:var(--ink-2)}
+.inmethod button:hover{border-color:var(--ink-3);background:var(--surface-2)}
+.inmethod .em{font-size:20px}
 
 /* ===== Toolbar ===== */
 .tbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
@@ -180,7 +266,8 @@ button{font-family:inherit;cursor:pointer}
 /* ===== Table (header alignment fixed) ===== */
 .scroll{overflow:auto;border:1px solid var(--line);border-radius:var(--radius);max-height:560px}
 .tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px}
-.tbl th,.tbl td{padding:9px 12px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line)}
+.tbl th,.tbl td{padding:9px 12px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tbody td{height:38px}
 .tbl thead th{
   background:var(--surface-3);color:var(--ink-2);font-weight:700;font-size:11.5px;
   position:sticky;top:0;z-index:2;
@@ -197,7 +284,7 @@ button{font-family:inherit;cursor:pointer}
 .tbl .mini .btn{height:24px;padding:0 8px;font-size:11px}
 
 /* ===== Badges (grayscale) ===== */
-.bdg{display:inline-flex;align-items:center;gap:4px;height:21px;padding:0 8px;border-radius:11px;font-size:11px;font-weight:700;line-height:1}
+.bdg{display:inline-flex;align-items:center;justify-content:center;gap:4px;height:22px;min-width:58px;padding:0 10px;border-radius:11px;font-size:11px;font-weight:700;line-height:1;text-align:center}
 .bdg.solid{background:var(--ink);color:#fff}
 .bdg.line{background:#fff;border:1px solid var(--line-2);color:var(--ink-2)}
 .bdg.fill{background:var(--surface-3);color:var(--ink-2);border:1px solid var(--line)}
@@ -270,14 +357,26 @@ button{font-family:inherit;cursor:pointer}
 /* right slide-over drawer (registration forms) */
 .drawer-mask{position:fixed;inset:0;background:rgba(20,22,26,.38);opacity:0;visibility:hidden;transition:opacity .22s;z-index:45}
 .drawer-mask.show{opacity:1;visibility:visible}
-.drawer{position:fixed;top:0;right:0;height:100vh;width:750px;max-width:94vw;background:#fff;border-left:1px solid var(--line-2);box-shadow:-14px 0 44px rgba(0,0,0,.16);transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);z-index:46;display:flex;flex-direction:column}
+.drawer{position:fixed;top:0;right:0;left:auto;height:100vh;overflow:hidden;width:750px;max-width:94vw;background:#fff;border-left:1px solid var(--line-2);box-shadow:-14px 0 44px rgba(0,0,0,.16);transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);z-index:46;display:flex;flex-direction:column}
 .drawer.show{transform:none}
+.dwrap{position:fixed;inset:0;z-index:60;display:none;align-items:stretch;justify-content:flex-end;background:rgba(20,22,26,.38)}
+.dwrap.show{display:flex}
+.dwrap .drawer{position:relative;top:auto;right:auto;left:auto;inset:auto;height:100%;width:min(900px,92vw);max-width:92vw;transform:none;box-shadow:-14px 0 44px rgba(0,0,0,.16);overflow:hidden}
+.drawer .tbl th,.drawer .tbl td{white-space:normal;word-break:break-word}
+.drawer .kv,.drawer .locmeta{min-width:0}
+.drawer .kv span,.drawer .locmeta b{word-break:break-word}
+.drawer.wide{width:min(880px,92vw)}
+.drawer.mid{width:clamp(820px,52vw,1120px);max-width:96vw}
+.cin{width:100%;border:1px solid var(--line-2);border-radius:6px;padding:6px 9px;font-family:inherit;font-size:12.5px;text-align:right;background:#fff;color:var(--ink-1)}
+.cin.l{text-align:left}
+.cin:focus{outline:none;border-color:var(--ink-3)}
+.cin.warn{border-color:var(--warn);background:#fdf6f5}
 .drawer .dh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);flex:0 0 auto}
 .drawer .dh h3{font-size:15px;font-weight:800}
 .drawer .dh .sub{font-size:11.5px;color:var(--ink-3);font-weight:400;margin-top:3px}
 .drawer .dh .xc{width:30px;height:30px;border:1px solid var(--line-2);border-radius:var(--radius-sm);background:#fff;color:var(--ink-3);font-size:14px;display:grid;place-items:center;cursor:pointer;flex:0 0 auto}
 .drawer .dh .xc:hover{color:var(--ink);border-color:var(--ink-3)}
-.drawer .db{flex:1;overflow-y:auto;padding:20px}
+.drawer .db{flex:1;overflow:auto;min-width:0;padding:20px}
 .drawer .df{flex:0 0 auto;padding:14px 20px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px;background:var(--surface-2)}
 .drawer .sechd{font-size:12px;font-weight:700;color:var(--ink-2);margin:20px 0 11px;padding-top:18px;border-top:1px dashed var(--line-2)}
 .drawer .recon{grid-template-columns:1fr}
@@ -364,6 +463,10 @@ button{font-family:inherit;cursor:pointer}
         <a data-screen="monthly" class="tgt">월마감 관리 <span class="star">★</span></a>
         <a data-screen="tax" class="tgt">연 과세표준 증명내역 <span class="star">★</span></a>
       </nav>
+      <div class="grp">품목</div>
+      <nav class="nav">
+        <a data-screen="item-reg" class="tgt">품목 등록 <span class="star">★</span></a>
+      </nav>
       <div class="grp">임대 · 정산</div>
       <nav class="nav">
         <a data-screen="rent-dash" class="tgt">임대료 고지 대시보드 <span class="star">★</span></a>
@@ -384,6 +487,10 @@ button{font-family:inherit;cursor:pointer}
       <div class="grp">안내</div>
       <nav class="nav">
         <a data-screen="guide">화면 설명 · 목차</a>
+      </nav>
+      <div class="grp">대시보드</div>
+      <nav class="nav">
+        <a data-screen="dashboard" class="tgt">운영 대시보드 <span class="star">★</span></a>
       </nav>
       <div class="grp">임대료 관리</div>
       <nav class="nav">
@@ -676,6 +783,7 @@ button{font-family:inherit;cursor:pointer}
       <div class="summ"><span><span class="lab">2026-06 월마감</span><b><span class="bdg line">진행중</span></b></span><span class="help">미마감 영업일이 남은 매장은 확정이 차단됩니다</span></div>
       <div class="right"><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn warn sm">선택 매장 확정 취소</button><button class="btn dark" onclick="openConfirm('monthly')"><span class="ic">✓</span> 선택 매장 월마감 확정</button></div>
     </div>
+    <div style="font-size:12px;color:var(--ink-3);margin:-4px 0 12px">정산 흐름: 일마감 → 월정산 → 연정산(소급·재산정) · 포스 연동 현황: API 8 · USB 에이전트 1 · 미연동(수동매출) 1</div>
     <div class="scroll">
       <table class="tbl">
         <thead><tr>
@@ -735,13 +843,13 @@ button{font-family:inherit;cursor:pointer}
       <div><h1>임대료 정산 자동화</h1></div>
     </div>
     <div class="kpi"><div class="k"><div class="lab">정산 대상 업체</div><div class="val tnum">48 <span class="u">개</span></div></div><div class="k"><div class="lab">자동 산정 완료</div><div class="val tnum">41 <span class="u">건</span></div></div><div class="k"><div class="lab">검증 필요(이상치)</div><div class="val tnum" style="color:var(--warn)">2 <span class="u">건</span></div></div><div class="k"><div class="lab">정산 알림 발송</div><div class="val tnum">39 <span class="u">건</span></div></div></div>
-    <div class="card filter"><div class="cb"><div class="qbar"><div class="qf"><label>공항(권역)</label><select class="sel w180"><option>전체 공항</option><optgroup label="수도권"><option>김포공항</option></optgroup><optgroup label="제주권"><option>제주공항</option></optgroup><optgroup label="영남권"><option>김해공항</option><option>대구공항</option></optgroup><optgroup label="중부권"><option>청주공항</option></optgroup></select></div><div class="qf"><label>정산월</label><input class="inp w160" type="month" value="2026-06"></div><div class="qf"><label>임대료 구분</label><div class="seg"><label><input type="radio" name="rk" checked><span>전체</span></label><label><input type="radio" name="rk"><span>기본</span></label><label><input type="radio" name="rk"><span>매출연동</span></label><label><input type="radio" name="rk"><span>시설유지비</span></label></div></div><div class="qf"><label>상태</label><select class="sel w140"><option>전체</option><option>자동 산정</option><option>검증 필요</option><option>완료</option></select></div><div class="qf-act"><button class="btn ghost">초기화</button><button class="btn dark"><span class="ic">⌕</span> 조회</button></div></div></div></div>
-    <div class="tbar"><div class="summ"><span><span class="lab">정산 대상</span><b class="tnum">48</b> 건</span><span><span class="lab">승인 가능</span><b class="tnum">41</b> 건</span><span><span class="lab">검증 필요</span><b class="tnum" style="color:var(--warn)">2</b> 건</span></div><div class="right"><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn dark"><span class="ic">✓</span> 선택 승인</button></div></div>
-    <div class="scroll"><table class="tbl"><thead><tr><th class="ctr">상태</th><th>업체명</th><th>공항</th><th>임대료 구분</th><th>산정 기준</th><th class="num">임대료 산정액</th><th class="ctr">정합성</th><th class="ctr">정산 알림</th><th class="ctr">승인</th></tr></thead><tbody>
+    <div class="card filter"><div class="cb"><div class="qbar"><div class="qf"><label>공항(권역)</label><select class="sel w180"><option>전체 공항</option><optgroup label="수도권"><option>김포공항</option></optgroup><optgroup label="제주권"><option>제주공항</option></optgroup><optgroup label="영남권"><option>김해공항</option><option>대구공항</option></optgroup><optgroup label="중부권"><option>청주공항</option></optgroup></select></div><div class="qf"><label>정산월</label><input class="inp w160" type="month" value="2026-06"></div><div class="qf"><label>정산 유형</label><div class="seg"><label><input type="radio" name="settp" checked><span>월정산</span></label><label><input type="radio" name="settp"><span>연정산(소급)</span></label></div></div><div class="qf"><label>임대료 구분</label><div class="seg"><label><input type="radio" name="rk" checked><span>전체</span></label><label><input type="radio" name="rk"><span>기본</span></label><label><input type="radio" name="rk"><span>매출연동</span></label><label><input type="radio" name="rk"><span>시설관리비</span></label></div></div><div class="qf"><label>상태</label><select class="sel w140"><option>전체</option><option>자동 산정</option><option>검증 필요</option><option>완료</option></select></div><div class="qf-act"><button class="btn ghost">초기화</button><button class="btn dark"><span class="ic">⌕</span> 조회</button></div></div></div></div>
+    <div class="tbar"><div class="summ"><span><span class="lab">정산 대상</span><b class="tnum">48</b> 건</span><span><span class="lab">승인 가능</span><b class="tnum">41</b> 건</span><span><span class="lab">검증 필요</span><b class="tnum" style="color:var(--warn)">2</b> 건</span></div><div class="right"><button class="btn sm" onclick="openFac()"><span class="ic">⤒</span> 시설관리비 업로드</button><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn dark"><span class="ic">✓</span> 선택 승인</button></div></div>
+    <div class="scroll"><table class="tbl"><thead><tr><th class="ctr">상태</th><th>업체명</th><th>공항</th><th>임대료 구분</th><th>산정 기준</th><th class="num">임대료 산정액</th><th class="ctr">AI 정합성</th><th class="ctr">고지서 발송</th><th class="ctr">승인</th></tr></thead><tbody>
           <tr><td class="ctr"><span class="bdg auto">자동 산정</span></td><td class="store"><span class="lnk" onclick="openCompany('스카이게이트 F&amp;B')">스카이게이트 F&amp;B</span></td><td>제주공항</td><td>매출연동</td><td>매출 6,420만</td><td class="num">3,210,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:99%"></i></span>99%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><button class="btn sm dark">승인</button></td></tr>
           <tr><td class="ctr"><span class="bdg chk">검증 필요</span></td><td class="store"><span class="lnk" onclick="openCompany('듀티프리 부티크')">듀티프리 부티크</span></td><td>김포공항</td><td>매출연동</td><td>매출 2.29억</td><td class="num">11,445,000</td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:72%"></i></span>72%</span></td><td class="ctr"><span class="bdg line">대기</span></td><td class="ctr"><button class="btn sm warn">검토</button></td></tr>
           <tr><td class="ctr"><span class="bdg solid">승인 완료</span></td><td class="store"><span class="lnk" onclick="openCompany('게이트 델리')">게이트 델리</span></td><td>제주공항</td><td>기본임대료</td><td>면적 84㎡</td><td class="num">5,600,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:100%"></i></span>100%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><span style="font-size:11px;color:var(--ink-3)">승인 2026-06-15 14:20 · 정현업</span></td></tr>
-          <tr><td class="ctr"><span class="bdg auto">자동 산정</span></td><td class="store"><span class="lnk" onclick="openCompany('스카이게이트 카페')">스카이게이트 카페</span></td><td>제주공항</td><td>시설유지비</td><td>공용면적 배분</td><td class="num">420,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:98%"></i></span>98%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><button class="btn sm dark">승인</button></td></tr>
+          <tr><td class="ctr"><span class="bdg auto">자동 산정</span></td><td class="store"><span class="lnk" onclick="openCompany('스카이게이트 카페')">스카이게이트 카페</span></td><td>제주공항</td><td>시설관리비</td><td>공용면적 배분</td><td class="num">420,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:98%"></i></span>98%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><button class="btn sm dark">승인</button></td></tr>
           <tr><td class="ctr"><span class="bdg auto">자동 산정</span></td><td class="store"><span class="lnk" onclick="openCompany('라운지 그릴')">라운지 그릴</span></td><td>김해공항</td><td>매출연동</td><td>매출 3,418만</td><td class="num">1,709,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:96%"></i></span>96%</span></td><td class="ctr"><span class="bdg line">대기</span></td><td class="ctr"><button class="btn sm dark">승인</button></td></tr>
           <tr><td class="ctr"><span class="bdg chk">검증 필요</span></td><td class="store"><span class="lnk" onclick="openCompany('듀티프리 코스메틱')">듀티프리 코스메틱</span></td><td>김포공항</td><td>매출연동</td><td>매출 1.56억</td><td class="num">7,815,000</td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:68%"></i></span>68%</span></td><td class="ctr"><span class="bdg line">대기</span></td><td class="ctr"><button class="btn sm warn">검토</button></td></tr>
           <tr><td class="ctr"><span class="bdg solid">승인 완료</span></td><td class="store"><span class="lnk" onclick="openCompany('트래블 컨비니')">트래블 컨비니</span></td><td>대구공항</td><td>기본임대료</td><td>면적 42㎡</td><td class="num">2,800,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:100%"></i></span>100%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><span style="font-size:11px;color:var(--ink-3)">승인 2026-06-15 11:05 · 정현업</span></td></tr>
@@ -755,8 +863,9 @@ button{font-family:inherit;cursor:pointer}
       <div><h1>AI 품목 매핑</h1></div>
     </div>
     <div class="kpi"><div class="k"><div class="lab">매핑 대상 품목</div><div class="val tnum">12,480 <span class="u">건</span></div></div><div class="k"><div class="lab">자동 매핑 완료</div><div class="val tnum">91.4 <span class="u">%</span></div></div><div class="k"><div class="lab">‘기타’ 처리 비중</div><div class="val tnum">6.2 <span class="u">%</span></div></div><div class="k"><div class="lab">매핑 검증 필요</div><div class="val tnum" style="color:var(--warn)">214 <span class="u">건</span></div></div></div>
+    <div style="font-size:12px;color:var(--ink-3);margin:-4px 0 12px">입력: 사진·음성·바코드·엑셀 → 온톨로지 자동 분류 · 공사는 모든 판매 품목 신고 의무(미등록 ‘기타’ 누락 방지)</div>
     <div class="tbar"><div class="summ"><span><span class="lab">신규·변경 품목</span><b class="tnum">328</b> 건</span><span><span class="lab">자동 매핑</span><b class="tnum">300</b> 건</span><span><span class="lab">검증 필요</span><b class="tnum" style="color:var(--warn)">28</b> 건</span></div><div class="right"><select class="sel sm"><option>전체</option><option>검증 필요</option><option>기타 처리</option></select><button class="btn warn sm"><span class="ic">⤓</span> 오류·기타 매장 엑셀 다운로드</button><button class="btn dark"><span class="ic">✓</span> 선택 확정</button></div></div>
-    <div class="scroll"><table class="tbl"><thead><tr><th>품목명</th><th>매장</th><th>POS 시리얼</th><th>AI 자동 분류 (대 › 중 › 소)</th><th class="ctr">신뢰도</th><th class="ctr">상태</th><th class="ctr">작업</th></tr></thead><tbody>
+    <div class="scroll"><table class="tbl"><thead><tr><th>품목명</th><th>매장</th><th>POS 시리얼</th><th>AI 자동 분류 (대 › 중 › 소)</th><th class="ctr">AI 신뢰도</th><th class="ctr">상태</th><th class="ctr">작업</th></tr></thead><tbody>
           <tr><td>제주 감귤 초콜릿 90g</td><td class="store">듀티프리 부티크</td><td>SN-7741-022</td><td>가공식품 › 초콜릿 › 선물세트</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:98%"></i></span>98%</span></td><td class="ctr"><span class="bdg auto">자동 매핑</span></td><td class="ctr"><span class="mini"><button class="btn sm dark">확정</button><button class="btn sm">수정</button></span></td></tr>
           <tr><td>한라봉 에이드 473ml</td><td class="store">스카이게이트 카페</td><td>SN-2210-009</td><td>음료 › 과채음료 › 컵음료</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:95%"></i></span>95%</span></td><td class="ctr"><span class="bdg auto">자동 매핑</span></td><td class="ctr"><span class="mini"><button class="btn sm dark">확정</button><button class="btn sm">수정</button></span></td></tr>
           <tr><td>(미등록 품목) 8809-***</td><td class="store">게이트 누들바</td><td>SN-6105-114</td><td><span class="bdg err">기타 처리</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:41%"></i></span>41%</span></td><td class="ctr"><span class="bdg chk">검증 필요</span></td><td class="ctr"><span class="mini"><button class="btn sm warn">매핑</button><button class="btn sm">제외</button></span></td></tr>
@@ -776,8 +885,9 @@ button{font-family:inherit;cursor:pointer}
     </div>
     <div class="kpi"><div class="k"><div class="lab">비교군 등록 대상</div><div class="val tnum">1,860 <span class="u">건</span></div></div><div class="k"><div class="lab">AI 자동 추천 완료</div><div class="val tnum">1,612 <span class="u">건</span></div></div><div class="k"><div class="lab">가격 적정 판정</div><div class="val tnum">1,503 <span class="u">건</span></div></div><div class="k"><div class="lab">검토 필요(편차)</div><div class="val tnum" style="color:var(--warn)">109 <span class="u">건</span></div></div></div>
     <div class="card"><div class="ch"><h3>품목: 제주 감귤 초콜릿 90g — AI 추천 비교군</h3><span class="desc">등록가 12,000원 · 합리적 시중가 입증용</span></div><div class="cb"><div class="scroll" style="border:none"><table class="tbl"><thead><tr><th>비교군</th><th>출처(공항·매장)</th><th class="num">가격</th><th class="ctr">사진</th><th class="ctr">채택</th></tr></thead><tbody><tr><td>비교군 1</td><td>김포공항 · 면세 매장 A</td><td class="num">12,500</td><td class="ctr"><span class="bdg line">1/1</span></td><td class="ctr"><button class="btn sm dark">채택</button></td></tr><tr><td>비교군 2</td><td>인천공항 · 매장 B</td><td class="num">11,800</td><td class="ctr"><span class="bdg line">1/1</span></td><td class="ctr"><button class="btn sm dark">채택</button></td></tr><tr><td>비교군 3</td><td>내부 누적 · 동일 품목군</td><td class="num">12,200</td><td class="ctr"><span class="bdg line">1/1</span></td><td class="ctr"><button class="btn sm dark">채택</button></td></tr><tr class="total"><td colspan="2" class="ctr">비교군 평균 / 편차</td><td class="num">12,167</td><td class="ctr" colspan="2"><span class="bdg solid">가격 적정</span></td></tr></tbody></table></div></div></div>
+    <div style="font-size:12px;color:var(--ink-3);margin:-4px 0 12px">공항 가격 민원 대응 목적 — 업체 수기 입력 대신 AI가 동일·유사 품목 시중가를 자동 탐색해 적정성 판정·가격 조정 권고</div>
     <div class="tbar"><div class="summ"><span><span class="lab">등록 현황</span><b class="tnum">1,860</b> 품목</span></div><div class="right"><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button></div></div>
-    <div class="scroll"><table class="tbl"><thead><tr><th>품목</th><th>매장</th><th class="num">등록가</th><th class="num">비교군 평균</th><th class="num">편차</th><th class="ctr">판정</th><th class="ctr">사진</th><th class="ctr">상태</th></tr></thead><tbody><tr><td>제주 감귤 초콜릿 90g</td><td class="store">듀티프리 부티크</td><td class="num">12,000</td><td class="num">12,167</td><td class="num">-1.4%</td><td class="ctr"><span class="bdg solid">적정</span></td><td class="ctr">3/3</td><td class="ctr"><span class="bdg auto">AI 추천</span></td></tr><tr><td>무선 이어폰 X200</td><td class="store">듀티프리 코스메틱</td><td class="num">189,000</td><td class="num">171,000</td><td class="num" style="color:var(--warn)">+10.5%</td><td class="ctr"><span class="bdg chk">검토</span></td><td class="ctr">2/3</td><td class="ctr"><span class="bdg auto">AI 추천</span></td></tr><tr><td>한라봉 청 500g</td><td class="store">트래블 컨비니</td><td class="num">15,000</td><td class="num">15,330</td><td class="num">-2.2%</td><td class="ctr"><span class="bdg solid">적정</span></td><td class="ctr">3/3</td><td class="ctr"><span class="bdg auto">AI 추천</span></td></tr><tr><td>제주 녹차 세트</td><td class="store">스카이게이트 F&amp;B</td><td class="num">28,000</td><td class="num">27,500</td><td class="num">+1.8%</td><td class="ctr"><span class="bdg solid">적정</span></td><td class="ctr">3/3</td><td class="ctr"><span class="bdg fill">등록완료</span></td></tr><tr><td>오메기떡 10입</td><td class="store">에어사이드 베이커리</td><td class="num">9,000</td><td class="num">9,100</td><td class="num">-1.1%</td><td class="ctr"><span class="bdg solid">적정</span></td><td class="ctr">3/3</td><td class="ctr"><span class="bdg fill">등록완료</span></td></tr></tbody></table></div>
+    <div class="scroll"><table class="tbl"><thead><tr><th>품목</th><th>매장</th><th class="num">등록가</th><th class="num">비교군 평균</th><th class="num">편차</th><th class="ctr">판정</th><th class="ctr">사진</th><th class="ctr">상태</th></tr></thead><tbody><tr><td>제주 감귤 초콜릿 90g</td><td class="store">듀티프리 부티크</td><td class="num">12,000</td><td class="num">12,167</td><td class="num">-1.4%</td><td class="ctr"><span class="bdg solid">적정</span></td><td class="ctr">3/3</td><td class="ctr"><span class="bdg ai">AI 추천</span></td></tr><tr><td>무선 이어폰 X200</td><td class="store">듀티프리 코스메틱</td><td class="num">189,000</td><td class="num">171,000</td><td class="num" style="color:var(--warn)">+10.5%</td><td class="ctr"><span class="bdg chk">검토</span></td><td class="ctr">2/3</td><td class="ctr"><span class="bdg ai">AI 추천</span></td></tr><tr><td>한라봉 청 500g</td><td class="store">트래블 컨비니</td><td class="num">15,000</td><td class="num">15,330</td><td class="num">-2.2%</td><td class="ctr"><span class="bdg solid">적정</span></td><td class="ctr">3/3</td><td class="ctr"><span class="bdg ai">AI 추천</span></td></tr><tr><td>제주 녹차 세트</td><td class="store">스카이게이트 F&amp;B</td><td class="num">28,000</td><td class="num">27,500</td><td class="num">+1.8%</td><td class="ctr"><span class="bdg solid">적정</span></td><td class="ctr">3/3</td><td class="ctr"><span class="bdg fill">등록완료</span></td></tr><tr><td>오메기떡 10입</td><td class="store">에어사이드 베이커리</td><td class="num">9,000</td><td class="num">9,100</td><td class="num">-1.1%</td><td class="ctr"><span class="bdg solid">적정</span></td><td class="ctr">3/3</td><td class="ctr"><span class="bdg fill">등록완료</span></td></tr></tbody></table></div>
   </section>
 
   <section class="screen" id="screen-rent-erp">
@@ -798,7 +908,7 @@ button{font-family:inherit;cursor:pointer}
     </div>
     <div class="kpi"><div class="k"><div class="lab">모니터링 매장</div><div class="val tnum">10 <span class="u">개</span></div></div><div class="k"><div class="lab">AGENT 단절</div><div class="val tnum" style="color:var(--warn)">1 <span class="u">건</span></div></div><div class="k"><div class="lab">미전송·중복</div><div class="val tnum" style="color:var(--warn)">3 <span class="u">건</span></div></div><div class="k"><div class="lab">누락 의심(AI)</div><div class="val tnum" style="color:var(--warn)">5 <span class="u">건</span></div></div></div>
     <div class="tbar"><div class="summ"><span><span class="lab">금일 탐지</span><b class="tnum">9</b> 건</span><span><span class="lab">미확인</span><b class="tnum" style="color:var(--warn)">6</b> 건</span></div><div class="right"><select class="sel sm"><option>전체 유형</option><option>누락 의심</option><option>미전송</option><option>중복</option><option>이상 패턴</option></select><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn dark">선택 재처리</button></div></div>
-    <div class="scroll"><table class="tbl"><thead><tr><th>탐지일시</th><th>매장</th><th class="ctr">유형</th><th class="ctr">AI 위험도</th><th>탐지 근거</th><th class="ctr">조치</th></tr></thead><tbody><tr><td>06-17 14:30</td><td class="store">게이트 누들바</td><td class="ctr"><span class="bdg err">누락 의심</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:88%"></i></span>88%</span></td><td>VAN 대조 차이 · 시간대 매출 급감</td><td class="ctr"><span class="mini"><button class="btn sm warn">재처리</button><button class="btn sm">상세</button></span></td></tr><tr><td>06-17 13:05</td><td class="store">스카이 베버리지</td><td class="ctr"><span class="bdg err">미전송</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:76%"></i></span>76%</span></td><td>AGENT 연계 90분 단절</td><td class="ctr"><span class="mini"><button class="btn sm warn">재처리</button><button class="btn sm">상세</button></span></td></tr><tr><td>06-17 11:48</td><td class="store">듀티프리 코스메틱</td><td class="ctr"><span class="bdg chk">중복 전송</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:64%"></i></span>64%</span></td><td>동일 영수증 2회 수신</td><td class="ctr"><span class="mini"><button class="btn sm warn">처리</button><button class="btn sm">상세</button></span></td></tr><tr><td>06-17 10:22</td><td class="store">라운지 그릴</td><td class="ctr"><span class="bdg chk">이상 패턴</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:58%"></i></span>58%</span></td><td>현금영수증 취소 빈도 이상</td><td class="ctr"><span class="mini"><button class="btn sm">확인</button><button class="btn sm">상세</button></span></td></tr><tr><td>06-16 18:40</td><td class="store">에어사이드 베이커리</td><td class="ctr"><span class="bdg fill">정상화</span></td><td class="ctr"><span class="conf"><span class="bar"><i style="width:40%"></i></span>40%</span></td><td>재처리 완료</td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">처리</button><button class="btn sm">상세</button></span></td></tr></tbody></table></div>
+    <div class="scroll"><table class="tbl"><thead><tr><th>탐지일시</th><th>매장</th><th class="ctr">유형</th><th class="ctr">위험도</th><th>탐지 근거</th><th class="ctr">조치</th></tr></thead><tbody><tr><td>06-17 14:30</td><td class="store">게이트 누들바</td><td class="ctr"><span class="bdg err">누락 의심</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:88%"></i></span>88%</span></td><td>VAN 대조 차이 · 시간대 매출 급감</td><td class="ctr"><span class="mini"><button class="btn sm warn">재처리</button><button class="btn sm">상세</button></span></td></tr><tr><td>06-17 13:05</td><td class="store">스카이 베버리지</td><td class="ctr"><span class="bdg err">미전송</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:76%"></i></span>76%</span></td><td>AGENT 연계 90분 단절</td><td class="ctr"><span class="mini"><button class="btn sm warn">재처리</button><button class="btn sm">상세</button></span></td></tr><tr><td>06-17 11:48</td><td class="store">듀티프리 코스메틱</td><td class="ctr"><span class="bdg chk">중복 전송</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:64%"></i></span>64%</span></td><td>동일 영수증 2회 수신</td><td class="ctr"><span class="mini"><button class="btn sm warn">처리</button><button class="btn sm">상세</button></span></td></tr><tr><td>06-17 10:22</td><td class="store">라운지 그릴</td><td class="ctr"><span class="bdg chk">이상 패턴</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:58%"></i></span>58%</span></td><td>현금영수증 취소 빈도 이상</td><td class="ctr"><span class="mini"><button class="btn sm">확인</button><button class="btn sm">상세</button></span></td></tr><tr><td>06-16 18:40</td><td class="store">에어사이드 베이커리</td><td class="ctr"><span class="bdg fill">정상화</span></td><td class="ctr"><span class="conf"><span class="bar"><i style="width:40%"></i></span>40%</span></td><td>재처리 완료</td><td class="ctr"><span class="mini"><button class="btn sm" disabled style="opacity:.5">처리</button><button class="btn sm">상세</button></span></td></tr></tbody></table></div>
   </section>
 
   <section class="screen" id="screen-park-appr">
@@ -818,6 +928,13 @@ button{font-family:inherit;cursor:pointer}
     </div>
     <div class="tbar"><div class="summ"><span><span class="lab">예외요율 등록</span><b class="tnum">14</b> 건</span><span><span class="lab">자동 반영 중</span><b class="tnum">12</b> 건</span></div><div class="right"><button class="btn dark"><span class="ic">＋</span> 예외요율 등록</button></div></div>
     <div class="scroll"><table class="tbl"><thead><tr><th>면세점</th><th>품목군</th><th class="num">표준요율</th><th class="num">예외요율</th><th>적용시작</th><th class="ctr">자동 반영</th><th class="ctr">상태</th></tr></thead><tbody><tr><td class="store">듀티프리 부티크</td><td>전자제품</td><td class="num">18%</td><td class="num">9%</td><td>2026-01</td><td class="ctr"><span class="bdg auto">월별 자동</span></td><td class="ctr"><span class="bdg solid">적용중</span></td></tr><tr><td class="store">듀티프리 코스메틱</td><td>주류</td><td class="num">18%</td><td class="num">12%</td><td>2026-03</td><td class="ctr"><span class="bdg auto">월별 자동</span></td><td class="ctr"><span class="bdg solid">적용중</span></td></tr><tr><td class="store">듀티프리 부티크</td><td>고가 시계</td><td class="num">18%</td><td class="num">7%</td><td>2026-06</td><td class="ctr"><span class="bdg line">검토</span></td><td class="ctr"><span class="bdg chk">승인 대기</span></td></tr><tr><td class="store">듀티프리 코스메틱</td><td>향수</td><td class="num">18%</td><td class="num">15%</td><td>2025-01</td><td class="ctr"><span class="bdg auto">월별 자동</span></td><td class="ctr"><span class="bdg solid">적용중</span></td></tr></tbody></table></div>
+    <div class="card"><div class="ch"><h3>면세 특수 처리</h3><span class="desc">면세점 전용 정보·연동</span></div>
+      <table class="tbl"><thead><tr><th>항목</th><th>처리</th><th class="ctr">연동</th></tr></thead><tbody>
+        <tr><td>탑승권(체크인) 확인</td><td>면세 판매 시 탑승권 정보 확인 · 출국장 위치 전송</td><td class="ctr"><span class="bdg auto">연동</span></td></tr>
+        <tr><td>향수·주류 신고 안내</td><td>반입 신고 대상 품목 안내(POS 데이터 기준)</td><td class="ctr"><span class="bdg line">안내</span></td></tr>
+        <tr><td>JDC형 계약 구조</td><td>1개 계약 아래 다수 포스(샤넬·설화수 등) 매핑</td><td class="ctr"><span class="bdg line">구조</span></td></tr>
+        <tr><td>면세 특수 요율</td><td>담배 등 품목별 특수 요율 적용</td><td class="ctr"><span class="bdg auto">월별 자동</span></td></tr>
+      </tbody></table></div>
   </section>
 
   <section class="screen" id="screen-rent-dash">
@@ -826,9 +943,9 @@ button{font-family:inherit;cursor:pointer}
       <div><h1>임대료 고지 대시보드</h1></div>
     </div>
     <div class="scopebar"><span class="k">조회 범위</span><b>전체 매장</b><span class="chip">10개 매장</span><span class="help">상단 매장 범위와 연동</span></div>
-    <div class="kpi"><div class="k"><div class="lab">당월 고지액</div><div class="val tnum">8,420,000 <span class="u">원</span></div></div><div class="k"><div class="lab">기본임대료</div><div class="val tnum">5,600,000 <span class="u">원</span></div></div><div class="k"><div class="lab">매출연동</div><div class="val tnum">2,400,000 <span class="u">원</span></div></div><div class="k"><div class="lab">시설유지비</div><div class="val tnum">420,000 <span class="u">원</span></div></div></div>
+    <div class="kpi"><div class="k"><div class="lab">당월 고지액</div><div class="val tnum">8,420,000 <span class="u">원</span></div></div><div class="k"><div class="lab">기본임대료</div><div class="val tnum">5,600,000 <span class="u">원</span></div></div><div class="k"><div class="lab">매출연동</div><div class="val tnum">2,400,000 <span class="u">원</span></div></div><div class="k"><div class="lab">시설관리비</div><div class="val tnum">420,000 <span class="u">원</span></div></div></div>
     <div class="tbar"><div class="summ"><span><span class="lab">최근 6개월 고지</span><b class="tnum">6</b> 건</span></div><div class="right"><select class="sel sm"><option>최근 6개월</option><option>최근 12개월</option></select><button class="btn sm"><span class="ic">⤓</span> 명세서(PDF)</button></div></div>
-    <div class="scroll"><table class="tbl"><thead><tr><th>고지월</th><th class="num">기본임대료</th><th class="num">매출연동 임대료</th><th class="num">시설유지비</th><th class="num">합계</th><th class="ctr">상태</th><th class="ctr">명세서</th></tr></thead><tbody><tr><td>2026-06</td><td class="num">5,600,000</td><td class="num">2,400,000</td><td class="num">420,000</td><td class="num">8,420,000</td><td class="ctr"><span class="bdg line">고지완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-05</td><td class="num">5,600,000</td><td class="num">2,180,000</td><td class="num">420,000</td><td class="num">8,200,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-04</td><td class="num">5,600,000</td><td class="num">2,510,000</td><td class="num">420,000</td><td class="num">8,530,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-03</td><td class="num">5,600,000</td><td class="num">1,980,000</td><td class="num">420,000</td><td class="num">8,000,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-02</td><td class="num">5,600,000</td><td class="num">2,050,000</td><td class="num">420,000</td><td class="num">8,070,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-01</td><td class="num">5,600,000</td><td class="num">2,320,000</td><td class="num">420,000</td><td class="num">8,340,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr></tbody></table></div>
+    <div class="scroll"><table class="tbl"><thead><tr><th>고지월</th><th class="num">기본임대료</th><th class="num">매출연동 임대료</th><th class="num">시설관리비</th><th class="num">합계</th><th class="ctr">상태</th><th class="ctr">명세서</th></tr></thead><tbody><tr><td>2026-06</td><td class="num">5,600,000</td><td class="num">2,400,000</td><td class="num">420,000</td><td class="num">8,420,000</td><td class="ctr"><span class="bdg line">고지완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-05</td><td class="num">5,600,000</td><td class="num">2,180,000</td><td class="num">420,000</td><td class="num">8,200,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-04</td><td class="num">5,600,000</td><td class="num">2,510,000</td><td class="num">420,000</td><td class="num">8,530,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-03</td><td class="num">5,600,000</td><td class="num">1,980,000</td><td class="num">420,000</td><td class="num">8,000,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-02</td><td class="num">5,600,000</td><td class="num">2,050,000</td><td class="num">420,000</td><td class="num">8,070,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr><tr><td>2026-01</td><td class="num">5,600,000</td><td class="num">2,320,000</td><td class="num">420,000</td><td class="num">8,340,000</td><td class="ctr"><span class="bdg solid">납부완료</span></td><td class="ctr"><span class="lnk">PDF</span></td></tr></tbody></table></div>
   </section>
 
   <section class="screen" id="screen-park-req">
@@ -838,7 +955,190 @@ button{font-family:inherit;cursor:pointer}
     </div>
     <div class="scopebar"><span class="k">조회 범위</span><b>전체 매장</b><span class="chip">10개 매장</span><span class="help">상단 매장 범위와 연동</span></div>
     <div class="tbar"><div class="summ"><span><span class="lab">금월 신청</span><b class="tnum">12</b> 건</span><span><span class="lab">승인 대기</span><b class="tnum">2</b> 건</span></div><div class="right"><button class="btn dark"><span class="ic">＋</span> 임시주차 신청</button></div></div>
-    <div class="scroll"><table class="tbl"><thead><tr><th>신청일시</th><th>차량번호</th><th>사유</th><th>기간</th><th>신청자</th><th class="ctr">상태</th><th class="ctr">차단기 연동</th></tr></thead><tbody><tr><td>06-17 09:12</td><td>12가 3456</td><td>주방 설비 수리</td><td>06-17 1일</td><td>김외부</td><td class="ctr"><span class="bdg line">승인 대기</span></td><td class="ctr"><span class="bdg line">—</span></td></tr><tr><td>06-15 10:40</td><td>56다 1234</td><td>인테리어 공사</td><td>06-15~06-17</td><td>김외부</td><td class="ctr"><span class="bdg solid">승인</span></td><td class="ctr"><span class="bdg auto">자동 연동</span></td></tr><tr><td>06-12 14:20</td><td>78라 5678</td><td>집기 반입</td><td>06-12 1일</td><td>김외부</td><td class="ctr"><span class="bdg solid">승인</span></td><td class="ctr"><span class="bdg auto">자동 연동</span></td></tr><tr><td>06-10 08:50</td><td>90마 2468</td><td>사유 불명확</td><td>06-10 1일</td><td>김외부</td><td class="ctr"><span class="bdg err">반려</span></td><td class="ctr"><span class="bdg line">—</span></td></tr></tbody></table></div>
+    <div class="scroll"><table class="tbl"><thead><tr><th>신청일시</th><th>차량번호</th><th>사유</th><th>기간</th><th>신청자</th><th class="ctr">상태</th><th class="ctr">차단기 연동</th></tr></thead><tbody><tr><td>06-17 09:12</td><td>12가 3456</td><td>주방 설비 수리</td><td>06-17 1일</td><td>김외부</td><td class="ctr"><span class="bdg line">승인 대기</span></td><td class="ctr"><span class="bdg line">—</span></td></tr><tr><td>06-15 10:40</td><td>56다 1234</td><td>인테리어 공사</td><td>06-15~06-17</td><td>김외부</td><td class="ctr"><span class="bdg solid">승인</span></td><td class="ctr"><span class="bdg auto">자동 연동</span></td></tr><tr><td>06-12 14:20</td><td>78라 5678</td><td>집기 반입</td><td>06-12 1일</td><td>김외부</td><td class="ctr"><span class="bdg solid">승인</span></td><td class="ctr"><span class="bdg auto">자동 연동</span></td></tr><tr><td>06-10 08:50</td><td>90마 2468</td><td>사유 불명확</td><td>06-10 1일</td><td>김외부</td><td class="ctr"><span class="bdg err">반려</span></td><td class="ctr"><span class="bdg line">—</span></td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="screen" id="screen-dashboard">
+    <div class="crumb">대시보드</div>
+    <div class="phead">
+      <div><h1>운영 대시보드</h1></div>
+      <div class="acts">
+        <label style="font-size:12px;color:var(--ink-3);font-weight:700;align-self:center">조회 기간</label>
+        <input class="inp w160" type="month" value="2026-06">
+      </div>
+    </div>
+
+    <div class="kpi">
+      <div class="k"><div class="lab">합산 매출 (당월)</div><div class="val tnum">2,847 <span class="u">억</span></div><div class="delta up" style="font-size:11px;margin-top:2px">▲ +8.4% 전년동기</div></div>
+      <div class="k"><div class="lab">정상 단말</div><div class="val tnum">471 <span class="u">/ 486</span></div></div>
+      <div class="k"><div class="lab">이상 거래 탐지</div><div class="val tnum" style="color:var(--warn)">12 <span class="u">건</span></div></div>
+      <div class="k"><div class="lab">임대료 미납</div><div class="val tnum" style="color:var(--warn)">38 <span class="u">억</span></div><div class="delta dn" style="font-size:11px;margin-top:2px">납부 마감 D-3</div></div>
+    </div>
+
+    <div class="dash2">
+      <!-- ===== 좌: 현황 ===== -->
+      <div class="dcol">
+        <div class="colhd">현황 · 매출 / 수익</div>
+        <div class="card"><div class="ch"><h3>공사 수익 현황</h3><span class="desc">2026-06 · 발주처(공사) 수익성 · 가정 더미값</span></div><div class="cb">
+          <div class="revc">
+            <div class="ri lead"><span class="l">총 수익 (당월)</span><span class="n">318억</span><span class="s">▲ +7.2% 전년동기</span></div>
+            <div class="ri"><span class="l">임대료 수익</span><span class="n">284억</span></div>
+            <div class="ri"><span class="l">기타 수익</span><span class="n">34억</span></div>
+            <div class="ri"><span class="l">수납률</span><span class="n">92.4%</span></div>
+            <div class="ri"><span class="l">미수금</span><span class="n" style="color:var(--warn)">38억</span></div>
+          </div>
+          <div style="font-size:11px;color:var(--ink-3);margin-top:8px">※ 가정 더미값(정량 수치 없음) · 임대료=기본 196 + 매출연동 88 / 기타=주차·광고·시설사용료</div>
+        </div></div>
+        <div class="grid2">
+          <div class="card"><div class="ch"><h3>매출 현황</h3><span class="desc">당월 vs 전월 · 전년동월 · 목표</span></div><div class="cb">
+            <div style="display:flex;justify-content:flex-end;margin-bottom:8px"><select class="sel sm" id="salesScope" onchange="renderSales(this.value)" style="min-width:170px"><option>전체 통합</option><option>스카이게이트 F&B</option><option>듀티프리 부티크</option><option>게이트 델리</option><option>라운지 그릴</option><option>듀티프리 코스메틱</option><option>에어사이드 베이커리</option><option>트래블 컨비니</option><option>스카이게이트 카페</option></select></div>
+            <div id="salesChart"></div>
+            <div class="lgn" id="salesLegend" style="margin-top:6px"></div>
+          </div></div>
+          <div class="card"><div class="ch"><h3>임대료 납부 현황</h3><span class="desc">2026-06 · 관리 100개사 · 고지 8.42억</span></div><div class="cb">
+            <div class="sbar"><span style="width:92%;background:#3a3f47"></span><span style="width:3%;background:#c9ccd1"></span><span style="width:5%;background:var(--warn)"></span></div>
+            <div class="lgn"><span class="it"><i style="background:#3a3f47"></i>납부 <b>92건</b> · 7.71억</span><span class="it"><i style="background:#c9ccd1"></i>미납 <b>3건</b> · 0.38억</span><span class="it"><i style="background:var(--warn)"></i>체납 <b>5건</b> · 0.33억</span></div>
+            <div style="font-size:12px;color:var(--ink-3);margin-top:12px">납부율 <b style="color:var(--ink-1)">91.6%</b> · 미납·체납 합계 <b style="color:var(--warn)">0.71억 원</b> 조치 필요</div>
+          </div></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><div class="ch"><h3>여객 수 대비 매출 효율</h3><span class="desc">시간대별 탑승객 · 매출</span></div><div class="cb">
+            <svg viewBox="0 0 360 140" width="100%" style="max-height:150px" xmlns="http://www.w3.org/2000/svg">
+              <line x1="14" y1="108" x2="350" y2="108" stroke="#e2e4e8"/>
+              <rect x="30" y="74" width="34" height="34" rx="3" fill="#c9ccd1"/>
+              <rect x="96" y="58" width="34" height="50" rx="3" fill="#c9ccd1"/>
+              <rect x="162" y="48" width="34" height="60" rx="3" fill="#c9ccd1"/>
+              <rect x="228" y="62" width="34" height="46" rx="3" fill="#c9ccd1"/>
+              <rect x="294" y="52" width="34" height="56" rx="3" fill="#c9ccd1"/>
+              <polyline points="47,84 113,56 179,34 245,46 311,40" fill="none" stroke="#191c21" stroke-width="2"/>
+              <circle cx="47" cy="84" r="3" fill="#191c21"/><circle cx="113" cy="56" r="3" fill="#191c21"/><circle cx="179" cy="34" r="3" fill="#191c21"/><circle cx="245" cy="46" r="4" fill="var(--warn)"/><circle cx="311" cy="40" r="3" fill="#191c21"/>
+              <text x="245" y="30" text-anchor="middle" font-size="9" fill="var(--warn)">여객↑ 매출↓</text>
+              <text x="47" y="124" text-anchor="middle" font-size="10" fill="#5a5f66">08시</text>
+              <text x="113" y="124" text-anchor="middle" font-size="10" fill="#5a5f66">12시</text>
+              <text x="179" y="124" text-anchor="middle" font-size="10" fill="#5a5f66">16시</text>
+              <text x="245" y="124" text-anchor="middle" font-size="10" fill="#5a5f66">18시</text>
+              <text x="311" y="124" text-anchor="middle" font-size="10" fill="#5a5f66">20시</text>
+            </svg>
+            <div class="lgn" style="margin-top:4px"><span class="it"><i style="background:#191c21"></i>탑승객</span><span class="it"><i style="background:#c9ccd1"></i>매출</span></div>
+            <div style="font-size:11.5px;color:var(--ink-3);margin-top:8px">여객 증가에도 매출 정체 구간(18시) 확인 — 동선·프로모션 점검 근거</div>
+          </div></div>
+          <div class="card"><div class="ch"><h3>구역별 평당 효율</h3><span class="desc">매출/㎡ · 시간대 Heatmap</span></div><div class="cb">
+            <div class="heat">
+              <div></div><div class="hh">오전</div><div class="hh">오후</div><div class="hh">저녁</div>
+              <div class="hl">T2 면세</div><div class="hc" style="background:#9aa0a8">58<span class="g">중</span></div><div class="hc" style="background:#3a3f47">96<span class="g">상</span></div><div class="hc" style="background:#191c21">132<span class="g">최상</span></div>
+              <div class="hl">국제선 F&amp;B</div><div class="hc" style="background:#c9ccd1;color:#3a3f47">34<span class="g">하</span></div><div class="hc" style="background:#3a3f47">88<span class="g">상</span></div><div class="hc" style="background:#3a3f47">92<span class="g">상</span></div>
+              <div class="hl">국내선 F&amp;B</div><div class="hc" style="background:#9aa0a8">56<span class="g">중</span></div><div class="hc" style="background:#9aa0a8">62<span class="g">중</span></div><div class="hc" style="background:#c9ccd1;color:#3a3f47">38<span class="g">하</span></div>
+              <div class="hl">격리대기</div><div class="hc" style="background:#e2e4e8;color:#5a5f66">12<span class="g">최하</span></div><div class="hc" style="background:#c9ccd1;color:#3a3f47">28<span class="g">하</span></div><div class="hc" style="background:#9aa0a8">54<span class="g">중</span></div>
+            </div>
+            <div class="lgn" style="margin-top:8px;font-size:11px"><span class="it">단위: 매출/㎡ (만원·월)</span><span class="it"><i style="background:#c9ccd1"></i>낮음</span><span class="it"><i style="background:#9aa0a8"></i>중</span><span class="it"><i style="background:#3a3f47"></i>높음</span><span class="it"><i style="background:#191c21"></i>최고</span></div>
+            <div style="font-size:11.5px;color:var(--ink-3);margin-top:8px">평당 효율 낮은 구역 → 업종 재배치 · MD 개편 기초 자료</div>
+          </div></div>
+        </div>
+        <div class="colhd" style="margin-top:4px">현황 · 업체 / 운영</div>
+        <div class="card"><div class="ch"><h3>통합 운영 · 실시간 가동 매장</h3><span class="desc">첫차~막차 오픈 모니터링</span></div>
+          <div class="opsbar" style="margin:0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent">
+            <span class="st"><span class="dot"></span>통합 운영 중 · <b>14개 공항</b> · 단말 <b>486대</b></span>
+            <span class="st"><span class="dot"></span>서버 <b>정상</b></span>
+            <span class="st"><span class="dot"></span>ERP <b>정상</b></span>
+            <span class="st"><span class="dot warn"></span>VAN <b>지연</b></span>
+            <span class="sync">최근 동기화 14:08</span>
+          </div>
+          <table class="tbl"><tbody>
+            <tr><td>운영 중</td><td class="num">312 개</td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
+            <tr><td>미오픈</td><td class="num">4 개</td><td class="ctr"><span class="bdg chk">확인</span></td></tr>
+            <tr><td>장애</td><td class="num" style="color:var(--warn)">1 개</td><td class="ctr"><span class="bdg err">장애</span></td></tr>
+          </tbody></table></div>
+        <div class="card"><div class="ch"><h3>미납 · 체납 업체</h3><span class="desc">업체를 선택하면 우측에 위치가 표시됩니다</span></div><div class="cb"><div class="twocol">
+          <table class="tbl loclist" id="locList"><thead><tr><th class="ctr">상태</th><th>업체명</th><th class="num">미납액</th><th class="num">경과</th></tr></thead><tbody>
+            <tr class="sel" onclick="openLoc('게이트 누들바',this)"><td class="ctr"><span class="bdg err">체납 2기</span></td><td class="store">게이트 누들바</td><td class="num">12,400,000</td><td class="num">45일</td></tr>
+            <tr onclick="openLoc('스카이 베버리지',this)"><td class="ctr"><span class="bdg err">체납 2기</span></td><td class="store">스카이 베버리지</td><td class="num">6,800,000</td><td class="num">38일</td></tr>
+            <tr onclick="openLoc('트래블 컨비니',this)"><td class="ctr"><span class="bdg chk">미납</span></td><td class="store">트래블 컨비니</td><td class="num">250,000</td><td class="num">9일</td></tr>
+            <tr onclick="openLoc('에어사이드 베이커리',this)"><td class="ctr"><span class="bdg chk">미납</span></td><td class="store">에어사이드 베이커리</td><td class="num">623,000</td><td class="num">6일</td></tr>
+          </tbody></table>
+          <div class="card" style="margin:0;background:var(--surface)"><div class="ch"><h3 id="locName">게이트 누들바</h3><span class="desc">매장 위치</span></div><div class="cb">
+            <div class="locmeta">
+              <span class="k2">공항</span><b id="locAir">제주공항</b>
+              <span class="k2">터미널·층</span><b id="locFloor">여객터미널 2F</b>
+              <span class="k2">구역</span><b id="locZone">식음(F&amp;B)존</b>
+              <span class="k2">호실</span><b id="locRoom">2F-061</b>
+              <span class="k2">전용면적</span><b id="locArea">84㎡</b>
+            </div>
+            <div style="font-size:11px;color:var(--ink-3);margin-bottom:6px">구역 내 호실 배치 (선택 호실 강조)</div>
+            <div class="floor" id="locStrip">
+              <div class="rcell">2F-059</div><div class="rcell">2F-060</div><div class="rcell on">2F-061</div><div class="rcell">2F-062</div><div class="rcell">2F-063</div>
+            </div>
+          </div></div>
+        </div></div></div>
+      </div>
+
+      <!-- ===== 우: 내 처리 업무 ===== -->
+      <div class="actcol">
+        <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="colhd">내 처리 업무</div>
+        <div class="card"><div class="ch"><h3>오늘 우선 처리 (SLA)</h3><span class="desc">긴급·시간 다툼</span></div><div class="cb">
+          <div class="alist">
+            <div class="arow urg"><span class="sev u">긴급</span><div style="flex:1;min-width:0"><div class="at">청주공항 POS 3대 오류 · VAN 단절</div><div class="meta">경과 18분 · SLA 30분 · 현장 점검</div></div></div>
+            <div class="arow urg"><span class="sev u">긴급</span><div style="flex:1;min-width:0"><div class="at">김포 면세점 고위험 이상거래 (위험도 92)</div><div class="meta">판단 기한 D-0</div></div></div>
+            <div class="arow"><span class="sev">주의</span><div style="flex:1;min-width:0"><div class="at">김해 임대료 정산 마감 · 미납 5곳</div><div class="meta">D-3 · 독촉 발송</div></div></div>
+          </div>
+        </div></div>
+        <div class="card"><div class="ch"><h3>정산 · 승인 처리 대기</h3><span class="desc">임대료 정산 자동화</span></div>
+          <table class="tbl"><tbody>
+            <tr><td>자동 산정 완료</td><td class="num">41</td><td class="ctr"><span class="bdg auto">자동</span></td></tr>
+            <tr><td>검증 필요(이상치)</td><td class="num">2</td><td class="ctr"><span class="bdg chk">검증</span></td></tr>
+            <tr><td>승인 대기</td><td class="num">7</td><td class="ctr"><span class="bdg line">대기</span></td></tr>
+            <tr><td>고지서 자동 발송</td><td class="num">39</td><td class="ctr"><span class="bdg fill">발송</span></td></tr>
+          </tbody></table></div>
+        <div class="card"><div class="ch"><h3>대사 불일치 (정정)</h3><span class="desc">정합성 · 불일치 6 / 60 매장</span></div>
+          <table class="tbl"><tbody>
+            <tr><td class="store">T1 면세 코스메틱<div style="font-size:11px;color:var(--ink-3);font-weight:400">카드 승인 누락</div></td><td class="num" style="color:var(--warn)">+1,240,000</td><td class="ctr"><button class="btn sm warn">정정</button></td></tr>
+            <tr><td class="store">T1 글로벌 F&amp;B<div style="font-size:11px;color:var(--ink-3);font-weight:400">PG 입금 차이</div></td><td class="num" style="color:var(--warn)">-3,180,000</td><td class="ctr"><button class="btn sm warn">정정</button></td></tr>
+            <tr><td class="store">T2 스카이몰<div style="font-size:11px;color:var(--ink-3);font-weight:400">POS↔공항 불일치</div></td><td class="num" style="color:var(--warn)">+920,000</td><td class="ctr"><button class="btn sm warn">정정</button></td></tr>
+          </tbody></table></div>
+        <div class="card"><div class="ch"><h3>품목 · 가격 승인 대기</h3><span class="desc">자동 분류 추천 · 검토·확정</span></div>
+          <table class="tbl"><tbody>
+            <tr><td>품목 매핑 승인</td><td class="num">12</td><td class="ctr"><span class="bdg chk">검토</span></td></tr>
+            <tr><td>결제 검증(다중 인증)</td><td class="num">3</td><td class="ctr"><span class="bdg chk">검증</span></td></tr>
+            <tr><td>시중가 비교 등록</td><td class="num">8</td><td class="ctr"><span class="bdg auto">탐색</span></td></tr>
+          </tbody></table></div>
+        <div class="card"><div class="ch"><h3>계약 만료 임박</h3><span class="desc">재계약 선제 관리</span></div>
+          <table class="tbl"><tbody>
+            <tr><td class="ctr"><span class="bdg err">D-30</span></td><td>매장 A · 재계약 협의</td><td class="ctr">→</td></tr>
+            <tr><td class="ctr"><span class="bdg chk">D-60</span></td><td>매장 B · 조건 검토</td><td class="ctr">→</td></tr>
+            <tr><td class="ctr"><span class="bdg line">D-90</span></td><td>매장 C · 퇴점 예정</td><td class="ctr">→</td></tr>
+          </tbody></table></div>
+        <div class="card"><div class="ch"><h3>VOC · 시설 장애</h3><span class="desc">접수 → 조치 → 완료</span></div>
+          <table class="tbl"><tbody>
+            <tr><td class="ctr"><span class="bdg err">조치 중</span></td><td>3층 푸드코트 누수</td></tr>
+            <tr><td class="ctr"><span class="bdg chk">접수</span></td><td>OO매장 응대 불만</td></tr>
+            <tr><td class="ctr"><span class="bdg fill">완료</span></td><td>전광판 오류 복구</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-item-reg">
+    <div class="crumb">품목 <b>›</b> 품목 등록</div>
+    <div class="phead"><div><h1>품목 등록</h1></div></div>
+    <div class="scopebar"><span class="k">조회 범위</span><b>전체 매장</b><span class="chip">10개 매장</span><span class="help">상단 매장 범위와 연동</span></div>
+    <div class="card"><div class="ch"><h3>간편 품목 입력</h3><span class="desc">한 번만 가볍게 입력하면 AI가 분류·가격대·시중가 비교까지 처리합니다</span></div><div class="cb">
+      <div class="inmethod">
+        <button><span class="em">⌑</span> 사진 인식</button>
+        <button><span class="em">▤</span> 바코드 스캔</button>
+        <button><span class="em">◈</span> 음성 입력</button>
+        <button><span class="em">⤓</span> 엑셀 업로드</button>
+      </div>
+      <p style="font-size:12px;color:var(--ink-3);margin:8px 0 0">예) 사진 1장 업로드 → AI가 품목 4건을 자동 인식하고 대/중/소 분류와 가격대를 제안합니다. 미등록 누락(‘기타’ 처리)을 줄입니다.</p>
+    </div></div>
+    <div class="tbar"><div class="summ"><span><span class="lab">오늘 등록</span><b class="tnum">4</b> 건</span><span><span class="lab">AI 자동 분류</span><b class="tnum">4</b> 건</span></div><div class="right"><button class="btn sm"><span class="ic">⌑</span> 사진 인식</button><button class="btn dark"><span class="ic">＋</span> 품목 등록</button></div></div>
+    <div class="scroll"><table class="tbl"><thead><tr><th>입력 품목</th><th>AI 자동 분류 (대 › 중 › 소)</th><th class="ctr">AI 신뢰도</th><th class="num">판매가</th><th class="ctr">이벤트</th><th class="ctr">시중가 비교</th><th class="ctr">상태</th></tr></thead><tbody>
+      <tr><td>망고 프라푸치노</td><td>음료 › 커피·음료 › 블렌디드</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:96%"></i></span>96%</span></td><td class="num">6,500</td><td class="ctr"><span class="bdg line">없음</span></td><td class="ctr"><span class="bdg ai">AI 탐색</span></td><td class="ctr"><span class="bdg auto">자동 분류</span></td></tr>
+      <tr><td>보드마카 흑색</td><td>문구 › 필기구 › 마카</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:98%"></i></span>98%</span></td><td class="num">1,000</td><td class="ctr"><span class="bdg line">없음</span></td><td class="ctr"><span class="bdg ai">AI 탐색</span></td><td class="ctr"><span class="bdg auto">자동 분류</span></td></tr>
+      <tr><td>제주 한라봉 청 500g</td><td>가공식품 › 청·잼 › 선물</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:93%"></i></span>93%</span></td><td class="num">15,000</td><td class="ctr"><span class="bdg fill">행사 -10%</span></td><td class="ctr"><span class="bdg ai">AI 탐색</span></td><td class="ctr"><span class="bdg auto">자동 분류</span></td></tr>
+      <tr><td>(인식 불명) 8809-***</td><td><span class="bdg chk">확인 필요</span></td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:52%"></i></span>52%</span></td><td class="num">—</td><td class="ctr"><span class="bdg line">—</span></td><td class="ctr"><span class="bdg line">—</span></td><td class="ctr"><span class="bdg chk">확인 필요</span></td></tr>
+    </tbody></table></div>
   </section>
 
   <section class="screen" id="screen-guide">
@@ -846,6 +1146,7 @@ button{font-family:inherit;cursor:pointer}
     <div class="phead"><div><h1>화면 설명 · 목차</h1></div></div>
     <div class="card"><div class="cb">
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.7;margin:0 0 6px"><b>외부망 포털</b> — 입점업체·다점포 관리자가 매출 신고, 임대료 고지 확인, 임시주차 신청 등을 처리하는 대외 포털입니다.</p>
+      <p style="font-size:12.5px;color:var(--ink-2);line-height:1.7;margin:0 0 6px"><b>서비스 대상 · 자동화 원칙</b> — 입점업체·관광객·공사 직원(컨세션 운영) 3개 페르소나 관점에서 업무 효율과 투명성을 함께 제공하며, 사람은 ‘확인’ 중심으로 산정·매핑·시중가 탐색·정합성 점검은 AI가 수행합니다.</p>
       <p style="font-size:12.5px;color:var(--ink-2);line-height:1.7;margin:0"><b>내부망 업무포털</b> — 공항공사 현업 담당자가 임대료 정산 자동화, AI 품목 매핑·시중가 검증, 이상거래 모니터링, 임시주차 승인 등을 처리하는 업무 포털입니다. <span style="color:var(--ink-3)">(★ 표시는 개발 완료 화면)</span></p>
     </div></div>
     <div class="card"><div class="ch"><h3>외부망 포털 — 화면 목록</h3></div>
@@ -855,11 +1156,13 @@ button{font-family:inherit;cursor:pointer}
           <tr><td>기타 매출 관리</td><td style="color:var(--ink-2)">현금·식권·스마트오더 등 POS 미등록 매출 직접 등록(드로어)</td><td class="ctr" style="color:var(--ink-4)">—</td></tr>
           <tr><td>일마감 / 월마감 관리</td><td style="color:var(--ink-2)">일·월 매출 마감 처리 및 현황 조회</td><td class="ctr" style="color:var(--ink-4)">—</td></tr>
           <tr><td>연 과세표준 증명내역</td><td style="color:var(--ink-2)">연 단위 과세표준 증명 내역 조회·발급</td><td class="ctr" style="color:var(--ink-4)">—</td></tr>
-          <tr><td>임대료 고지 대시보드</td><td style="color:var(--ink-2)">월별 임대료 고지 이력과 기본·매출연동·시설유지비 3분류 상세·추이 조회</td><td class="ctr" style="color:var(--ink-4)">—</td></tr>
+          <tr><td>임대료 고지 대시보드</td><td style="color:var(--ink-2)">월별 임대료 고지 이력과 기본·매출연동·시설관리비 3분류 상세·추이 조회</td><td class="ctr" style="color:var(--ink-4)">—</td></tr>
           <tr><td>임시주차 신청</td><td style="color:var(--ink-2)">수리·공사·납품 차량 임시주차 신청 → 현업 승인 시 주차시스템 자동 연동</td><td style="color:var(--ink-2)"><b>자동화</b> · 현업 승인 시 주차시스템 자동 연동·신청 이력 기록 (아이파킹 연동)</td></tr>
+          <tr><td>품목 등록</td><td style="color:var(--ink-2)">사진/음성/바코드/엑셀로 간편 입력 → AI가 대/중/소 자동 분류·가격대·시중가 비교 (미등록 누락 방지)</td><td style="color:var(--ink-2)"><b>AI</b> · 입점업체는 한 번만 가볍게, 분류·비교는 AI가 처리(부담 최소화)</td></tr>
       </tbody></table></div>
     <div class="card"><div class="ch"><h3>내부망 업무포털 — 화면 목록</h3></div>
       <table class="tbl"><thead><tr><th style="width:170px">화면명</th><th>설명</th><th style="width:300px">AI · 자동화 포인트</th></tr></thead><tbody>
+          <tr><td>운영 대시보드</td><td style="color:var(--ink-2)">정산·매핑·이상거래·민원 현황과 AI 처리율을 한 화면에 종합</td><td style="color:var(--ink-2)"><b>AI</b> · AI 자동 처리 현황 종합 모니터링</td></tr>
           <tr><td>임대료 정산 자동화</td><td style="color:var(--ink-2)">매출 연동 임대료 자동 산정·정합성 검증 → 결재 승인 시 공문·정산 데이터 자동 생성·회계 연동(업무 제로화). 프로세스: 매출 집계 → 임대료 자동 산정 → 정합성 검증 → 결재 승인 → 공문·회계 자동 연동</td><td style="color:var(--ink-2)"><b>자동화</b> · 매출 연동 임대료 자동 산정 · 검증 통과 시 결재만으로 회계 연동 (업무 제로화)</td></tr>
           <tr><td>임대정보 통합관리</td><td style="color:var(--ink-2)">SAP ERP 내장 임대관리를 가벼운 웹으로 이관 · 매출전표·재무 데이터만 SAP 자동 연동(엑셀 이중작업 제거)</td><td style="color:var(--ink-2)"><b>연동</b> · SAP에는 매출전표·재무 데이터만 자동 연동 · 엑셀 이중작업 제거 (실시간 동기화)</td></tr>
           <tr><td>면세 예외요율 관리</td><td style="color:var(--ink-2)">면세점 예외 요율(전자제품 등 협의 항목) 등록 → 월별 정산 자동 반영(연말 수기 협의 해소)</td><td style="color:var(--ink-2)"><b>자동화</b> · 예외 요율 월별 자동 반영 · 연말 수기 협의 해소 [선제 제안]</td></tr>
@@ -882,7 +1185,7 @@ button{font-family:inherit;cursor:pointer}
   </main>
 </div>
 
-<aside class="drawer" id="drawer-company">
+<aside class="drawer mid" id="drawer-company">
   <div class="dh"><div><h3 id="cmpName">업체</h3><div class="sub" id="cmpSub">—</div></div><button class="xc" onclick="closeDrawer()">✕</button></div>
   <div class="db">
     <div class="kpi" style="margin-bottom:16px">
@@ -891,13 +1194,24 @@ button{font-family:inherit;cursor:pointer}
       <div class="k"><div class="lab">상태</div><div class="val" id="cmpStat">—</div></div>
     </div>
     <div id="cmpAppr" hidden style="font-size:12px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px;margin-bottom:16px">승인 정보 — 승인일시 <b id="cmpApprAt">—</b> · 승인자 <b id="cmpApprBy">—</b></div>
+    <div class="calc">
+      <div class="ct"><span class="tag">AI 산정 근거</span><b>계약서 파싱(온톨로지) 기반 자동 산정 — 담당자는 확인만</b></div>
+      <div class="kv">
+        <span class="k2">매출 집계</span><span id="cmpSales">—</span>
+        <span class="k2">적용 요율</span><span id="cmpRate">—</span>
+        <span class="k2">이벤트 할인</span><span id="cmpEvent">—</span>
+        <span class="k2">산정식</span><span id="cmpFormula">—</span>
+        <span class="k2">확정 단계</span><span id="cmpConfirm">—</span>
+        <span class="k2">고지서</span><span id="cmpNotice">—</span>
+      </div>
+    </div>
     <div class="aicard" id="cmpAi" hidden>
       <div class="aih"><span class="tag">AI 분석</span><span class="tt" id="cmpAiTitle">검증 필요</span></div>
       <div class="airow"><span class="al">판단 이유</span><p id="cmpAiReason">—</p></div>
       <div class="airow"><span class="al">권장 대처</span><p id="cmpAiAction">—</p></div>
       <div class="aifoot">폐쇄망 자체 모델 분석 결과 · 외부 LLM 미연동 · 통계+머신러닝 혼합 탐지</div>
     </div>
-    <div class="card"><div class="ch"><h3>임대료 구성 내역</h3></div>
+    <div class="card"><div class="ch"><h3>월 임대료 구성 — 기본 · 매출연동 · 시설관리비</h3></div>
       <table class="tbl"><thead><tr><th>구분</th><th>산정 기준</th><th class="num">금액</th></tr></thead><tbody id="cmpBreak"></tbody></table></div>
     <div class="card"><div class="ch"><h3>최근 정산 이력</h3></div>
       <table class="tbl"><thead><tr><th>정산월</th><th class="num">매출연동 임대료</th><th class="ctr">상태</th></tr></thead><tbody id="cmpHist"></tbody></table></div>
@@ -967,6 +1281,35 @@ button{font-family:inherit;cursor:pointer}
       </div>
       <p class="dnote">차액 발생 시 사유 메모·소명 자료를 첨부해 정합성을 관리합니다.</p>
     </aside>
+
+<div class="dwrap" id="drawer-fac" style="display:none" onclick="if(event.target===this)closeDrawer()">
+<aside class="drawer">
+  <div class="dh"><div><h3>시설관리비 업로드 <span style="font-size:10px;font-weight:700;color:#fff;background:var(--ink);padding:2px 7px;border-radius:10px;vertical-align:middle">v7</span></h3><div class="sub">시설관리부 수신 엑셀 업로드 · 업로드 후 정합성 자동 점검 · 문제 항목은 담당자가 직접 입력·수정</div></div><button class="xc" onclick="closeDrawer()">✕</button></div>
+  <div class="db">
+    <p style="font-size:12px;color:var(--ink-2);line-height:1.6;margin:0 0 12px">시설관리부는 망이 분리되어 SKY-POS에 접속하지 않습니다. 이메일로 수신한 엑셀을 업로드하면 누락·금액 이상치·매핑 불일치를 자동 점검합니다.</p>
+    <div class="drop" style="padding:20px"><div class="di">⤒</div><div class="dt">엑셀 파일을 끌어다 놓거나 클릭해 업로드</div><div class="ds">.xlsx · 시설관리부 수신본 (예: 2026-06_시설관리비.xlsx)</div></div>
+    <div class="kv" style="margin-bottom:16px"><span class="k2">수신 파일</span><span>2026-06_시설관리비.xlsx · 시설관리부 · 06-16 수신</span><span class="k2">대상 정산월</span><span>2026-06</span></div>
+    <div class="card" style="margin-bottom:16px"><div class="ch"><h3>정합성 자동 점검 결과</h3><span class="desc">계약·전월 실적 대조</span></div>
+      <table class="tbl"><tbody>
+        <tr><td>대상 매장 매칭</td><td>118 / 120 건</td><td class="ctr"><span class="bdg chk">확인 필요</span></td></tr>
+        <tr><td>누락 매장</td><td>계약 있으나 미기재 2건 (게이트 누들바·스카이 베버리지)</td><td class="ctr"><span class="bdg err">누락</span></td></tr>
+        <tr><td>금액 이상치</td><td>전월 대비 +210% 1건 (라운지 그릴)</td><td class="ctr"><span class="bdg err">이상치</span></td></tr>
+        <tr><td>매장명·계약 매핑</td><td>표기 불일치 자동 보정 3건</td><td class="ctr"><span class="bdg auto">자동 보정</span></td></tr>
+      </tbody></table></div>
+    <div class="tbar"><div class="summ"><span><span class="lab">업로드 데이터</span><b class="tnum">120</b> 건</span><span><span class="lab">조치 필요</span><b class="tnum" style="color:var(--warn)">3</b> 건</span></div></div>
+    <p style="font-size:11.5px;color:var(--ink-3);margin:0 0 8px">금액·항목은 인풋에서 직접 수정할 수 있습니다. <b style="color:var(--warn)">누락·이상치</b> 항목은 확인 후 입력·정정해 주세요.</p>
+    <div class="scroll"><table class="tbl" style="table-layout:fixed;width:100%"><thead><tr><th style="width:28%">매장</th><th style="width:32%">항목</th><th class="num" style="width:24%">금액 (원)</th><th class="ctr" style="width:16%">판정</th></tr></thead><tbody>
+      <tr><td class="store">스카이게이트 F&amp;B</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin" value="380,000"><div class="base" style="text-align:right;margin-top:3px">전월 372,000</div></td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
+      <tr><td class="store">듀티프리 부티크</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin" value="1,200,000"><div class="base" style="text-align:right;margin-top:3px">전월 1,180,000</div></td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
+      <tr><td class="store">라운지 그릴</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin warn" value="930,000"><div class="base" style="text-align:right;margin-top:3px;color:var(--warn)">전월 300,000 · +210%</div></td><td class="ctr"><span class="bdg err">이상치</span></td></tr>
+      <tr><td class="store">게이트 누들바</td><td><input class="cin l warn" placeholder="항목 입력"></td><td><input class="cin warn" placeholder="금액 입력"><div class="base" style="text-align:right;margin-top:3px">전월 310,000</div></td><td class="ctr"><span class="bdg err">누락</span></td></tr>
+      <tr><td class="store">스카이 베버리지</td><td><input class="cin l warn" placeholder="항목 입력"></td><td><input class="cin warn" placeholder="금액 입력"><div class="base" style="text-align:right;margin-top:3px">전월 240,000</div></td><td class="ctr"><span class="bdg err">누락</span></td></tr>
+      <tr><td class="store">트래블 컨비니</td><td><input class="cin l" value="전기·청소·공통수선"></td><td><input class="cin" value="250,000"><div class="base" style="text-align:right;margin-top:3px">전월 248,000</div></td><td class="ctr"><span class="bdg solid">정상</span></td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="df"><button class="btn ghost" onclick="closeDrawer()">닫기</button><button class="btn sm" onclick="closeDrawer()"><span class="ic">⤓</span> 점검결과 엑셀</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">✓</span> 정산 워크벤치 반영</button></div>
+</aside>
+</div>
     </div>
   </div>
   <div class="df"><button class="btn ghost" onclick="closeDrawer()">취소</button><button class="btn dark" onclick="closeDrawer()"><span class="ic">✓</span> 저장</button></div>
@@ -1070,43 +1413,63 @@ function fillDrawer(id,data){
     seg.querySelectorAll('label').forEach((lb,i)=>{lb.querySelector('input').checked = want?(lb.querySelector('span').textContent.trim()===want):(i===0);});}
 }
 const COMP={
- '스카이게이트 F&B':{air:'제주공항',kind:'매출연동',amt:'3,210,000',conf:99,stat:'자동 산정',act:'승인',
-   brk:[['매출연동','매출 6,420만 × 5%','3,210,000']],hist:[['2026-05','3,050,000','완료'],['2026-04','3,280,000','완료'],['2026-03','2,980,000','완료']]},
- '듀티프리 부티크':{air:'김포공항',kind:'매출연동',amt:'11,445,000',conf:72,stat:'검증 필요',act:'검토 후 승인',
-   ai:{title:'검증 필요 — 매출연동 임대료 이상치',
-     reason:'전월 대비 매출연동 임대료가 +38% 급증했습니다. POS 매출 원천과 VAN 대조 결과 약 1,820만 원의 차이가 확인되어 중복 전송 또는 환불 미반영 가능성이 높습니다.',
-     action:'① VAN 수신내역과 POS 일마감 대조 → ② 중복 영수증 제거 후 재집계 → ③ 재산정 결과 확인 후 결재 승인'},
-   brk:[['매출연동','매출 2.29억 × 5%','11,445,000']],hist:[['2026-05','8,300,000','완료'],['2026-04','8,910,000','완료'],['2026-03','8,120,000','완료']]},
- '게이트 델리':{air:'제주공항',kind:'기본임대료',amt:'5,600,000',conf:100,stat:'승인 완료',act:'승인 완료',appr:{at:'2026-06-15 14:20',by:'정현업'},
-   brk:[['기본임대료','면적 84㎡ 정액','5,600,000']],hist:[['2026-05','—','완료'],['2026-04','—','완료']]},
- '스카이게이트 카페':{air:'제주공항',kind:'시설유지비',amt:'420,000',conf:98,stat:'자동 산정',act:'승인',
-   brk:[['시설유지비','공용면적 배분','420,000']],hist:[['2026-05','—','완료']]},
- '라운지 그릴':{air:'김해공항',kind:'매출연동',amt:'1,709,000',conf:96,stat:'자동 산정',act:'승인',
-   brk:[['매출연동','매출 3,418만 × 5%','1,709,000']],hist:[['2026-05','1,640,000','완료']]},
- '듀티프리 코스메틱':{air:'김포공항',kind:'매출연동',amt:'7,815,000',conf:68,stat:'검증 필요',act:'검토 후 승인',
-   ai:{title:'검증 필요 — 매출 누락 의심',
-     reason:'특정 시간대(14~16시) 매출이 인접 매장 대비 비정상적으로 낮고 일부 영수증이 미전송 상태입니다. AGENT 연계가 약 70분간 단절된 이력이 있어 매출 누락 가능성이 있습니다.',
-     action:'① AGENT 연계 단절 구간 재수집 → ② 미전송 영수증 재처리 → ③ 누락분 반영 후 재산정'},
-   brk:[['매출연동','매출 1.56억 × 5%','7,815,000']],hist:[['2026-05','7,200,000','완료']]},
- '트래블 컨비니':{air:'대구공항',kind:'기본임대료',amt:'2,800,000',conf:100,stat:'승인 완료',act:'승인 완료',appr:{at:'2026-06-15 11:05',by:'정현업'},
-   brk:[['기본임대료','면적 42㎡ 정액','2,800,000']],hist:[['2026-05','—','완료']]},
- '에어사이드 베이커리':{air:'청주공항',kind:'매출연동',amt:'623,000',conf:95,stat:'자동 산정',act:'승인',
-   brk:[['매출연동','매출 1,247만 × 5%','623,000']],hist:[['2026-05','590,000','완료']]},
+ '스카이게이트 F&B':{air:'제주공항',kind:'매출연동',amt:'3,210,000',conf:99,stat:'자동 산정',act:'승인',cycle:'월 단위',deposit:'120,000,000',total:'5,590,000',parts:[['base','기본 임대료','월 정액','2,000,000'],['sales','매출연동 임대료','매출 6,420만 × 5%','3,210,000'],['fac','시설관리비','전기·청소·공통수선','380,000']],hist:[['2026-05','3,050,000','완료'],['2026-04','3,280,000','완료'],['2026-03','2,980,000','완료']]},
+ '듀티프리 부티크':{air:'김포공항',kind:'매출연동',amt:'11,445,000',conf:72,stat:'검증 필요',act:'검토 후 승인',cycle:'월 단위',deposit:'850,000,000',total:'17,645,000',ai:{title:'검증 필요 — 매출연동 임대료 이상치',reason:'전월 대비 매출연동 임대료가 +38% 급증했습니다. POS 매출 원천과 VAN 대조 결과 약 1,820만 원의 차이가 확인되어 중복 전송 또는 환불 미반영 가능성이 높습니다.',action:'① VAN 수신내역과 POS 일마감 대조 → ② 중복 영수증 제거 후 재집계 → ③ 재산정 결과 확인 후 결재 승인'},parts:[['base','기본 임대료','월 정액','5,000,000'],['sales','매출연동 임대료','매출 2.29억 × 5%','11,445,000'],['fac','시설관리비','전기·청소·공통수선','1,200,000']],hist:[['2026-05','8,300,000','완료'],['2026-04','8,910,000','완료'],['2026-03','8,120,000','완료']]},
+ '게이트 델리':{air:'제주공항',kind:'기본임대료',amt:'5,600,000',conf:100,stat:'승인 완료',act:'승인 완료',cycle:'월 단위 · 고정',deposit:'60,000,000',total:'6,020,000',appr:{at:'2026-06-15 14:20',by:'정현업'},parts:[['base','기본 임대료','면적 84㎡ 정액','5,600,000'],['sales','매출연동 임대료','해당 없음(고정 임대료)','—'],['fac','시설관리비','전기·청소·공통수선','420,000']],hist:[['2026-05','—','완료'],['2026-04','—','완료']]},
+ '스카이게이트 카페':{air:'제주공항',kind:'시설관리비',amt:'420,000',conf:98,stat:'자동 산정',act:'승인',cycle:'월 단위',deposit:'25,000,000',total:'2,470,000',parts:[['base','기본 임대료','월 정액','1,200,000'],['sales','매출연동 임대료','매출 1,700만 × 5%','850,000'],['fac','시설관리비','전기·청소·공통수선','420,000']],hist:[['2026-05','—','완료']]},
+ '라운지 그릴':{air:'김해공항',kind:'매출연동',amt:'1,709,000',conf:96,stat:'자동 산정',act:'승인',cycle:'월 단위',deposit:'38,000,000',total:'3,509,000',parts:[['base','기본 임대료','월 정액','1,500,000'],['sales','매출연동 임대료','매출 3,418만 × 5%','1,709,000'],['fac','시설관리비','전기·청소·공통수선','300,000']],hist:[['2026-05','1,640,000','완료']]},
+ '듀티프리 코스메틱':{air:'김포공항',kind:'매출연동',amt:'7,815,000',conf:68,stat:'검증 필요',act:'검토 후 승인',cycle:'월 단위',deposit:'200,000,000',total:'11,715,000',ai:{title:'검증 필요 — 매출 누락 의심',reason:'특정 시간대(14~16시) 매출이 인접 매장 대비 비정상적으로 낮고 일부 영수증이 미전송 상태입니다. AGENT 연계가 약 70분간 단절된 이력이 있어 매출 누락 가능성이 있습니다.',action:'① AGENT 연계 단절 구간 재수집 → ② 미전송 영수증 재처리 → ③ 누락분 반영 후 재산정'},parts:[['base','기본 임대료','월 정액','3,000,000'],['sales','매출연동 임대료','매출 1.56억 × 5%','7,815,000'],['fac','시설관리비','전기·청소·공통수선','900,000']],hist:[['2026-05','7,200,000','완료']]},
+ '트래블 컨비니':{air:'대구공항',kind:'기본임대료',amt:'2,800,000',conf:100,stat:'승인 완료',act:'승인 완료',cycle:'월 단위 · 고정',deposit:'45,000,000',total:'3,050,000',appr:{at:'2026-06-15 11:05',by:'정현업'},parts:[['base','기본 임대료','면적 42㎡ 정액','2,800,000'],['sales','매출연동 임대료','해당 없음(고정 임대료)','—'],['fac','시설관리비','전기·청소·공통수선','250,000']],hist:[['2026-05','—','완료']]},
+ '에어사이드 베이커리':{air:'청주공항',kind:'매출연동',amt:'623,000',conf:95,stat:'자동 산정',act:'승인',cycle:'월 단위',deposit:'38,000,000',total:'1,303,000',parts:[['base','기본 임대료','월 정액','500,000'],['sales','매출연동 임대료','매출 1,247만 × 5%','623,000'],['fac','시설관리비','전기·청소·공통수선','180,000']],hist:[['2026-05','590,000','완료']]}
+}
+const CALC={
+ '스카이게이트 F&B':{sales:'6,420만 원 (2026-06 월정산)',rate:'매출연동 5% (계약서 §4.2, p.12)',event:'해당 없음',formula:'6,420만 × 5% = 3,210,000',confirm:'SKY-POS 산정 완료 → 임대 ERP 확정 대기',notice:'승인 시 입점업체 이메일 자동 발송'},
+ '듀티프리 부티크':{sales:'2.29억 원 (2026-06 월정산, 검증 중)',rate:'매출연동 5% (계약서 §4.2, p.15)',event:'해당 없음',formula:'2.29억 × 5% = 11,445,000 (검증 필요)',confirm:'검증 후 산정 확정',notice:'검증 완료 후 발송'},
+ '게이트 델리':{sales:'해당 없음 (기본 임대료)',rate:'면적 84㎡ 정액 (계약서 §3.1, p.8)',event:'해당 없음',formula:'면적 정액 = 5,600,000',confirm:'임대 ERP 확정 · FI 전표 생성 완료',notice:'발송 완료 2026-06-15'},
+ '스카이게이트 카페':{sales:'해당 없음 (시설관리비)',rate:'공용면적 배분 (시설관리부 수신 엑셀)',event:'—',formula:'공용면적 배분 = 420,000',confirm:'SKY-POS 산정 완료 → 임대 ERP 확정 대기',notice:'승인 시 자동 발송'},
+ '라운지 그릴':{sales:'3,418만 원 (2026-06 월정산)',rate:'매출연동 5% (계약서 §4.3, p.9)',event:'개천절 행사 -2%p 적용',formula:'3,418만 × 5% = 1,709,000',confirm:'SKY-POS 산정 완료 → 확정 대기',notice:'승인 시 자동 발송'},
+ '듀티프리 코스메틱':{sales:'1.56억 원 (2026-06 월정산, 검증 중)',rate:'매출연동 5% (계약서 §4.2, p.18)',event:'—',formula:'1.56억 × 5% = 7,815,000 (검증 필요)',confirm:'검증 후 산정 확정',notice:'검증 완료 후 발송'},
+ '트래블 컨비니':{sales:'해당 없음 (기본 임대료)',rate:'면적 42㎡ 정액 (계약서 §3.1, p.6)',event:'—',formula:'면적 정액 = 2,800,000',confirm:'임대 ERP 확정 · FI 전표 생성 완료',notice:'발송 완료 2026-06-15'},
+ '에어사이드 베이커리':{sales:'1,247만 원 (2026-06 월정산)',rate:'매출연동 5% (계약서 §4.4, p.7)',event:'—',formula:'1,247만 × 5% = 623,000',confirm:'SKY-POS 산정 완료 → 확정 대기',notice:'승인 시 자동 발송'},
 };
 function statBadge(x){var m={'자동 산정':'auto','검증 필요':'chk','완료':'solid','승인 완료':'solid'};return '<span class="bdg '+(m[x]||'line')+'">'+x+'</span>';}
+const LOC={
+ '게이트 누들바':{air:'제주공항',floor:'여객터미널 2F',zone:'식음(F&B)존',room:'2F-061',area:'84㎡',nb:['2F-059','2F-060','2F-061','2F-062','2F-063']},
+ '스카이 베버리지':{air:'김해공항',floor:'국제선 3F',zone:'음료존',room:'3F-073',area:'42㎡',nb:['3F-071','3F-072','3F-073','3F-074','3F-075']},
+ '트래블 컨비니':{air:'대구공항',floor:'여객터미널 1F',zone:'편의존',room:'1F-047',area:'33㎡',nb:['1F-045','1F-046','1F-047','1F-048','1F-049']},
+ '에어사이드 베이커리':{air:'청주공항',floor:'여객터미널 2F',zone:'베이커리존',room:'2F-112',area:'28㎡',nb:['2F-110','2F-111','2F-112','2F-113','2F-114']},
+};
+function openLoc(name,row){
+  var d=LOC[name]; if(!d) return;
+  document.querySelectorAll('#locList tbody tr').forEach(function(r){r.classList.remove('sel');});
+  if(row) row.classList.add('sel');
+  document.getElementById('locName').textContent=name;
+  document.getElementById('locAir').textContent=d.air;
+  document.getElementById('locFloor').textContent=d.floor;
+  document.getElementById('locZone').textContent=d.zone;
+  document.getElementById('locRoom').textContent=d.room;
+  document.getElementById('locArea').textContent=d.area;
+  document.getElementById('locStrip').innerHTML=d.nb.map(function(rm){return '<div class="rcell'+(rm===d.room?' on':'')+'">'+rm+'</div>';}).join('');
+}
 function openCompany(name){
   var d=COMP[name]; if(!d) return;
   document.getElementById('cmpName').textContent=name;
-  document.getElementById('cmpSub').textContent=d.air+' · '+d.kind+' 임대료';
+  document.getElementById('cmpSub').textContent=d.air+' · 계약 주기 '+d.cycle+' · 보증금 '+d.deposit+'원';
   document.getElementById('cmpAmt').innerHTML=d.amt+' <span class="u">원</span>';
   document.getElementById('cmpConf').innerHTML='<span class="conf"><span class="bar'+(d.conf<90?' lowc':'')+'"><i style="width:'+d.conf+'%"></i></span>'+d.conf+'%</span>';
   document.getElementById('cmpStat').innerHTML=statBadge(d.stat);
   var ap=document.getElementById('cmpAppr');
   if(d.appr){ap.removeAttribute('hidden');document.getElementById('cmpApprAt').textContent=d.appr.at;document.getElementById('cmpApprBy').textContent=d.appr.by;}else ap.setAttribute('hidden','');
+  var cc=CALC[name]||{};
+  ['Sales','Rate','Event','Formula','Confirm','Notice'].forEach(function(k){var el=document.getElementById('cmp'+k);if(el)el.textContent=cc[k.toLowerCase()]||'—';});
   var ai=document.getElementById('cmpAi');
   if(d.ai){ai.removeAttribute('hidden');document.getElementById('cmpAiTitle').textContent=d.ai.title;document.getElementById('cmpAiReason').textContent=d.ai.reason;document.getElementById('cmpAiAction').textContent=d.ai.action;}
   else ai.setAttribute('hidden','');
-  document.getElementById('cmpBreak').innerHTML=d.brk.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td class="num">'+r[2]+'</td></tr>';}).join('');
+  var ak={'매출연동':'sales','기본임대료':'base','시설관리비':'fac'}[d.kind]||'';
+  var bh=d.parts.map(function(pt){var on=pt[0]===ak;return '<tr'+(on?' style="background:var(--surface-2)"':'')+'><td>'+pt[1]+(on?' <span class="bdg auto">이번 정산</span>':'')+'</td><td>'+pt[2]+'</td><td class="num">'+pt[3]+'</td></tr>';}).join('');
+  bh+='<tr><td>보증금 <span style="color:var(--ink-3)">(참고)</span></td><td>계약 보증금</td><td class="num">'+d.deposit+'</td></tr>';
+  bh+='<tr class="total"><td colspan="2" class="ctr">월 임대료 합계</td><td class="num">'+d.total+'</td></tr>';
+  document.getElementById('cmpBreak').innerHTML=bh;
   document.getElementById('cmpHist').innerHTML=d.hist.map(function(r){return '<tr><td>'+r[0]+'</td><td class="num">'+r[1]+'</td><td class="ctr">'+statBadge(r[2])+'</td></tr>';}).join('');
   document.getElementById('cmpAct').textContent=d.act;
   document.getElementById('drawerMask').classList.add('show');
@@ -1124,7 +1487,45 @@ function openDrawer(id,mode,data){
   document.getElementById('drawerMask').classList.add('show');
   dr.classList.add('show');
 }
-function closeDrawer(){document.getElementById('drawerMask').classList.remove('show');document.querySelectorAll('.drawer').forEach(d=>d.classList.remove('show'));}
+const SALES={
+ '전체 통합':{cur:124000,prev:118000,yoy:109000,target:120000},
+ '스카이게이트 F&B':{cur:6420,prev:6100,yoy:5600,target:6300},
+ '듀티프리 부티크':{cur:22900,prev:21000,yoy:19500,target:22000},
+ '게이트 델리':{cur:4800,prev:4600,yoy:4300,target:4700},
+ '라운지 그릴':{cur:3418,prev:3280,yoy:3010,target:3400},
+ '듀티프리 코스메틱':{cur:15600,prev:14400,yoy:13800,target:15000},
+ '에어사이드 베이커리':{cur:1247,prev:1180,yoy:1090,target:1230},
+ '트래블 컨비니':{cur:2900,prev:2850,yoy:2700,target:2900},
+ '스카이게이트 카페':{cur:1700,prev:1650,yoy:1500,target:1700},
+};
+function fmtEok(v){return v>=10000?(v/10000).toFixed(1)+'억':v.toLocaleString()+'만';}
+function pctd(a,b){var r=(a-b)/b*100;return (r>=0?'+':'')+r.toFixed(1)+'%';}
+function renderSales(scope){
+  var d=SALES[scope]||SALES['전체 통합'];
+  var vals=[d.cur,d.prev,d.yoy,d.target],max=Math.max.apply(null,vals);
+  var labs=['당월','전월','전년동월','목표'],fills=['#191c21','#c9ccd1','#c9ccd1','#9aa0a8'],x=[26,110,194,278];
+  var bars='',txt='',lbl='';
+  for(var i=0;i<4;i++){var h=Math.max(4,Math.round(vals[i]/max*100)),y=122-h;
+    bars+='<rect x="'+x[i]+'" y="'+y+'" width="48" height="'+h+'" rx="3" fill="'+fills[i]+'"/>';
+    txt+='<text x="'+(x[i]+24)+'" y="'+(y-6)+'" text-anchor="middle" font-size="11" '+(i===0?'font-weight="800" fill="#191c21"':'fill="#5a5f66"')+'>'+fmtEok(vals[i])+'</text>';
+    lbl+='<text x="'+(x[i]+24)+'" y="138" text-anchor="middle" font-size="11" '+(i===0?'font-weight="700" fill="#191c21"':'fill="#5a5f66"')+'>'+labs[i]+'</text>';
+  }
+  var dlt='<text x="50" y="152" text-anchor="middle" font-size="10" fill="#5a5f66">기준</text>'
+    +'<text x="134" y="152" text-anchor="middle" font-size="10" fill="#5a5f66">'+pctd(d.cur,d.prev)+'</text>'
+    +'<text x="218" y="152" text-anchor="middle" font-size="10" fill="#5a5f66">'+pctd(d.cur,d.yoy)+'</text>'
+    +'<text x="302" y="152" text-anchor="middle" font-size="10" fill="#5a5f66">'+pctd(d.cur,d.target)+'</text>';
+  document.getElementById('salesChart').innerHTML='<svg viewBox="0 0 360 158" width="100%" style="max-height:170px" xmlns="http://www.w3.org/2000/svg"><line x1="14" y1="122" x2="350" y2="122" stroke="#e2e4e8"/>'+bars+txt+lbl+dlt+'</svg>';
+  document.getElementById('salesLegend').innerHTML='<span class="it">'+(scope==='전체 통합'?'당월 매출(통합)':scope+' 당월')+' <b>'+fmtEok(d.cur)+' 원</b></span><span class="it">매출연동 임대료(추정) <b>'+fmtEok(Math.round(d.cur*0.05))+' 원</b> <span class="base">매출 × 평균 5%</span></span>';
+}
+renderSales('전체 통합');
+function openFac(){
+  var w=document.getElementById('drawer-fac'); if(!w) return;
+  w.style.cssText='position:fixed;inset:0;z-index:60;display:flex;align-items:stretch;justify-content:flex-end;background:rgba(20,22,26,.38)';
+  var p=w.querySelector('.drawer');
+  if(p){p.style.cssText='position:relative;inset:auto;transform:none;height:100%;width:min(900px,92vw);max-width:92vw;background:#fff;box-shadow:-14px 0 44px rgba(0,0,0,.16);display:flex;flex-direction:column;overflow:hidden';}
+  w.classList.add('show');
+}
+function closeDrawer(){document.getElementById('drawerMask').classList.remove('show');document.querySelectorAll('.drawer').forEach(d=>d.classList.remove('show'));document.querySelectorAll('.dwrap').forEach(d=>{d.classList.remove('show');d.style.display='none';});}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeConfirm();}});
 
 // row 수정 → open same drawer in edit mode, prefilled

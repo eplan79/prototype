@@ -401,6 +401,31 @@ button{font-family:inherit;cursor:pointer}
 .ff-file{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 
 @media (max-width:980px){.side{display:none}.recon,.kpi{grid-template-columns:1fr 1fr}.fg{grid-template-columns:1fr}}
+
+/* === 임대료 정산 자동화: 클릭 KPI 필터 · 사유 · 수신 · 페이지네이션 === */
+.kpi.click .k{cursor:pointer;transition:background .12s, box-shadow .12s;position:relative}
+.kpi.click .k:hover{background:var(--surface-2)}
+.kpi.click .k.act{box-shadow:inset 0 0 0 2px var(--ink);background:var(--surface-2)}
+.ksub{margin-top:5px;font-size:11px;color:var(--ink-3);line-height:1.3}
+.ksub b{color:var(--ink);font-weight:800}
+.rsn{margin-top:4px;font-size:11px;color:var(--warn);line-height:1.45;font-weight:600}
+.recvchk{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;vertical-align:middle}
+.recvchk.ok{color:var(--ink-2)}
+.recvchk.no{color:var(--ink-4)}
+.apprtxt{font-size:11px;color:var(--ink-3);white-space:nowrap}
+.pgwrap{display:flex;align-items:center;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:10px}
+.pginfo{font-size:12px;color:var(--ink-3)}
+.pager{display:flex;gap:4px;align-items:center}
+.pgbtn{min-width:30px;height:30px;padding:0 8px;border:1px solid var(--line);background:#fff;border-radius:7px;cursor:pointer;font-size:12.5px;color:var(--ink-2);font-weight:600}
+.pgbtn:hover:not(:disabled){background:var(--surface-2)}
+.pgbtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pgbtn:disabled{opacity:.4;cursor:default}
+.pgdot{padding:0 2px;color:var(--ink-3)}
+.btn.xs{height:24px;padding:0 9px;font-size:11px;border-radius:6px}
+.btn.ghost{background:#fff;color:var(--ink-3);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--surface-2);color:var(--ink-2)}
+.apprcell{display:flex;flex-direction:column;gap:4px;align-items:center}
+.apprcell .apprtxt{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -839,19 +864,11 @@ button{font-family:inherit;cursor:pointer}
     <div class="phead">
       <div><h1>임대료 정산 자동화</h1></div>
     </div>
-    <div class="kpi"><div class="k"><div class="lab">정산 대상 업체</div><div class="val tnum">48 <span class="u">개</span></div></div><div class="k"><div class="lab">자동 산정 완료</div><div class="val tnum">41 <span class="u">건</span></div></div><div class="k"><div class="lab">검증 필요(이상치)</div><div class="val tnum" style="color:var(--warn)">2 <span class="u">건</span></div></div><div class="k"><div class="lab">정산 알림 발송</div><div class="val tnum">39 <span class="u">건</span></div></div></div>
+    <div class="kpi click" id="rentKpi"><div class="k" data-f="all" onclick="rentSetFilter('all')" title="클릭하면 전체 정산 건을 표시합니다"><div class="lab">정산 대상 업체</div><div class="val tnum"><span id="kpiTotal">100</span> <span class="u">개</span></div></div><div class="k" data-f="auto" onclick="rentSetFilter('auto')" title="클릭하면 자동 산정 건만 표시합니다"><div class="lab">자동 산정 완료</div><div class="val tnum"><span id="kpiAuto">98</span> <span class="u">건</span></div></div><div class="k" data-f="verify" onclick="rentSetFilter('verify')" title="클릭하면 검증 필요 건만 표시합니다"><div class="lab">검증 필요(이상치)</div><div class="val tnum" style="color:var(--warn)"><span id="kpiVerify">2</span> <span class="u">건</span></div><div class="ksub">매출 급증·정합성 저하</div></div><div class="k" data-f="sent" onclick="rentSetFilter('sent')" title="클릭하면 고지서 발송 건만 표시합니다"><div class="lab">정산 알림 발송</div><div class="val tnum"><span id="kpiSent">76</span> <span class="u">건</span></div><div class="ksub">수신확인 <b id="kpiRecv">61</b>건</div></div></div>
     <div class="card filter"><div class="cb"><div class="qbar"><div class="qf"><label>공항(권역)</label><select class="sel w180"><option>전체 공항</option><optgroup label="수도권"><option>김포공항</option></optgroup><optgroup label="제주권"><option>제주공항</option></optgroup><optgroup label="영남권"><option>김해공항</option><option>대구공항</option></optgroup><optgroup label="중부권"><option>청주공항</option></optgroup></select></div><div class="qf"><label>정산월</label><input class="inp w160" type="month" value="2026-06"></div><div class="qf"><label>정산 유형</label><div class="seg"><label><input type="radio" name="settp" checked><span>월정산</span></label><label><input type="radio" name="settp"><span>연정산(소급)</span></label></div></div><div class="qf"><label>임대료 구분</label><div class="seg"><label><input type="radio" name="rk" checked><span>전체</span></label><label><input type="radio" name="rk"><span>기본</span></label><label><input type="radio" name="rk"><span>매출연동</span></label><label><input type="radio" name="rk"><span>시설관리비</span></label></div></div><div class="qf"><label>상태</label><select class="sel w140"><option>전체</option><option>자동 산정</option><option>검증 필요</option><option>완료</option></select></div><div class="qf-act"><button class="btn ghost">초기화</button><button class="btn dark"><span class="ic">⌕</span> 조회</button></div></div></div></div>
-    <div class="tbar"><div class="summ"><span><span class="lab">정산 대상</span><b class="tnum">48</b> 건</span><span><span class="lab">승인 가능</span><b class="tnum">41</b> 건</span><span><span class="lab">검증 필요</span><b class="tnum" style="color:var(--warn)">2</b> 건</span></div><div class="right"><button class="btn sm" onclick="openFacUpload()"><span class="ic">⤒</span> 시설관리비 업로드</button><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn dark"><span class="ic">✓</span> 선택 승인</button></div></div>
-    <div class="scroll"><table class="tbl"><thead><tr><th class="ctr">상태</th><th>업체명</th><th>공항</th><th>임대료 구분</th><th>산정 기준</th><th class="num">임대료 산정액</th><th class="ctr">AI 정합성</th><th class="ctr">고지서 발송</th><th class="ctr">승인</th></tr></thead><tbody>
-          <tr><td class="ctr"><span class="bdg auto">자동 산정</span></td><td class="store"><span class="lnk" onclick="openCompany('스카이게이트 F&amp;B')">스카이게이트 F&amp;B</span></td><td>제주공항</td><td>매출연동</td><td>매출 6,420만</td><td class="num">3,210,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:99%"></i></span>99%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><button class="btn sm dark">승인</button></td></tr>
-          <tr><td class="ctr"><span class="bdg chk">검증 필요</span></td><td class="store"><span class="lnk" onclick="openCompany('듀티프리 부티크')">듀티프리 부티크</span></td><td>김포공항</td><td>매출연동</td><td>매출 2.29억</td><td class="num">11,445,000</td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:72%"></i></span>72%</span></td><td class="ctr"><span class="bdg line">대기</span></td><td class="ctr"><button class="btn sm warn">검토</button></td></tr>
-          <tr><td class="ctr"><span class="bdg solid">승인 완료</span></td><td class="store"><span class="lnk" onclick="openCompany('게이트 델리')">게이트 델리</span></td><td>제주공항</td><td>기본임대료</td><td>면적 84㎡</td><td class="num">5,600,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:100%"></i></span>100%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><span style="font-size:11px;color:var(--ink-3)">승인 2026-06-15 14:20 · 정현업</span></td></tr>
-          <tr><td class="ctr"><span class="bdg auto">자동 산정</span></td><td class="store"><span class="lnk" onclick="openCompany('스카이게이트 카페')">스카이게이트 카페</span></td><td>제주공항</td><td>시설관리비</td><td>공용면적 배분</td><td class="num">420,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:98%"></i></span>98%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><button class="btn sm dark">승인</button></td></tr>
-          <tr><td class="ctr"><span class="bdg auto">자동 산정</span></td><td class="store"><span class="lnk" onclick="openCompany('라운지 그릴')">라운지 그릴</span></td><td>김해공항</td><td>매출연동</td><td>매출 3,418만</td><td class="num">1,709,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:96%"></i></span>96%</span></td><td class="ctr"><span class="bdg line">대기</span></td><td class="ctr"><button class="btn sm dark">승인</button></td></tr>
-          <tr><td class="ctr"><span class="bdg chk">검증 필요</span></td><td class="store"><span class="lnk" onclick="openCompany('듀티프리 코스메틱')">듀티프리 코스메틱</span></td><td>김포공항</td><td>매출연동</td><td>매출 1.56억</td><td class="num">7,815,000</td><td class="ctr"><span class="conf"><span class="bar lowc"><i style="width:68%"></i></span>68%</span></td><td class="ctr"><span class="bdg line">대기</span></td><td class="ctr"><button class="btn sm warn">검토</button></td></tr>
-          <tr><td class="ctr"><span class="bdg solid">승인 완료</span></td><td class="store"><span class="lnk" onclick="openCompany('트래블 컨비니')">트래블 컨비니</span></td><td>대구공항</td><td>기본임대료</td><td>면적 42㎡</td><td class="num">2,800,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:100%"></i></span>100%</span></td><td class="ctr"><span class="bdg fill">발송</span></td><td class="ctr"><span style="font-size:11px;color:var(--ink-3)">승인 2026-06-15 11:05 · 정현업</span></td></tr>
-          <tr><td class="ctr"><span class="bdg auto">자동 산정</span></td><td class="store"><span class="lnk" onclick="openCompany('에어사이드 베이커리')">에어사이드 베이커리</span></td><td>청주공항</td><td>매출연동</td><td>매출 1,247만</td><td class="num">623,000</td><td class="ctr"><span class="conf"><span class="bar"><i style="width:95%"></i></span>95%</span></td><td class="ctr"><span class="bdg line">대기</span></td><td class="ctr"><button class="btn sm dark">승인</button></td></tr>
-        </tbody></table></div>
+    <div class="tbar"><div class="summ"><span><span class="lab">정산 대상</span><b class="tnum" id="sumTotal">100</b> 건</span><span><span class="lab">승인 가능</span><b class="tnum" id="sumAppr">52</b> 건</span><span><span class="lab">검증 필요</span><b class="tnum" id="sumVerify" style="color:var(--warn)">2</b> 건</span></div><div class="right"><button class="btn sm" onclick="openFacUpload()"><span class="ic">⤒</span> 시설관리비 업로드</button><button class="btn sm"><span class="ic">⤓</span> 엑셀 다운로드</button><button class="btn dark"><span class="ic">✓</span> 선택 승인</button></div></div>
+    <div class="scroll"><table class="tbl"><thead><tr><th class="ctr">상태</th><th>업체명</th><th>공항</th><th>임대료 구분</th><th>산정 기준</th><th class="num">임대료 산정액</th><th class="ctr">AI 정합성</th><th class="ctr">고지서 발송</th><th class="ctr">승인</th></tr></thead><tbody id="rentBody"></tbody></table></div>
+    <div class="pgwrap"><div class="pginfo" id="rentInfo"></div><div class="pager" id="rentPager"></div></div>
   </section>
 
   <section class="screen" id="screen-ai-map">
@@ -1528,6 +1545,102 @@ function editEtc(b){const c=b.closest('tr').children;openDrawer('etc','edit',{st
 function editTax(b){const c=b.closest('tr').children;openDrawer('tax','edit',{store:c[1].textContent.trim(),year:c[2].textContent.trim(),gubun:c[3].textContent.trim(),amount:c[4].textContent.trim()});}
 document.querySelectorAll('#screen-etc tbody .mini .btn').forEach(b=>{if(b.textContent.trim()==='수정')b.addEventListener('click',()=>editEtc(b));});
 document.querySelectorAll('#screen-tax tbody .mini .btn').forEach(b=>{if(b.textContent.trim()==='수정')b.addEventListener('click',()=>editTax(b));});
+
+/* ===== 임대료 정산 자동화 데이터/렌더 ===== */
+function rentEsc(x){return (''+x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function rentSet(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+var RENT_SEED=[
+ {n:'스카이게이트 F&B',link:1,s:'auto',air:'제주공항',kind:'매출연동',basis:'매출 6,420만',amt:3210000,conf:99,recv:0},
+ {n:'듀티프리 부티크',link:1,s:'verify',air:'김포공항',kind:'매출연동',basis:'매출 2.29억',amt:11445000,conf:72,recv:0,reason:'매출연동분 전월 대비 +38% 급증 · VAN 대조 차액 발생 → 매출 누락 의심'},
+ {n:'게이트 델리',link:1,s:'done',air:'제주공항',kind:'기본임대료',basis:'면적 84㎡',amt:5600000,conf:100,recv:1,appr:'2026-06-15 14:20 · 정현업'},
+ {n:'스카이게이트 카페',link:1,s:'auto',air:'제주공항',kind:'시설관리비',basis:'공용면적 배분',amt:420000,conf:98,recv:0},
+ {n:'라운지 그릴',link:1,s:'auto',air:'김해공항',kind:'매출연동',basis:'매출 3,418만',amt:1709000,conf:96,recv:0},
+ {n:'듀티프리 코스메틱',link:1,s:'verify',air:'김포공항',kind:'매출연동',basis:'매출 1.56억',amt:7815000,conf:68,recv:0,reason:'AI 정합성 68% · 품목 매핑 불일치로 매출연동 산정 근거 부족'},
+ {n:'트래블 컨비니',link:1,s:'done',air:'대구공항',kind:'기본임대료',basis:'면적 42㎡',amt:2800000,conf:100,recv:1,appr:'2026-06-15 11:05 · 정현업'},
+ {n:'에어사이드 베이커리',link:1,s:'auto',air:'청주공항',kind:'매출연동',basis:'매출 1,247만',amt:623000,conf:95,recv:0}
+];
+var RENT=null, rentFilter='all', rentPage=1, RPP=10;
+function rentBuild(){
+  var d=RENT_SEED.map(function(r){var o={};for(var k in r)o[k]=r[k];return o;});
+  var br=['스카이마트','에어로 카페','게이트 키친','라운지 바','트래블 샵','듀티 스토어','컨세션 델리','스낵 코너','프레시 주스','북앤기프트','뷰티 라운지','로컬 푸드','베이글 윅스','누들 스테이션','커피 그라운드','뷰 레스토랑','에어 파머시','기프트 갤러리'];
+  var air=['인천공항','김포공항','제주공항','김해공항','대구공항','청주공항','광주공항','무안공항','양양공항','울산공항','여수공항','포항경주공항','사천공항','군산공항'];
+  var kinds=['매출연동','기본임대료','시설관리비'];
+  var seed=20260616;
+  function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+  for(var i=0;i<92;i++){
+    var k=kinds[Math.floor(rnd()*3)];
+    var conf=92+Math.floor(rnd()*8);
+    var st=rnd()<0.45?'done':'auto';
+    var amt,basis;
+    if(k==='매출연동'){var sal=Math.floor(800+rnd()*9000);amt=Math.round(sal*10000*0.05/1000)*1000;basis='매출 '+sal.toLocaleString()+'만';}
+    else if(k==='기본임대료'){var ar=Math.floor(30+rnd()*120);amt=Math.round((1500000+ar*45000)/1000)*1000;basis='면적 '+ar+'㎡';}
+    else{amt=Math.round((200000+rnd()*900000)/1000)*1000;basis='공용면적 배분';}
+    var row={n:br[i%br.length]+' '+(Math.floor(i/br.length)+1)+'호점',link:0,s:st,air:air[Math.floor(rnd()*air.length)],kind:k,basis:basis,amt:amt,conf:conf,recv:0};
+    if(st==='done'){row.appr='2026-06-15 · 정현업';row.recv=rnd()<0.82?1:0;}
+    d.push(row);
+  }
+  for(var x=0;x<d.length;x++)d[x].id=x;
+  return d;
+}
+function rentMatch(r){
+  if(rentFilter==='all')return true;
+  if(rentFilter==='auto')return r.s!=='verify';
+  if(rentFilter==='verify')return r.s==='verify';
+  if(rentFilter==='sent')return r.s==='done';
+  return true;
+}
+function rentStatBadge(s){return s==='auto'?'<span class="bdg auto">자동 산정</span>':s==='verify'?'<span class="bdg err">검증 필요</span>':'<span class="bdg solid">승인 완료</span>';}
+function rentStage(r){
+  if(r.s!=='done')return '<span class="bdg line">대기</span>';
+  return r.recv?'<span class="bdg solid">수신확인</span>':'<span class="bdg fill">발송</span>';
+}
+function rentApprCell(r){
+  if(r.s==='done')return '<div class="apprcell"><span class="apprtxt">승인 '+rentEsc(r.appr||'')+'</span><button class="btn xs ghost" onclick="rentCancel('+r.id+')">승인취소</button></div>';
+  if(r.s==='verify')return '<button class="btn sm">검토</button>';
+  return '<button class="btn sm" onclick="rentApprove('+r.id+')">승인</button>';
+}
+function renderRentAuto(){
+  if(!RENT)RENT=rentBuild();
+  var rows=RENT.filter(rentMatch);
+  var tp=Math.max(1,Math.ceil(rows.length/RPP));
+  if(rentPage>tp)rentPage=tp;
+  var st=(rentPage-1)*RPP, pg=rows.slice(st,st+RPP);
+  var html=pg.map(function(r){
+    var en=rentEsc(r.n);
+    var nm=r.link?'<span class="lnk" onclick="openCompany(\''+en+'\')">'+en+'</span>':en;
+    var rsn=r.reason?'<div class="rsn">⚠ '+rentEsc(r.reason)+'</div>':'';
+    return '<tr><td class="ctr">'+rentStatBadge(r.s)+'</td><td class="store">'+nm+rsn+'</td><td>'+r.air+'</td><td>'+r.kind+'</td><td>'+r.basis+'</td><td class="num">'+r.amt.toLocaleString()+'</td><td class="ctr"><span class="conf"><span class="bar'+(r.conf<90?' lowc':'')+'"><i style="width:'+r.conf+'%"></i></span>'+r.conf+'%</span></td><td class="ctr">'+rentStage(r)+'</td><td class="ctr">'+rentApprCell(r)+'</td></tr>';
+  }).join('');
+  document.getElementById('rentBody').innerHTML=html||'<tr><td colspan="9" class="ctr" style="padding:34px;color:var(--ink-3)">해당 조건의 정산 건이 없습니다.</td></tr>';
+  var ph='<button class="pgbtn" '+(rentPage<=1?'disabled':'')+' onclick="rentGo('+(rentPage-1)+')">‹</button>';
+  for(var p=1;p<=tp;p++){
+    if(tp>9 && p>2 && p<tp-1 && Math.abs(p-rentPage)>1){ if(p===3||p===tp-2)ph+='<span class="pgdot">…</span>'; continue; }
+    ph+='<button class="pgbtn'+(p===rentPage?' on':'')+'" onclick="rentGo('+p+')">'+p+'</button>';
+  }
+  ph+='<button class="pgbtn" '+(rentPage>=tp?'disabled':'')+' onclick="rentGo('+(rentPage+1)+')">›</button>';
+  document.getElementById('rentPager').innerHTML=ph;
+  var aa=rows.length?st+1:0, bb=Math.min(st+RPP,rows.length);
+  document.getElementById('rentInfo').textContent='총 '+rows.length+'건 중 '+aa+'–'+bb+' 표시';
+  var ks=document.querySelectorAll('#rentKpi .k');
+  for(var x=0;x<ks.length;x++)ks[x].classList.toggle('act',ks[x].getAttribute('data-f')===rentFilter);
+}
+function rentGo(p){rentPage=p;renderRentAuto();}
+function rentSetFilter(f){rentFilter=(rentFilter===f&&f!=='all')?'all':f;rentPage=1;renderRentAuto();}
+function rentApprove(id){var r=RENT[id];if(!r||r.s==='done')return;r.s='done';r.appr='2026-06-19 · 정현업';r.recv=0;rentRefreshKpi();renderRentAuto();}
+function rentCancel(id){var r=RENT[id];if(!r||r.s!=='done')return;r.s='auto';r.appr=null;r.recv=0;rentRefreshKpi();renderRentAuto();}
+function rentRefreshKpi(){
+  var total=RENT.length;
+  var verify=RENT.filter(function(r){return r.s==='verify';}).length;
+  var sent=RENT.filter(function(r){return r.s==='done';}).length;
+  var recv=RENT.filter(function(r){return r.s==='done'&&r.recv;}).length;
+  var appro=RENT.filter(function(r){return r.s==='auto';}).length;
+  rentSet('kpiTotal',total);rentSet('kpiAuto',total-verify);rentSet('kpiVerify',verify);
+  rentSet('kpiSent',sent);rentSet('kpiRecv',recv);
+  rentSet('sumTotal',total);rentSet('sumAppr',appro);rentSet('sumVerify',verify);
+}
+function rentInit(){ RENT=rentBuild(); rentRefreshKpi(); renderRentAuto(); }
+rentInit();
+
 </script>
 </body>
 </html>
